@@ -1,0 +1,53 @@
+// VARIABLES
+// colors
+
+$color-1: #10E7DC;
+$color-2: #0074E1;
+$color-3: #1B9CE5;
+$color-4: #6CDAEE;
+$color-5: #F79E02;
+
+
+//COLOR PALETTE 1 - Vivid Blues and Orange
+// #10E7DC
+// #0074E1
+// #1B9CE5
+// #6CDAEE
+// #F79E02
+
+//COLOR PALETTE 2 - Lively Yet Soothing
+// #026670
+// #9FEDD7
+// #FEF9C7
+// #FCE181
+// #EDEAE5
+
+//COLOR PALETTE 3 - Elegant and Sophisticated
+// #0B3C5D
+// #328CC1
+// #D9B310
+// #1D2731
+
+
+
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;    //1 rem = 10px; 10px/16px = 62.5%
+}
+
+body {
+  background-color: $color-2;
+  font-family: 'Roboto', sans-serif;
+}
+
+// ::selection {
+//   background-color: $;
+//   color: $;
+// }
