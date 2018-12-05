@@ -24,19 +24,71 @@ body {
   background-color: #F79E02;
   color: #fff; }
 
+.checkbox {
+  display: none; }
+
+.button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: all .2s; }
+  .button__add {
+    color: #fff;
+    font-size: 2rem;
+    padding-left: .5rem;
+    margin-right: 56%; }
+    .button__add:hover {
+      color: #F79E02; }
+  .button__check {
+    color: #F79E02;
+    font-size: 2.5rem;
+    padding-right: .5rem; }
+  .button__previous {
+    color: #328CC1;
+    font-size: 3rem;
+    padding-bottom: 1.5rem; }
+    .button__previous:hover {
+      color: #F79E02; }
+  .button__next {
+    color: #328CC1;
+    font-size: 3rem;
+    padding-bottom: 1.5rem; }
+    .button__next:hover {
+      color: #F79E02; }
+
 .section {
   background-color: rgba(255, 255, 255, 0.9);
   border-radius: .5rem;
-  padding: 2rem; }
+  padding: 1.5rem 0; }
+  .section:first-child .section__title {
+    border-bottom: 0.3rem solid #328CC1; }
   .section__title {
     text-transform: uppercase;
     text-align: center;
     padding-bottom: 1.5rem;
     color: #328CC1;
-    border-bottom: 0.3rem solid #328CC1;
-    margin: 0 auto;
-    width: 95%;
-    justify-self: center; }
+    width: 95%; }
+    .section__title--week {
+      display: flex;
+      width: 100%;
+      padding: 0 2rem; }
+  .section__item {
+    border-top: 0.25rem solid #328CC1;
+    padding-bottom: .5rem; }
+    .section__item--title {
+      background-color: #328CC1;
+      color: #fff;
+      padding: .7rem 1.5rem;
+      clip-path: polygon(0 0, 50% 0, 45% 100%, 0 100%);
+      border-top: 0.3rem solid #328CC1;
+      display: flex;
+      justify-content: space-between;
+      margin-top: -0.25rem; }
+    .section__item--content {
+      display: flex;
+      align-items: center;
+      padding: 1rem; }
 
 .skills__icons {
   padding-top: 1.5rem;
@@ -55,10 +107,14 @@ body {
 
 .skills__icon-add {
   width: 8rem;
-  color: #F79E02; }
+  color: #F79E02;
+  cursor: pointer; }
+
+.skills__icon-add:hover {
+  color: rgba(247, 158, 2, 0.7); }
 
 .container {
-  padding: 3rem 2.5vw;
+  padding: 3rem 2rem;
   position: absolute;
   height: 100%;
   z-index: 2;
@@ -66,8 +122,11 @@ body {
 
 .header {
   font-family: 'Rammetto One', cursive;
-  padding-bottom: 3rem;
-  color: #0B3C5D; }
+  padding-bottom: 2rem;
+  color: #0B3C5D;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; }
 
 .sections {
   display: grid;
@@ -75,7 +134,14 @@ body {
   grid-gap: 2rem; }
 
 .header-1 {
-  font-size: 5rem; }
+  font-size: 3.5rem; }
 
 .header-2 {
-  font-size: 3rem; }
+  font-size: 2.5rem; }
+
+.header-3 {
+  font-size: 1.8rem; }
+
+.paragraph {
+  font-size: 1.6rem;
+  font-weight: 100; }

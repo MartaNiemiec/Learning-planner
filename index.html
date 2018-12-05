@@ -18,18 +18,25 @@
   <!-- https://konpa.github.io/devicon/ -->
 
   <link href="https://unpkg.com/ionicons@4.4.8/dist/css/ionicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
 </head>
 <body>
   <div class="bg-image"></div>
 
+   <!-- CONTAINER -->
   <div class="container">
+
+     <!-- APP HEADER -->
     <div class="header">
       <h1 class="header-1 app-title"><i class="ion-ios-paper"></i> My planner app</h1>
-      <h1 class="today-dateheader-1 header-2
-      app-title "><i class="ion-ios-time"></i> 25 December 2018</h1>
+      <h1 class="today-date"><i class="ion-ios-time"></i> 25 December 2018</h1>
     </div>
+
+     <!-- ALL SECTIONS -->
     <div class="sections">
+
+       <!-- SECTION SKILLS -->
       <section class="section skills">
         <h2 class="header-2 section__title">SKILLS</h2>
         <div class="skills__icons">
@@ -40,18 +47,150 @@
             <i class="skills__icon devicon-nodejs-plain-wordmark"></i>
             <i class="skills__icon devicon-webpack-plain-wordmark"></i>
             <i class="skills__icon devicon-jquery-plain-wordmark"></i>
-            <i class="ion-md-add-circle-outline skills__icon skills__icon-add"></i>
-
+            <!-- <i class="ion-md-add-circle-outline skills__icon skills__icon-add"></i> -->
+            <i class="fas fa-plus-circle skills__icon skills__icon-add"></i>
         </div>
       </section>
+
+      <!-- SECTION WEEK -->
       <section class="section week">
-        <h2 class="header-2 section__title">week</h2>
+        <!-- <div class="section__title--week">
+          <button class="button button__previous">
+              <i class="fas fa-angle-left "></i>
+          </button> -->
+          <h2 class="header-2 section__title">week <span class="week-number">12</span></h2>
+          <!-- <button class="button button__next">
+              <i class="fas fa-angle-right "></i>
+          </button>
+        </div> -->
+
+        <div class="section__item">
+          <h3 class="header-3 section__item--title">Monday
+            <button class="button button__add">
+              <i class="fas fa-plus-circle"></i>
+            </button>
+          </h3>
+          <h3 class="header-3 section__item--content">
+            <button class="button button__check">
+              <i class="far fa-check-circle"></i>
+            </button>
+            <p class="paragraph">Basic HTML.</p>
+          </h3>
+        </div>
+
+        
+        <div class="section__item">
+          <h3 class="header-3 section__item--title">Tuesday
+            <button class="button button__add">
+              <i class="fas fa-plus-circle"></i>
+            </button>
+          </h3>
+          <!-- <h3 class="header-3 section__item--content">
+            <button class="button button__check">
+              <i class="far fa-check-circle"></i>
+            </button>
+            <p class="paragraph"></p>
+          </h3> -->
+        </div>
+
+        <div class="section__item">
+          <h3 class="header-3 section__item--title">Wednesday
+            <button class="button button__add">
+              <i class="fas fa-plus-circle"></i>
+            </button>
+          </h3>
+          <h3 class="header-3 section__item--content">
+            <button class="button button__check">
+              <i class="far fa-check-circle"></i>
+            </button>
+            <p class="paragraph">Basic CSS.</p>
+          </h3>
+        </div>
+
+        <div class="section__item">
+          <h3 class="header-3 section__item--title">Thursday
+            <button class="button button__add">
+              <i class="fas fa-plus-circle"></i>
+            </button>
+          </h3>
+          <!-- <h3 class="header-3 section__item--content">
+            <button class="button button__check">
+              <i class="far fa-check-circle"></i>
+            </button>
+            <p class="paragraph"></p>
+          </h3> -->
+        </div>
+
+        <div class="section__item">
+            <h3 class="header-3 section__item--title">Friday
+              <button class="button button__add">
+                <i class="fas fa-plus-circle"></i>
+              </button>
+            </h3>
+            <h3 class="header-3 section__item--content">
+              <button class="button button__check">
+                <i class="far fa-circle"></i>
+              </button>
+              <p class="paragraph">Start creating basic webpage.</p>
+            </h3>
+          </div>
+  
+          <div class="section__item">
+            <h3 class="header-3 section__item--title">Saturday
+              <button class="button button__add">
+                <i class="fas fa-plus-circle"></i>
+              </button>
+            </h3>
+            <!-- <h3 class="header-3 section__item--content">
+              <button class="button button__check">
+                <i class="far fa-check-circle"></i>
+              </button>
+             <p class="paragraph"></p>
+            </h3> -->
+          </div>
+  
+          <div class="section__item">
+            <h3 class="header-3 section__item--title">Sunday
+              <button class="button button__add">
+                <i class="fas fa-plus-circle"></i>
+              </button>
+            </h3>
+            <!-- <h3 class="header-3 section__item--content">
+              <button class="button button__check">
+                <i class="far fa-check-circle"></i>
+              </button>
+              <p class="paragraph"></p>
+            </h3> -->
+          </div>
+  
       </section>
+
+       <!-- SECTION MONTH -->
       <section class="section month">
-          <h2 class="header-2 section__title">month</h2>
+        <!-- <div class="section__title--week">
+          <button class="button button__previous">
+              <i class="fas fa-angle-left "></i>
+          </button> -->
+          <h2 class="header-2 section__title"><span class="month-name">December</span></h2>
+          <!-- <button class="button button__next">
+              <i class="fas fa-angle-right "></i>
+          </button>
+        </div> -->
+          
       </section>
+
+       <!-- SECTION YEAR -->
       <section class="section year">
-          <h2 class="header-2 section__title">year</h2>
+          <!-- <div class="section__title--week">
+            <button class="button button__previous">
+                <i class="fas fa-angle-left "></i>
+            </button> -->
+            <h2 class="header-2 section__title">year <span class="year-number">2018</span></h2>
+            <!-- <button class="button button__next">
+                <i class="fas fa-angle-right "></i>
+            </button>
+          </div> -->
+          
       </section>
     </div>
     </div>

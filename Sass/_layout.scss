@@ -1,5 +1,5 @@
 .container {
-  padding: 3rem 2.5vw;
+  padding: 3rem 2rem;
   position: absolute;
   height: 100%;
   z-index: 2;
@@ -8,8 +8,12 @@
 
 .header {
   font-family: 'Rammetto One', cursive;
-  padding-bottom: 3rem;
+  padding-bottom: 2rem;
   color: $color-1;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .sections {

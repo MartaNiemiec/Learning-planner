@@ -1,17 +1,103 @@
+.checkbox {
+  display: none;
+}
+
+.button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: all .2s;
+    
+    &__add {
+      color: $color-white;
+      font-size: 2rem;
+      padding-left: .5rem;
+      margin-right: 56%;
+
+      &:hover {
+        color: $color-3;
+      }
+    }
+
+    &__check {
+      color: $color-3;
+      font-size: 2.5rem;
+      padding-right: .5rem;
+    }
+
+    &__previous {
+      color:$color-2;
+      font-size: 3rem;
+      padding-bottom: 1.5rem;
+      &:hover {
+        color: $color-3;
+      }
+    }
+
+    &__next {
+      color:$color-2;
+      font-size: 3rem;
+      padding-bottom: 1.5rem;
+      &:hover {
+        color: $color-3;
+      }
+    }
+}
+
 .section {
   background-color: rgba($color-white, .9);
   border-radius: .5rem;
-  padding: 2rem;
+  padding: 1.5rem 0;
+  &:first-child &__title {
+    border-bottom: .3rem solid $color-2;
+  }
 
   &__title {
     text-transform: uppercase;
     text-align: center;
     padding-bottom: 1.5rem;
     color: $color-2;
-    border-bottom: .3rem solid $color-2; 
-    margin: 0 auto;
+    // margin: 0 auto;
     width: 95%;
-    justify-self: center;
+    // justify-self: center;
+
+    &--week {
+    //   text-transform: uppercase;
+    // text-align: center;
+    // padding-bottom: 1.5rem;
+    // color: $color-2;
+    // margin: 0 auto;
+    // width: 95%;
+    // justify-self: center;
+    display: flex;
+    width: 100%;
+    padding: 0 2rem;
+
+    }
+  }
+
+  &__item {
+    border-top: .25rem solid $color-2;
+    padding-bottom: .5rem;
+
+    &--title {
+      background-color: $color-2;
+      color: $color-white;
+      padding: .7rem 1.5rem;
+      clip-path: polygon(0 0, 50% 0, 45% 100%, 0 100%);
+      border-top: .3rem solid $color-2;
+      display: flex;
+      justify-content: space-between;
+      margin-top: -0.25rem;
+    }
+
+    &--content {
+      display: flex;
+      align-items: center;
+      padding: 1rem;
+    }
+
   }
 }
 
@@ -36,8 +122,14 @@
   &__icon-add {
    width: 8rem;
    color: $color-3;
+   cursor: pointer;
+  }
+
+  &__icon-add:hover {
+    color: rgba($color-3, .7);
   }
 }
+
 
 .week {
 
