@@ -1,0 +1,52 @@
+.section {
+  background-color: rgba($color-white, .9);
+  border-radius: .5rem;
+  padding: 2rem;
+
+  &__title {
+    text-transform: uppercase;
+    text-align: center;
+    padding-bottom: 1.5rem;
+    color: $color-2;
+    border-bottom: .3rem solid $color-2; 
+    margin: 0 auto;
+    width: 95%;
+    justify-self: center;
+  }
+}
+
+.skills {
+  &__icons {
+    padding-top: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: center;
+    color: $color-1;
+  }
+
+  &__icon {
+    font-size: 6rem;
+    margin: .5rem;
+    padding: .8rem;
+    background-color: $color-white;
+    border-radius: .5rem;
+  }
+
+  &__icon-add {
+   width: 8rem;
+   color: $color-3;
+  }
+}
+
+.week {
+
+}
+
+.month {
+
+}
+
+.year {
+
+}
