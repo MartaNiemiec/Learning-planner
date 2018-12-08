@@ -12,8 +12,8 @@
     &__add {
       color: $color-white;
       font-size: 2rem;
-      padding-left: .5rem;
-      margin-right: 56%;
+      // padding-left: .5rem;
+      // margin-right: 56%;
 
       &:hover {
         color: $color-3;
@@ -58,9 +58,8 @@
     text-align: center;
     padding-bottom: 1.5rem;
     color: $color-2;
-    // margin: 0 auto;
+    margin: 0 auto;
     width: 95%;
-    // justify-self: center;
 
     &--week {
     //   text-transform: uppercase;
@@ -85,11 +84,11 @@
       background-color: $color-2;
       color: $color-white;
       padding: .7rem 1.5rem;
-      clip-path: polygon(0 0, 50% 0, 45% 100%, 0 100%);
+      // clip-path: polygon(0 0, 50% 0, 45% 100%, 0 100%);
       border-top: .3rem solid $color-2;
       display: flex;
       justify-content: space-between;
-      margin-top: -0.25rem;
+      // margin-top: -0.25rem;
     }
 
     &--content {

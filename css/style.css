@@ -35,9 +35,7 @@ body {
   transition: all .2s; }
   .button__add {
     color: #fff;
-    font-size: 2rem;
-    padding-left: .5rem;
-    margin-right: 56%; }
+    font-size: 2rem; }
     .button__add:hover {
       color: #F79E02; }
   .button__check {
@@ -68,6 +66,7 @@ body {
     text-align: center;
     padding-bottom: 1.5rem;
     color: #328CC1;
+    margin: 0 auto;
     width: 95%; }
     .section__title--week {
       display: flex;
@@ -80,11 +79,9 @@ body {
       background-color: #328CC1;
       color: #fff;
       padding: .7rem 1.5rem;
-      clip-path: polygon(0 0, 50% 0, 45% 100%, 0 100%);
       border-top: 0.3rem solid #328CC1;
       display: flex;
-      justify-content: space-between;
-      margin-top: -0.25rem; }
+      justify-content: space-between; }
     .section__item--content {
       display: flex;
       align-items: center;
