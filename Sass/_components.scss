@@ -48,7 +48,7 @@
 .section {
   background-color: rgba($color-white, .9);
   border-radius: .5rem;
-  padding: 1.5rem 0;
+  // padding: 1.5rem 0;
   &:first-child &__title {
     border-bottom: .3rem solid $color-2;
   }
@@ -56,7 +56,8 @@
   &__title {
     text-transform: uppercase;
     text-align: center;
-    padding-bottom: 1.5rem;
+    padding: 1.5rem;
+    line-height: 1;
     color: $color-2;
     margin: 0 auto;
     width: 95%;
@@ -76,16 +77,22 @@
     }
   }
 
+  &__content {
+    display: grid;
+    grid-template-rows: auto;
+    height: calc(100% - 3rem - 2.5rem); // 100% height = all section's height 
+  }
+
   &__item {
-    border-top: .25rem solid $color-2;
-    padding-bottom: .5rem;
+    // border-bottom: .2rem solid rgba($color-white, .9);
+    // padding-bottom: .5rem;
 
     &--title {
       background-color: $color-2;
       color: $color-white;
       padding: .7rem 1.5rem;
       // clip-path: polygon(0 0, 50% 0, 45% 100%, 0 100%);
-      border-top: .3rem solid $color-2;
+      // border-top: .3rem solid $color-2;
       display: flex;
       justify-content: space-between;
       // margin-top: -0.25rem;
@@ -93,8 +100,16 @@
 
     &--content {
       display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      // align-items: center;
+      padding: .5rem 0;
+    }
+
+    &--goal {
+      display: flex;
       align-items: center;
-      padding: 1rem;
+      padding: .2rem 1rem;
     }
 
   }

@@ -57,14 +57,14 @@ body {
 
 .section {
   background-color: rgba(255, 255, 255, 0.9);
-  border-radius: .5rem;
-  padding: 1.5rem 0; }
+  border-radius: .5rem; }
   .section:first-child .section__title {
     border-bottom: 0.3rem solid #328CC1; }
   .section__title {
     text-transform: uppercase;
     text-align: center;
-    padding-bottom: 1.5rem;
+    padding: 1.5rem;
+    line-height: 1;
     color: #328CC1;
     margin: 0 auto;
     width: 95%; }
@@ -72,20 +72,25 @@ body {
       display: flex;
       width: 100%;
       padding: 0 2rem; }
-  .section__item {
-    border-top: 0.25rem solid #328CC1;
-    padding-bottom: .5rem; }
-    .section__item--title {
-      background-color: #328CC1;
-      color: #fff;
-      padding: .7rem 1.5rem;
-      border-top: 0.3rem solid #328CC1;
-      display: flex;
-      justify-content: space-between; }
-    .section__item--content {
-      display: flex;
-      align-items: center;
-      padding: 1rem; }
+  .section__content {
+    display: grid;
+    grid-template-rows: auto;
+    height: calc(100% - 3rem - 2.5rem); }
+  .section__item--title {
+    background-color: #328CC1;
+    color: #fff;
+    padding: .7rem 1.5rem;
+    display: flex;
+    justify-content: space-between; }
+  .section__item--content {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: .5rem 0; }
+  .section__item--goal {
+    display: flex;
+    align-items: center;
+    padding: .2rem 1rem; }
 
 .skills__icons {
   padding-top: 1.5rem;
