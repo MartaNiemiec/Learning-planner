@@ -56,7 +56,7 @@ body {
       color: #F79E02; }
 
 .section {
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.8);
   border-radius: .5rem; }
   .section:first-child .section__title {
     border-bottom: 0.3rem solid #328CC1; }
