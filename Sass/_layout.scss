@@ -1,9 +1,18 @@
 .container {
-  padding: 3rem 2rem;
-  position: absolute;
-  height: 100%;
-  z-index: 2;
+  padding: 3rem 4rem;
   top: 0;
+
+  @media only screen and (max-width: $bp-large) {
+    padding: 3rem 2rem;
+  }
+
+  @media only screen and (max-width: $bp-medium) {
+    padding: 3rem 4rem;
+  }
+ 
+  @media only screen and (max-width: $bp-small) {
+    padding: 3rem 2rem;
+  }
 }
 
 .header {
@@ -19,6 +28,13 @@
 .sections {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  // height: 83%;
   grid-gap: 2rem;
+
+  @media only screen and (max-width: $bp-medium) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+ 
+  @media only screen and (max-width: $bp-small) {
+    grid-template-columns: 1fr;
+  }
 }

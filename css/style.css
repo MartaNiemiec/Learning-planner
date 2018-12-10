@@ -7,16 +7,31 @@
 
 html {
   font-size: 62.5%; }
+  @media only screen and (max-width: 68.75em) {
+    html {
+      font-size: 55%; } }
+  @media only screen and (max-width: 59.38em) {
+    html {
+      font-size: 60%; } }
 
 body {
-  font-family: 'Roboto', sans-serif; }
-
-.bg-image {
-  height: 100vh;
-  background-image: url(../images/background.jpg);
+  font-family: 'Roboto', sans-serif;
+  background-image: linear-gradient(to left top, rgba(11, 60, 93, 0.4), rgba(50, 140, 193, 0.4)), url(../images/background-small.jpg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background-attachment: fixed; }
+  @media only screen and (min-width: 37.5em), only screen and (min-resolution: 192dpi) and (min-width: 18.75em), only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 18.75em) {
+    body {
+      background-image: linear-gradient(to left top, rgba(11, 60, 93, 0.4), rgba(50, 140, 193, 0.4)), url(../images/background-medium.jpg); } }
+  @media only screen and (min-resolution: 192dpi) and (min-width: 37.5em), only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em), only screen and (min-width: 75em) {
+    body {
+      background-image: linear-gradient(to left top, rgba(11, 60, 93, 0.4), rgba(50, 140, 193, 0.4)), url(../images/background-large.jpg); } }
+  @media only screen and (min-resolution: 192dpi) and (min-width: 75em), only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 75em), only screen and (min-width: 150em) {
+    body {
+      background-image: linear-gradient(to left top, rgba(11, 60, 93, 0.4), rgba(50, 140, 193, 0.4)), url(../images/background.jpg); } }
+
+.bg-image {
   filter: blur(4px);
   -webkit-filter: blur(4px); }
 
@@ -44,20 +59,19 @@ body {
     padding-right: .5rem; }
   .button__previous {
     color: #328CC1;
-    font-size: 3rem;
-    padding-bottom: 1.5rem; }
+    font-size: 3rem; }
     .button__previous:hover {
       color: #F79E02; }
   .button__next {
     color: #328CC1;
-    font-size: 3rem;
-    padding-bottom: 1.5rem; }
+    font-size: 3rem; }
     .button__next:hover {
       color: #F79E02; }
 
 .section {
-  background-color: rgba(255, 255, 255, 0.8);
-  border-radius: .5rem; }
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: .5rem;
+  padding-bottom: 1.5rem; }
   .section:first-child .section__title {
     border-bottom: 0.3rem solid #328CC1; }
   .section__title {
@@ -68,18 +82,16 @@ body {
     color: #328CC1;
     margin: 0 auto;
     width: 95%; }
-    .section__title--week {
+    .section__title--action {
       display: flex;
-      width: 100%;
-      padding: 0 2rem; }
+      margin: 0 1.5rem; }
   .section__content {
     display: grid;
-    grid-template-rows: auto;
-    height: calc(100% - 3rem - 2.5rem); }
+    grid-template-rows: auto; }
   .section__item--title {
     background-color: #328CC1;
     color: #fff;
-    padding: .7rem 1.5rem;
+    padding: .7rem 2rem;
     display: flex;
     justify-content: space-between; }
   .section__item--content {
@@ -90,7 +102,7 @@ body {
   .section__item--goal {
     display: flex;
     align-items: center;
-    padding: .2rem 1rem; }
+    padding: .2rem 1.5rem; }
 
 .skills__icons {
   padding-top: 1.5rem;
@@ -116,11 +128,17 @@ body {
   color: rgba(247, 158, 2, 0.7); }
 
 .container {
-  padding: 3rem 2rem;
-  position: absolute;
-  height: 100%;
-  z-index: 2;
+  padding: 3rem 4rem;
   top: 0; }
+  @media only screen and (max-width: 68.75em) {
+    .container {
+      padding: 3rem 2rem; } }
+  @media only screen and (max-width: 59.38em) {
+    .container {
+      padding: 3rem 4rem; } }
+  @media only screen and (max-width: 37.5em) {
+    .container {
+      padding: 3rem 2rem; } }
 
 .header {
   font-family: 'Rammetto One', cursive;
@@ -134,6 +152,12 @@ body {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 2rem; }
+  @media only screen and (max-width: 59.38em) {
+    .sections {
+      grid-template-columns: repeat(2, 1fr); } }
+  @media only screen and (max-width: 37.5em) {
+    .sections {
+      grid-template-columns: 1fr; } }
 
 .header-1 {
   font-size: 3.5rem; }

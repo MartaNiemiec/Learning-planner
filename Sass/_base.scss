@@ -1,30 +1,19 @@
 // VARIABLES
 // colors
 
-// $color-6: #EDEAE5;
 $color-white: #fff;
 
-
-//COLOR PALETTE 1 - Vivid Blues and Orange
-// #10E7DC
-// #0074E1
-// #1B9CE5
-// #6CDAEE
-// #F79E02
-
-//COLOR PALETTE 2 - Lively Yet Soothing
-// #026670
-// #9FEDD7
-// #FEF9C7
-// #FCE181
-// #EDEAE5
-
-//COLOR PALETTE 3 - Elegant and Sophisticated
 $color-1:#0B3C5D;
 $color-2: #328CC1;
 $color-3:#F79E02;
 $color-4:#1D2731;
 
+// BREAKPOINTS
+$bp-largest: 75em;    //1200px/16px=75em | bp = breakpoint
+$bp-large: 68.75em;    //1100px
+$bp-medium: 59.38em;    //950px
+$bp-small: 37.5em;    //600px
+$bp-smallest: 31.25em;    //500px
 
 
 *,
@@ -37,19 +26,46 @@ $color-4:#1D2731;
 
 html {
   font-size: 62.5%;    //1 rem = 10px; 10px/16px = 62.5%
+
+  @media only screen and (max-width: $bp-large) {
+    font-size: 55%;
+  }
+
+  @media only screen and (max-width: $bp-medium) {
+    font-size: 60%;
+  }
+
 }
 
 body {
   font-family: 'Roboto', sans-serif;
-  
-}
-
-.bg-image {
-  height: 100vh; 
-  background-image: url(../images/background.jpg);
+  background-image: linear-gradient(to left top, rgba($color-1 ,0.4), rgba($color-2,0.4)),url(../images/background-small.jpg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  @media only screen and (min-width: $bp-small),
+         only screen and (min-resolution: 192dpi) and (min-width: 18.75em),
+         only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 18.75em) {
+          background-image: linear-gradient(to left top, rgba($color-1 ,0.4), rgba($color-2,0.4)),url(../images/background-medium.jpg);
+  }
+  
+  @media only screen and (min-resolution: 192dpi) and (min-width: $bp-small),
+         only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: $bp-small),
+         only screen and (min-width: $bp-largest) {
+          background-image: linear-gradient(to left top, rgba($color-1 ,0.4), rgba($color-2,0.4)),url(../images/background-large.jpg);
+  }
+
+  @media only screen and (min-resolution: 192dpi) and (min-width: $bp-largest),
+         only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: $bp-largest),
+         only screen and (min-width: 150em) {
+          background-image: linear-gradient(to left top, rgba($color-1 ,0.4), rgba($color-2,0.4)),url(../images/background.jpg);
+  }
+}
+
+.bg-image {
+  
   filter: blur(4px);
   -webkit-filter: blur(4px);
 }
