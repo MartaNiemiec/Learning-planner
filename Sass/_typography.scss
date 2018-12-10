@@ -1,5 +1,9 @@
 .header-1 {
   font-size: 3.5rem;
+
+  @media only screen and (max-width: $bp-medium) {
+    font-size: 3rem;
+  }
 }
 
 .header-2 {
