@@ -34,7 +34,6 @@ html {
   @media only screen and (max-width: $bp-medium) {
     font-size: 60%;
   }
-
 }
 
 body {
@@ -62,12 +61,6 @@ body {
          only screen and (min-width: 150em) {
           background-image: linear-gradient(to left top, rgba($color-1 ,0.4), rgba($color-2,0.4)),url(../images/background.jpg);
   }
-}
-
-.bg-image {
-  
-  filter: blur(4px);
-  -webkit-filter: blur(4px);
 }
 
 ::selection {

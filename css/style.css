@@ -31,10 +31,6 @@ body {
     body {
       background-image: linear-gradient(to left top, rgba(11, 60, 93, 0.4), rgba(50, 140, 193, 0.4)), url(../images/background.jpg); } }
 
-.bg-image {
-  filter: blur(4px);
-  -webkit-filter: blur(4px); }
-
 ::selection {
   background-color: #F79E02;
   color: #fff; }
