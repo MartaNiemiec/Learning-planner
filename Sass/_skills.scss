@@ -1,0 +1,30 @@
+.skills {
+  &__icons {
+    padding-top: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: center;
+    color: $color-1;
+  }
+
+  &__icon {
+    font-size: 6rem;
+    margin: .7rem;
+    padding: .8rem;
+    background-color: $color-white;
+    border-radius: .5rem;
+    align-self: flex-start;
+    cursor: pointer;
+  }
+
+  &__icon-add {
+   width: 8rem;
+   color: $color-3;
+  }
+
+  &__icon-add:hover {
+    color: rgba($color-3, .7);
+  }
+
+}

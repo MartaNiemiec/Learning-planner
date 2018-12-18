@@ -1,0 +1,53 @@
+.section {
+  background-color: rgba($color-white, .6);
+  border-radius: .5rem;
+  padding-bottom: 1.5rem;
+  
+  &:first-child &__title {
+    border-bottom: .3rem solid $color-2;
+  }
+
+  &__title {
+    text-transform: uppercase;
+    text-align: center;
+    padding: 1.5rem;
+    line-height: 1;
+    color: $color-2;
+    margin: 0 auto;
+    width: 95%;
+
+    &--arrows {
+    display: flex;
+    margin: 0 1.5rem;
+    }
+  }
+
+  &__content {
+    display: grid;
+    grid-template-rows: auto;
+  }
+
+  &__item {
+
+    &--title {
+      background-color: $color-2;
+      color: $color-white;
+      padding: .7rem 2rem;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    &--content {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      padding: .5rem 0;
+    }
+
+    &--goal {
+      display: flex;
+      align-items: center;
+      padding: .2rem 1.5rem;
+    }
+  }
+}
