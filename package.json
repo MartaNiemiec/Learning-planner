@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "webpack --mode=development",
+    "build": "webpack --mode=production",
     "watch:sass": "node-sass sass/main.scss css/style.css -w",
     "devserver": "live-server",
     "start": "npm-run-all --parallel devserver watch:sass",
@@ -24,11 +26,16 @@
   },
   "homepage": "https://github.com/MartaNiemiec/My_planner_app#readme",
   "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.0",
     "autoprefixer": "^9.4.1",
+    "babel-loader": "^8.0.4",
     "concat": "^1.0.3",
     "node-sass": "^4.10.0",
     "npm-run-all": "^4.1.5",
-    "postcss-cli": "^6.0.1"
+    "postcss-cli": "^6.0.1",
+    "webpack": "^4.27.1",
+    "webpack-cli": "^3.1.2"
   },
   "dependencies": {
     "npm": "^6.4.1"
