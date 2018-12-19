@@ -1,7 +1,12 @@
-# My_planner_app
+# :calendar: My_planner_app 
+:pencil: *in progress...*
 
 Building using:
 * HTML
 * SCSS
-* NPM
-* Vanilla JavaScript
+* Webpack
+* Babel
+* Vanilla JavaScript(ES6)
+
+
+![Planner app](My-planner-app.png)
