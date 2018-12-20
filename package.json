@@ -22,7 +22,6 @@
     "@babel/preset-env": "^7.2.0",
     "autoprefixer": "^9.4.1",
     "babel-loader": "^8.0.4",
-    "clean-webpack-plugin": "^1.0.0",
     "concat": "^1.0.3",
     "css-loader": "^2.0.1",
     "file-loader": "^2.0.0",
@@ -37,6 +36,7 @@
     "webpack-dev-server": "^3.1.10"
   },
   "dependencies": {
+    "devicon": "^2.0.0",
     "npm": "^6.4.1"
   }
 }
