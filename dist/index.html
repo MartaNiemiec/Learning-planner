@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>My planner app</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+
+  <!-- FONTS -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Rammetto+One" rel="stylesheet">
+
+  <!-- ICONS -->
+  <link rel="stylesheet" href="https://cdn.rawgit.com/konpa/devicon/df6431e323547add1b4cf45992913f15286456d3/devicon.min.css">
+  <!-- https://konpa.github.io/devicon/ -->
+
+  <link href="https://unpkg.com/ionicons@4.4.8/dist/css/ionicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+</head>
+<body>
+<!-- CONTAINER -->
+  <div class="container">
+
+<!-- APP HEADER -->
+    <div class="header">
+      <h1 class="header-1 app-title"><i class="ion-ios-paper"></i> My planner app</h1>
+      <h1 class="header__date"></h1>
+    </div>
+
+
+<!-- ALL SECTIONS -->
+    <div class="sections">
+
+
+  <!-- SECTION SKILLS -->
+      <section class="section skills">
+        <h2 class="header-2 section__title">SKILLS</h2>
+        <div class="skills__icons">
+            <i class="skills__icon devicon-html5-plain-wordmark"></i>
+            <i class="skills__icon devicon-css3-plain-wordmark"></i>
+            <i class="skills__icon devicon-sass-original"></i>
+            <i class="skills__icon devicon-javascript-plain"></i>
+            <i class="skills__icon devicon-nodejs-plain-wordmark"></i>
+            <i class="skills__icon devicon-webpack-plain-wordmark"></i>
+            <i class="skills__icon devicon-jquery-plain-wordmark"></i>
+            <i class="fas fa-plus-circle skills__icon skills__icon-add"></i>
+        </div>
+
+        <div class="popup hide">
+          <div class="popup__bg">
+
+            <div class="popup__header">
+              <div class="search">
+                <input type="text" class="search__input" placeholder="Search for icons">
+                <i class="fas fa-search search__icon"></i>
+              </div>
+              
+              <button class="button button__close"><i class="fas fa-times-circle"></i></button>
+            </div>
+
+            <div class="popup__icons">
+              <i class="skills__icon devicon-html5-plain-wordmark"></i>
+              <i class="skills__icon devicon-css3-plain-wordmark"></i>
+              <i class="skills__icon devicon-sass-original"></i>
+              <i class="skills__icon devicon-javascript-plain"></i>
+              <i class="skills__icon devicon-nodejs-plain-wordmark"></i>
+              <i class="skills__icon devicon-webpack-plain-wordmark"></i>
+              <i class="skills__icon devicon-jquery-plain-wordmark"></i>
+              <i class="skills__icon devicon-html5-plain-wordmark"></i>
+              <i class="skills__icon devicon-css3-plain-wordmark"></i>
+              <i class="skills__icon devicon-sass-original"></i>
+              <i class="skills__icon devicon-javascript-plain"></i>
+              <i class="skills__icon devicon-nodejs-plain-wordmark"></i>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+  <!-- SECTION WEEK -->
+      <section class="section week">
+        <div class="section__title--arrows">
+          <button class="button button__previous">
+              <i class="fas fa-angle-left "></i>
+          </button>
+          <h2 class="header-2 section__title">week <span class="week__number">49</span></h2>
+          <button class="button button__next">
+              <i class="fas fa-angle-right "></i>
+          </button>
+        </div>
+        <div class="section__content">
+          <div class="section__item">
+            <h3 class="header-3 section__item--title"> 
+              <span class="week__day">Mon 10 Dec</span>
+              <button class="button button__add">
+                <i class="fas fa-plus-circle"></i>
+              </button>
+            </h3>
+            <h3 class="header-3 section__item--content">
+              <div class="section__item--goal">
+                <button class="button button__check">
+                  <i class="far fa-check-circle"></i>
+                </button>
+                <p class="paragraph">Basic HTML.</p>
+              </div>
+            </h3>
+          </div>
+ 
+          <div class="section__item">
+            <h3 class="header-3 section__item--title"> 
+              <span class="week__day">Tue 11 Dec</span>
+              <button class="button button__add">
+                <i class="fas fa-plus-circle"></i>
+              </button>
+            </h3>
+             <h3 class="header-3 section__item--content"></h3>
+          </div>
+  
+          <div class="section__item">
+            <h3 class="header-3 section__item--title">
+              <span class="week__day">Wed 12 Dec</span>
+              <button class="button button__add">
+                <i class="fas fa-plus-circle"></i>
+              </button>
+            </h3>
+            <h3 class="header-3 section__item--content">
+                <div class="section__item--goal">
+                  <button class="button button__check">
+                    <i class="far fa-check-circle"></i>
+                  </button>
+                  <p class="paragraph">Basic CSS.</p>
+                </div>
+            </h3>
+          </div>
+  
+          <div class="section__item">
+            <h3 class="header-3 section__item--title">
+              <span class="week__day">Thu 13 Dec</span>
+              <button class="button button__add">
+                <i class="fas fa-plus-circle"></i>
+              </button>
+            </h3>
+            <h3 class="header-3 section__item--content"></h3> 
+          </div>
+  
+          <div class="section__item">
+              <h3 class="header-3 section__item--title">
+                <span class="week__day">Fr 14 Dec</span>
+                <button class="button button__add">
+                  <i class="fas fa-plus-circle"></i>
+                </button>
+              </h3>
+              <h3 class="header-3 section__item--content">
+                  <div class="section__item--goal">
+                    <button class="button button__check">
+                      <i class="far fa-check-circle"></i>
+                    </button>
+                    <p class="paragraph">Start creating basic webpage.</p>
+                  </div>
+              </h3>
+            </div>
+    
+            <div class="section__item">
+              <h3 class="header-3 section__item--title">
+                  <span class="week__day">Sa 15 Dec</span>
+                <button class="button button__add">
+                  <i class="fas fa-plus-circle"></i>
+                </button>
+              </h3>
+              <h3 class="header-3 section__item--content"></h3> 
+            </div>
+    
+            <div class="section__item">
+              <h3 class="header-3 section__item--title">
+                <span class="week__day">Su 16 Dec</span>
+                <button class="button button__add">
+                  <i class="fas fa-plus-circle"></i>
+                </button>
+              </h3>
+              <h3 class="header-3 section__item--content"></h3> 
+            </div>
+        </div>
+      </section>
+
+
+  <!-- SECTION MONTH -->
+      <section class="section month">
+        <div class="section__title--arrows">
+          <button class="button button__previous">
+              <i class="fas fa-angle-left "></i>
+          </button>
+          <h2 class="header-2 section__title"><span class="month-name">December</span></h2>
+          <button class="button button__next">
+              <i class="fas fa-angle-right "></i>
+          </button>
+        </div>
+        <div class="section__content">
+          <div class="section__item">
+            <h3 class="header-3 section__item--title">
+              <span class="month__week-nr">Week 48</span>
+              <span class="month__dates">03-09 Dec</span>
+              <button class="button button__add">
+                <i class="fas fa-plus-circle"></i>
+              </button>
+            </h3>
+            <h3 class="header-3 section__item--content"></h3>
+          </div>
+
+          <div class="section__item">
+            <h3 class="header-3 section__item--title">
+              <span class="month__week-nr">Week 49</span>
+              <span class="month__dates">10-16 Dec</span>
+              <button class="button button__add">
+                <i class="fas fa-plus-circle"></i>
+              </button>
+            </h3>
+            <h3 class="header-3 section__item--content">
+                <div class="section__item--goal">
+                  <button class="button button__check">
+                    <i class="far fa-check-circle"></i>
+                  </button>
+                  <p class="paragraph">Basic HTML and CSS.</p>
+                </div>
+                <div class="section__item--goal">
+                  <button class="button button__check">
+                    <i class="far fa-check-circle"></i>
+                  </button>
+                  <p class="paragraph">Create basic webpage.</p>
+                </div>
+            </h3>
+          </div>
+
+          <div class="section__item">
+            <h3 class="header-3 section__item--title">
+              <span class="month__week-nr">Week 50</span>
+              <span class="month__dates">17-23 Dec</span>
+              <button class="button button__add">
+                <i class="fas fa-plus-circle"></i>
+              </button>
+            </h3>
+            <h3 class="header-3 section__item--content">
+                <div class="section__item--goal">
+                  <button class="button button__check">
+                    <i class="far fa-check-circle"></i>
+                  </button>
+                  <p class="paragraph">Advanced HTML and CSS</p>
+                </div>
+                <div class="section__item--goal">
+                  <button class="button button__check">
+                    <i class="far fa-circle"></i>
+                  </button>
+                  <p class="paragraph">Create webpage.</p>
+                </div>
+            </h3>
+          </div>
+
+          <div class="section__item">
+            <h3 class="header-3 section__item--title">
+              <span class="month__week-nr">Week 51</span>
+              <span class="month__dates">24-30 Dec</span>
+              <button class="button button__add">
+                <i class="fas fa-plus-circle"></i>
+              </button>
+            </h3>
+            <h3 class="header-3 section__item--content">
+              <div class="section__item--goal">
+                <button class="button button__check">
+                  <i class="far fa-circle"></i>
+                </button>
+                <p class="paragraph">Web design and RWD</p>
+              </div>
+            </h3>
+          </div>
+        </div>
+      </section>
+
+
+  <!-- SECTION YEAR -->
+      <section class="section year">
+          <div class="section__title--arrows">
+            <button class="button button__previous">
+                <i class="fas fa-angle-left "></i>
+            </button>
+            <h2 class="header-2 section__title">year <span class="year-number">2018</span></h2>
+            <button class="button button__next">
+                <i class="fas fa-angle-right "></i>
+            </button>
+          </div>
+          <div class="section__item">
+            <h3 class="header-3 section__item--title">
+              <span class="month__week-nr">January</span>
+              <button class="button button__add">
+                <i class="fas fa-plus-circle"></i>
+              </button>
+            </h3>
+            <h3 class="header-3 section__item--content">
+            </h3>
+          </div>
+
+          <div class="section__item">
+            <h3 class="header-3 section__item--title">
+              <span class="month__week-nr">February</span>
+              <button class="button button__add">
+                <i class="fas fa-plus-circle"></i>
+              </button>
+            </h3>
+            <h3 class="header-3 section__item--content"></h3>
+          </div>
+
+          <div class="section__item">
+            <h3 class="header-3 section__item--title">
+              <span class="month__week-nr">March</span>
+              <button class="button button__add">
+                <i class="fas fa-plus-circle"></i>
+              </button>
+            </h3>
+            <h3 class="header-3 section__item--content"></h3>
+          </div>
+
+          <div class="section__item">
+            <h3 class="header-3 section__item--title">
+              <span class="month__week-nr">April</span>
+              <button class="button button__add">
+                <i class="fas fa-plus-circle"></i>
+              </button>
+            </h3>
+            <h3 class="header-3 section__item--content"></h3>
+          </div>
+
+          <div class="section__item">
+            <h3 class="header-3 section__item--title">
+              <span class="month__week-nr">May</span>
+              <button class="button button__add">
+                <i class="fas fa-plus-circle"></i>
+              </button>
+            </h3>
+            <h3 class="header-3 section__item--content"></h3>
+          </div>
+
+          <div class="section__item">
+            <h3 class="header-3 section__item--title">
+              <span class="month__week-nr">June</span>
+              <button class="button button__add">
+                <i class="fas fa-plus-circle"></i>
+              </button>
+            </h3>
+            <h3 class="header-3 section__item--content"></h3>
+          </div>
+
+          <div class="section__item">
+            <h3 class="header-3 section__item--title">
+              <span class="month__week-nr">July</span>
+              <button class="button button__add">
+                <i class="fas fa-plus-circle"></i>
+              </button>
+            </h3>
+            <h3 class="header-3 section__item--content"></h3>
+          </div>
+
+          <div class="section__item">
+            <h3 class="header-3 section__item--title">
+              <span class="month__week-nr">August</span>
+              <button class="button button__add">
+                <i class="fas fa-plus-circle"></i>
+              </button>
+            </h3>
+            <h3 class="header-3 section__item--content"></h3>
+          </div>
+
+          <div class="section__item">
+            <h3 class="header-3 section__item--title">
+              <span class="month__week-nr">September</span>
+              <button class="button button__add">
+                <i class="fas fa-plus-circle"></i>
+              </button>
+            </h3>
+            <h3 class="header-3 section__item--content"></h3>
+          </div>
+
+          <div class="section__item">
+            <h3 class="header-3 section__item--title">
+              <span class="month__week-nr">October</span>
+              <button class="button button__add">
+                <i class="fas fa-plus-circle"></i>
+              </button>
+            </h3>
+            <h3 class="header-3 section__item--content"></h3>
+          </div>
+
+          <div class="section__item">
+              <h3 class="header-3 section__item--title">
+                <span class="month__week-nr">November</span>
+                <button class="button button__add">
+                  <i class="fas fa-plus-circle"></i>
+                </button>
+              </h3>
+              <h3 class="header-3 section__item--content"></h3>
+            </div>
+
+            <div class="section__item">
+                <h3 class="header-3 section__item--title">
+                  <span class="month__week-nr">December</span>
+                  <button class="button button__add">
+                    <i class="fas fa-plus-circle"></i>
+                  </button>
+                </h3>
+                <h3 class="header-3 section__item--content">
+                  <div class="section__item--goal">
+                    <button class="button button__check">
+                      <i class="far fa-check-circle"></i>
+                    </button>
+                    <p class="paragraph">Andvanced HTML and CSS</p>
+                  </div>
+                  <div class="section__item--goal">
+                    <button class="button button__check">
+                      <i class="far fa-circle"></i>
+                    </button>
+                    <p class="paragraph">Create two webpages</p>
+                  </div>
+                  <div class="section__item--goal">
+                    <button class="button button__check">
+                      <i class="far fa-circle"></i>
+                    </button>
+                    <p class="paragraph">Webdesign and RWD</p>
+                  </div>
+                </h3>
+              </div>
+      </section>
+    </div>
+    </div>
+<script type="text/javascript" src="bundle.js"></script></body>
+</html>
