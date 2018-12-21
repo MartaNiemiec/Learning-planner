@@ -44,33 +44,21 @@ const allIcons = [];
 //getting icon's names
 const getIcons = () => {
   devicons.forEach(el => {
-    let icon = {
-      name: el.name 
-    };
-
-    if (el.versions.font.includes("original")) {
-      icon.font = "original";
-    } else if (el.versions.font.includes("plain")) {
-      icon.font = 'plain';
-    } else if (el.versions.font.includes("original-wordmark")) {
-      icon.font = 'original-wordmark';
-    } else if (el.versions.font.includes("line")) {
-      icon.font = 'line';
-    } else if (el.versions.font.includes("plain-wordmark")) {
-      icon.font = 'plain-wordmark';
-    } 
-        
-    allIcons.push(icon);
+    // if an icon has more than one version display all of them
+    if (el.versions.font.length > 1) {
+      for (let i = 0; i < el.versions.font.length; i++) {
+        allIcons.push({name: el.name, font: el.versions.font[i]});
+      }
+    } else {
+        allIcons.push({name: el.name, font: el.versions.font});
+    }
   })
 }
 getIcons();
 
 
-
-
 // render icons
 const renderIcons = () => {
-
   allIcons.forEach(icon => {
     const markup = `<i class="skills__icon devicon-${icon.name}-${icon.font}"></i>`;
     elements.popupIcons.insertAdjacentHTML('beforeend', markup);
@@ -81,7 +69,7 @@ renderIcons();
 
 /*
 ==================================================
- select skills
+ select skills in popup
 ==================================================
  */
 
