@@ -44,7 +44,6 @@ const allIcons = [];
 //getting icon's names
 const getIcons = () => {
   devicons.forEach(el => {
-    // console.log(el);
     let icon = {
       name: el.name 
     };
@@ -66,7 +65,6 @@ const getIcons = () => {
 }
 getIcons();
 
-console.log(allIcons);
 
 
 
@@ -77,7 +75,37 @@ const renderIcons = () => {
     const markup = `<i class="skills__icon devicon-${icon.name}-${icon.font}"></i>`;
     elements.popupIcons.insertAdjacentHTML('beforeend', markup);
   })
-
 }
 renderIcons();
+
+
+/*
+==================================================
+ select skills
+==================================================
+ */
+
+ //an array with selected icons
+const selectedIcons = [];
+
+
+// 
+const selectIcon = (e) => {
+  const selectedIcon = e.target;
+  const selectedIconClass = selectedIcon.classList.value;
+  const iconIndex = selectedIcons.indexOf(selectedIconClass);
+
+  // if an icon has been selected then unselect it (change the icon's color and remove it from an array with selected icons)
+  if (selectedIcons.includes(selectedIconClass)) {
+    selectedIcon.classList.remove('selected-icon');
+    selectedIcons.splice(iconIndex,1)
+  // if an icon hasn't been selected then select it (change the icon's color and add it into an array with selected icons)
+  } else {
+    selectedIcon.classList.add('selected-icon');
+    selectedIcons.push(`${selectedIconClass} selected-icon`);
+  
+  }
+}
+
+elements.popupIcons.addEventListener('click', selectIcon);
 
