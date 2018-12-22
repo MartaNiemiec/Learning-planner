@@ -4,7 +4,8 @@ export const elements = {
   popup: document.querySelector('.popup'),
   popupIcons: document.querySelector('.popup__icons'),
   popupAddIcon: document.querySelector('.skills__icon-add'),
-  popupCloseBtn: document.querySelector('.popup__close-btn')
+  popupCloseBtn: document.querySelector('.popup__close-btn'),
+  popupUpdateBtn: document.querySelector('.popup__add--btn')
 
 
 }

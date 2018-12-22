@@ -20,16 +20,21 @@ elements.headerDate.innerHTML = `${day} ${months[month]} ${year}`;
  showing popup
 ==================================================
  */
-const showPopup = () => {
-  const popup = elements.popup;
-  popup.classList.remove("hide");
+const showPopup = (e) => {
+  const target = e.target;
+  const addClass = 'skills__icon-add';
+  if (target.classList.contains(addClass)) {
+    const popup = elements.popup;
+    popup.classList.remove("hide");
+  }
 }
+
 const hidePopup = () => {
   const popup = elements.popup;
   popup.classList.add("hide");
 }
 
-elements.popupAddIcon.addEventListener('click', showPopup);
+elements.skills.addEventListener('click', showPopup);
 elements.popupCloseBtn.addEventListener('click', hidePopup);
 
 
@@ -79,21 +84,45 @@ const selectedIcons = [];
 
 // 
 const selectIcon = (e) => {
-  const selectedIcon = e.target;
-  const selectedIconClass = selectedIcon.classList.value;
+  const target = e.target;
+  const selectedIconClass = target.classList.value;
   const iconIndex = selectedIcons.indexOf(selectedIconClass);
-
   // if an icon has been selected then unselect it (change the icon's color and remove it from an array with selected icons)
-  if (selectedIcons.includes(selectedIconClass)) {
-    selectedIcon.classList.remove('selected-icon');
+  if (selectedIcons.includes(selectedIconClass) && target.tagName === 'I') {
+    target.classList.remove('selected-icon');
     selectedIcons.splice(iconIndex,1)
   // if an icon hasn't been selected then select it (change the icon's color and add it into an array with selected icons)
-  } else {
-    selectedIcon.classList.add('selected-icon');
+  } else if (!selectedIcons.includes(selectedIconClass) && target.tagName === 'I'){
+    target.classList.add('selected-icon');
     selectedIcons.push(`${selectedIconClass} selected-icon`);
   
   }
+  console.log(selectedIcons);
 }
 
 elements.popupIcons.addEventListener('click', selectIcon);
+
+
+const updateSkills = () => {
+
+  // clear all skills from the skill section
+  while (elements.skills.hasChildNodes()) {   
+    elements.skills.removeChild(elements.skills.firstChild);
+  }
+
+  // add all selected icons into the skill section
+  selectedIcons.forEach(icon => {
+    const classes = icon.replace('selected-icon', '');
+    const markup = `<i class="${classes}"></i>`;
+    elements.skills.insertAdjacentHTML('beforeend', markup);
+  })
+
+  // add at the end adding skills icon
+  elements.skills.insertAdjacentHTML('beforeend', '<i class="fas fa-plus-circle skills__icon skills__icon-add"></i>');
+
+  // hide popup
+  hidePopup();
+
+}
+elements.popupUpdateBtn.addEventListener('click', updateSkills);
 
