@@ -144,15 +144,18 @@ elements.popupUpdateBtn.addEventListener('click', updateSkills);
  }
 
  const displaySearchedIcons = () => {
+   // clear all icons in the popup  
   elements.popupIcons.innerHTML = '';
+    // read inputted values
    const icons = searchIcons(elements.popupSearch.value, allIcons);
+   // create a new array witch searched icons 
    const html = icons.map(icon => {
      return `
      <i class="skills__icon devicon-${icon.name}-${icon.font}"></i>
      `
    }).join('');
+   // display searched icons
    elements.popupIcons.insertAdjacentHTML('beforeend', html);
-   console.log(elements.popupSearch.value);
  }
 
  elements.popupSearch.addEventListener('change', displaySearchedIcons)
