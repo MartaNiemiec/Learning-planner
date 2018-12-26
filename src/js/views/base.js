@@ -5,9 +5,8 @@ export const elements = {
   popupIcons: document.querySelector('.popup__icons'),
   popupAddIcon: document.querySelector('.skills__icon-add'),
   popupCloseBtn: document.querySelector('.popup__close-btn'),
-  popupUpdateBtn: document.querySelector('.popup__add--btn')
-
-
+  popupUpdateBtn: document.querySelector('.popup__add--btn'),
+  popupSearch: document.querySelector('.search__input')
 }
 
 export const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];

@@ -23,6 +23,8 @@ elements.headerDate.innerHTML = `${day} ${months[month]} ${year}`;
 const showPopup = (e) => {
   const target = e.target;
   const addClass = 'skills__icon-add';
+  elements.popupSearch.value = '';
+  renderIcons();
   if (target.classList.contains(addClass)) {
     const popup = elements.popup;
     popup.classList.remove("hide");
@@ -69,7 +71,7 @@ const renderIcons = () => {
     elements.popupIcons.insertAdjacentHTML('beforeend', markup);
   })
 }
-renderIcons();
+// renderIcons();
 
 
 /*
@@ -97,7 +99,6 @@ const selectIcon = (e) => {
     selectedIcons.push(`${selectedIconClass} selected-icon`);
   
   }
-  console.log(selectedIcons);
 }
 
 elements.popupIcons.addEventListener('click', selectIcon);
@@ -126,3 +127,33 @@ const updateSkills = () => {
 }
 elements.popupUpdateBtn.addEventListener('click', updateSkills);
 
+
+
+/*
+==================================================
+ search skills
+==================================================
+ */
+
+ const searchIcons = (wordToMatch, iconsArr) => {
+    return iconsArr.filter(icon => {
+      const regex = new RegExp(wordToMatch, 'gi');
+      return icon.name.match(regex);
+      console.log(regex);
+    });
+ }
+
+ const displaySearchedIcons = () => {
+  elements.popupIcons.innerHTML = '';
+   const icons = searchIcons(elements.popupSearch.value, allIcons);
+   const html = icons.map(icon => {
+     return `
+     <i class="skills__icon devicon-${icon.name}-${icon.font}"></i>
+     `
+   }).join('');
+   elements.popupIcons.insertAdjacentHTML('beforeend', html);
+   console.log(elements.popupSearch.value);
+ }
+
+ elements.popupSearch.addEventListener('change', displaySearchedIcons)
+ elements.popupSearch.addEventListener('keyup', displaySearchedIcons)
