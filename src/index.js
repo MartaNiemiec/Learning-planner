@@ -97,49 +97,52 @@ const changeClass = target => {
   }
 }
 
+const changeSelected = (name, font, selected) => {
+  allIcons.forEach(icon => {
+    // looking for clicked icon in the allIcons array by matching name and font from the html and allIcons array
+    const nameIcon = icon.name.match(`${name}$`, 'gi');  
+    const fontIcon = String(icon.font).match(`${font}$`, 'gi');
+
+    // when the icon name and font are matched (between html and array) then update icon.selected class in the array for the same as is in the html
+    if (nameIcon && fontIcon) icon.selectedClass = selected;
+  })
+};
 
 const selectIcon = (e) => {
   const target = e.target;
-
   // select a third class of an icon which match for the selecting class  
   let selectedIconClass = target.classList.item(2);
   // icon name and font took from the html
-  let iconName;
-  let iconFont;
+  let iconName, iconFont;
 
+  // get the icon name and font from the html after click on the <i> element
   if (target.tagName === 'I') {
     iconName = target.classList.item(1).split("-")[1];
     iconFont = target.classList.item(1).replace(`devicon-${iconName}-`, '');
   }
 
   // toggle "selected-icon" classname 
-  changeClass(target, selectedIconClass);
+  changeClass(target);
   
+  // update selected class from html(after toggling it)  
   selectedIconClass = target.classList.item(2);
 
-  const changeSelected = (name, fontt) => {
-    allIcons.forEach(icon => {
-      let nameIcon = icon.name.match(`${name}$`, 'gi');  
-      let fontIcon = String(icon.font).match(`${fontt}$`, 'gi');
-
-      if (nameIcon && fontIcon) {
-        icon.selectedClass = selectedIconClass;
-      }
-      
-    })
-    
-  };
-
-  changeSelected(iconName, iconFont);
+   // update icon.selectedClass (in the array allIcons) clicked icon as the same as in the html
+  changeSelected(iconName, iconFont, selectedIconClass);
+  console.log(allIcons);
  }
-
- 
 
 elements.popupIcons.addEventListener('click', selectIcon);
 
 
+
+/*
+==================================================
+ update skills in the skills section
+==================================================
+ */
+
 const updateSkills = () => {
-  
   // clear all skills from the skill section
   while (elements.skills.hasChildNodes()) {   
     elements.skills.removeChild(elements.skills.firstChild);
