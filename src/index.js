@@ -48,16 +48,27 @@ elements.popupCloseBtn.addEventListener('click', hidePopup);
 
 const allIcons = [];
 
+/*
+allIcons = [
+  {
+    name: name,
+    font: fontVersion,
+    selectedClass: 'selected-icon' of ''
+  }
+];
+
+*/
+
 //getting icon's names
 const getIcons = () => {
   devicons.forEach(el => {
     // if an icon has more than one version display all of them
     if (el.versions.font.length > 1) {
       for (let i = 0; i < el.versions.font.length; i++) {
-        allIcons.push({name: el.name, font: el.versions.font[i]});
+        allIcons.push({name: el.name, font: el.versions.font[i], selectedClass: ''});
       }
     } else {
-        allIcons.push({name: el.name, font: el.versions.font});
+        allIcons.push({name: el.name, font: el.versions.font, selectedClass: ''});
     }
   })
 }
@@ -67,7 +78,7 @@ getIcons();
 // render icons
 const renderIcons = () => {
   allIcons.forEach(icon => {
-    const markup = `<i class="skills__icon devicon-${icon.name}-${icon.font}"></i>`;
+    const markup = `<i class="skills__icon devicon-${icon.name}-${icon.font} ${icon.selectedClass}"></i>`;
     elements.popupIcons.insertAdjacentHTML('beforeend', markup);
   })
 }
@@ -80,32 +91,55 @@ const renderIcons = () => {
 ==================================================
  */
 
- //an array with selected icons
-const selectedIcons = [];
-
-
-// 
-const selectIcon = (e) => {
-  const target = e.target;
-  const selectedIconClass = target.classList.value;
-  const iconIndex = selectedIcons.indexOf(selectedIconClass);
-  // if an icon has been selected then unselect it (change the icon's color and remove it from an array with selected icons)
-  if (selectedIcons.includes(selectedIconClass) && target.tagName === 'I') {
-    target.classList.remove('selected-icon');
-    selectedIcons.splice(iconIndex,1)
-  // if an icon hasn't been selected then select it (change the icon's color and add it into an array with selected icons)
-  } else if (!selectedIcons.includes(selectedIconClass) && target.tagName === 'I'){
-    target.classList.add('selected-icon');
-    selectedIcons.push(`${selectedIconClass} selected-icon`);
-  
+const changeClass = target => {
+  if (target.tagName === 'I') {
+    target.classList.toggle("selected-icon");
   }
 }
+
+
+const selectIcon = (e) => {
+  const target = e.target;
+
+  // select a third class of an icon which match for the selecting class  
+  let selectedIconClass = target.classList.item(2);
+  // icon name and font took from the html
+  let iconName;
+  let iconFont;
+
+  if (target.tagName === 'I') {
+    iconName = target.classList.item(1).split("-")[1];
+    iconFont = target.classList.item(1).replace(`devicon-${iconName}-`, '');
+  }
+
+  // toggle "selected-icon" classname 
+  changeClass(target, selectedIconClass);
+  
+  selectedIconClass = target.classList.item(2);
+
+  const changeSelected = (name, fontt) => {
+    allIcons.forEach(icon => {
+      let nameIcon = icon.name.match(`${name}$`, 'gi');  
+      let fontIcon = String(icon.font).match(`${fontt}$`, 'gi');
+
+      if (nameIcon && fontIcon) {
+        icon.selectedClass = selectedIconClass;
+      }
+      
+    })
+    
+  };
+
+  changeSelected(iconName, iconFont);
+ }
+
+ 
 
 elements.popupIcons.addEventListener('click', selectIcon);
 
 
 const updateSkills = () => {
-
+  
   // clear all skills from the skill section
   while (elements.skills.hasChildNodes()) {   
     elements.skills.removeChild(elements.skills.firstChild);
@@ -137,7 +171,7 @@ elements.popupUpdateBtn.addEventListener('click', updateSkills);
 
  const searchIcons = (wordToMatch, iconsArr) => {
     return iconsArr.filter(icon => {
-      const regex = new RegExp(wordToMatch, 'gi');
+      const regex = new RegExp(`${wordToMatch}$`, 'gi');
       return icon.name.match(regex);
       console.log(regex);
     });
