@@ -129,7 +129,6 @@ const selectIcon = (e) => {
 
    // update icon.selectedClass (in the array allIcons) clicked icon as the same as in the html
   changeSelected(iconName, iconFont, selectedIconClass);
-  console.log(allIcons);
  }
 
 elements.popupIcons.addEventListener('click', selectIcon);
@@ -148,20 +147,21 @@ const updateSkills = () => {
     elements.skills.removeChild(elements.skills.firstChild);
   }
 
-  // add all selected icons into the skill section
-  selectedIcons.forEach(icon => {
-    const classes = icon.replace('selected-icon', '');
-    const markup = `<i class="${classes}"></i>`;
-    elements.skills.insertAdjacentHTML('beforeend', markup);
-  })
+  // show all selected icons in the skills section 
+  allIcons.forEach(icon => {
+    if (icon.selectedClass === 'selected-icon') {
+      const markup = `<i class="skills__icon devicon-${icon.name}-${icon.font}"></i>`;
+      elements.skills.insertAdjacentHTML('beforeend', markup);
+    }
+  });
 
   // add at the end adding skills icon
   elements.skills.insertAdjacentHTML('beforeend', '<i class="fas fa-plus-circle skills__icon skills__icon-add"></i>');
 
   // hide popup
   hidePopup();
-
 }
+
 elements.popupUpdateBtn.addEventListener('click', updateSkills);
 
 
