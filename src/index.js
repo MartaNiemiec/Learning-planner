@@ -24,6 +24,7 @@ const showPopup = (e) => {
   const target = e.target;
   const addClass = 'skills__icon-add';
   // show popup 
+  // debugger;
   if (target.classList.contains(addClass)) {
     const popup = elements.popup;
     popup.classList.remove("hide");
@@ -129,11 +130,17 @@ const selectIcon = (e) => {
   // toggle "selected-icon" classname 
   changeClass(target);
   
-  // update selected class from html(after toggling it)  
-  selectedIconClass = target.classList.item(2);
+  // update selected class from html(after toggling it) 
+  if (target.classList.item(2) === "selected-icon") {
+    selectedIconClass = target.classList.item(2);
+  } 
+  else {
+    selectedIconClass = "";
+  }
+  
 
    // update icon.selectedClass (in the array allIcons) clicked icon as the same as in the html
-   changeSelected(iconName, iconFont, selectedIconClass);
+  changeSelected(iconName, iconFont, selectedIconClass);
  }
 
 elements.popupIcons.addEventListener('click', selectIcon);
