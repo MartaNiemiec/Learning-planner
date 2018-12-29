@@ -23,12 +23,16 @@ elements.headerDate.innerHTML = `${day} ${months[month]} ${year}`;
 const showPopup = (e) => {
   const target = e.target;
   const addClass = 'skills__icon-add';
-  elements.popupSearch.value = '';
-  renderIcons();
+  // show popup 
   if (target.classList.contains(addClass)) {
     const popup = elements.popup;
     popup.classList.remove("hide");
   }
+  // clear the value in the search input 
+  elements.popupSearch.value = '';
+  // render all icons
+  renderIcons();
+  console.log(allIcons);
 }
 
 const hidePopup = () => {
@@ -77,6 +81,7 @@ getIcons();
 
 // render icons
 const renderIcons = () => {
+  elements.popupIcons.innerHTML = '';
   allIcons.forEach(icon => {
     const markup = `<i class="skills__icon devicon-${icon.name}-${icon.font} ${icon.selectedClass}"></i>`;
     elements.popupIcons.insertAdjacentHTML('beforeend', markup);
@@ -128,7 +133,7 @@ const selectIcon = (e) => {
   selectedIconClass = target.classList.item(2);
 
    // update icon.selectedClass (in the array allIcons) clicked icon as the same as in the html
-  changeSelected(iconName, iconFont, selectedIconClass);
+   changeSelected(iconName, iconFont, selectedIconClass);
  }
 
 elements.popupIcons.addEventListener('click', selectIcon);
@@ -174,9 +179,8 @@ elements.popupUpdateBtn.addEventListener('click', updateSkills);
 
  const searchIcons = (wordToMatch, iconsArr) => {
     return iconsArr.filter(icon => {
-      const regex = new RegExp(`${wordToMatch}$`, 'gi');
+      const regex = new RegExp(`^${wordToMatch}`, 'gi');
       return icon.name.match(regex);
-      console.log(regex);
     });
  }
 
@@ -188,7 +192,7 @@ elements.popupUpdateBtn.addEventListener('click', updateSkills);
    // create a new array witch searched icons 
    const html = icons.map(icon => {
      return `
-     <i class="skills__icon devicon-${icon.name}-${icon.font}"></i>
+     <i class="skills__icon devicon-${icon.name}-${icon.font} ${icon.selectedClass}"></i>
      `
    }).join('');
    // display searched icons
