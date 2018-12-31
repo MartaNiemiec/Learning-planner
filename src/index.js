@@ -103,23 +103,21 @@ const changeClass = target => {
   }
 }
 
-const changeSelected = (name, font, selected) => {
+const changeSelected = (name, font, selectedIconClass) => {
   allIcons.forEach(icon => {
     // looking for clicked icon in the allIcons array by matching name and font from the html and allIcons array
     const nameIcon = icon.name.match(`${name}$`, 'gi');  
     const fontIcon = String(icon.font).match(`${font}$`, 'gi');
 
     // when the icon name and font are matched (between html and array) then update icon.selected class in the array for the same as is in the html
-    if (nameIcon && fontIcon) icon.selectedClass = selected;
+    if (nameIcon && fontIcon) icon.selectedClass = selectedIconClass;
   })
 };
 
 const selectIcon = (e) => {
   const target = e.target;
-  // select a third class of an icon which match for the selecting class  
-  let selectedIconClass = target.classList.item(2);
-  // icon name and font took from the html
-  let iconName, iconFont;
+  // selectedIconClass, icon name and font took from the html
+  let selectedIconClass, iconName, iconFont;
 
   // get the icon name and font from the html after click on the <i> element
   if (target.tagName === 'I') {
@@ -129,7 +127,8 @@ const selectIcon = (e) => {
 
   // toggle "selected-icon" classname 
   changeClass(target);
-  
+
+  // select a third class of an icon which match for the selecting class  
   // update selected class from html(after toggling it) 
   if (target.classList.item(2) === "selected-icon") {
     selectedIconClass = target.classList.item(2);
