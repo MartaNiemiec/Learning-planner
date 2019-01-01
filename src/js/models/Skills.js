@@ -54,7 +54,7 @@ export const getIcons = () => {
         allIcons.push({name: el.name, font: el.versions.font[i], selectedClass: ''});
       }
     } else {
-        allIcons.push({name: el.name, font: el.versions.font, selectedClass: ''});
+        allIcons.push({name: el.name, font: String(el.versions.font), selectedClass: ''});
     }
   })
 }
