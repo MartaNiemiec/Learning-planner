@@ -1,18 +1,15 @@
 import './scss/main.scss';
-import { elements, months } from './js/views/base.js';
+import { elements } from './js/views/base.js';
+import * as Dates from './js/models/dates'
 
 import * as Skills from './js/models/Skills';
 
 
 
 
-// DATE ON HEADER
-let date = new Date();
-let day = date.getDate();
-let month = date.getMonth();
-let year = date.getFullYear();
 
-elements.headerDate.innerHTML = `${day} ${months[month]} ${year}`;
+
+elements.headerDate.innerHTML = `${Dates.day} ${Dates.months[Dates.month]} ${Dates.year}`;
 
 
 /*
