@@ -6,7 +6,9 @@ export const elements = {
   popupAddIcon: document.querySelector('.skills__icon-add'),
   popupCloseBtn: document.querySelector('.popup__close-btn'),
   popupUpdateBtn: document.querySelector('.popup__add--btn'),
-  popupSearch: document.querySelector('.search__input')
+  popupSearch: document.querySelector('.search__input'),
+  weekNumber: document.querySelector('.week__number'),
+  weekDays: document.querySelector('.week-days')
 }
 
 

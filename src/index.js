@@ -36,3 +36,25 @@ elements.popupSearch.addEventListener('change', Skills.displaySearchedIcons)
 elements.popupSearch.addEventListener('keyup', Skills.displaySearchedIcons)
 
 
+
+
+/*
+==================================================
+ dates
+==================================================
+ */
+
+
+/*
+====================
+ WEEK SECTION
+====================
+ */
+
+ // display current week number
+elements.weekNumber.innerHTML = Dates.today.getWeek();
+
+
+// display all week days
+
+Dates.displayWeekDays();
