@@ -1,10 +1,13 @@
 import { elements } from '../views/base';
 
 // DATE ON HEADER
-export let today = new Date();
-export let day = today.getDate();
-export let month = today.getMonth();
-export let year = today.getFullYear();
+export let todayDate = new Date();
+export let dayNr = todayDate.getDate();
+export let month = todayDate.getMonth();
+export let year = todayDate.getFullYear();
+
+console.log(todayDate);
+console.log(dayNr);
 
 export const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
@@ -29,47 +32,59 @@ getSeconds()	Returns the seconds (from 0-59)
 
 
 // ===================================
-//get current week number 
- Date.prototype.getWeek = function() {
-    var onejan = new Date(this.getFullYear(),0,1);
-    return Math.ceil((((this - onejan) / 86400000) + onejan.getDay()+1)/7);
-  }
+//GET DURRENT WEEK NUMBER
+
+//  Date.prototype.getWeek = function() {
+//     var onejan = new Date(this.getFullYear(),0,1);
+//     return Math.ceil((((this - onejan) / 86400000) + onejan.getDay()+1)/7);
+//   }
   
-  // weekNumber = new Date().getWeek();
+
+  export const weekNr = dt => {
+     var tdt = new Date(dt.valueOf());  // .valueOf returns a Number, representing the number of milliseconds between the date object and midnight January 1, 1970 UTCmiliseconds
+     var dayn = (dt.getDay() + 6) % 7;
+     tdt.setDate(tdt.getDate() - dayn + 3);
+     var firstThursday = tdt.valueOf();
+     tdt.setMonth(0, 1);
+     if (tdt.getDay() !== 4) 
+       {
+      tdt.setMonth(0, 1 + ((4 - tdt.getDay()) + 7) % 7);
+        }
+     return 1 + Math.ceil((firstThursday - tdt) / 604800000);
+  }
+
+  // weekNr = new Date().getWeek();
+
+
 
 
 // ===================================
- // get days of the current week | display them
-/*
-==================================================
- GET FIRST/LAST DAY OF WEEK
-==================================================
- */
+ //GET FIRST DAY OF THE CURRENT WEEK
 
-export function startOfWeek(date)
-  {
-     
-    var first = date.getDate() - (date.getDay() - 1) ;
+// export function startOfWeek(date, day) {
+//     var first = date.getDate() - (date.getDay() - day) ;
+//     return new Date(date.setDate(first));
+// }
+
+// (startOfWeek(new Date()).toString());
+
+// function dayOfCurrWeek(date, day) {
+//   // day of the month - (day of the week - 1) + 6 //eg. 4 - (5-1) + 6 = 6
+//   var d = date.getDate();
+//   var dday = date.getDay();
+//   var first =  d- ( dday - 1) + day; 
+//   return new Date(date.setDate(first));
+// }
+function startOfWeek(date, day) {
+    var first = date.getDate() - (date.getDay() - day) + (day === 0 ? -6 : 1);
+  
     return new Date(date.setDate(first));
  
   }
 
-// (startOfWeek(new Date()).toString());
-
-
-
-export function dayOfCurrWeek(date, day)
-  {
-     
-    var lastday = date.getDate() - (date.getDay() - 1) + day; // day of the month - (day of the week - 1) + 6 //eg. 4 - (5-1) + 6 = 6
-    return new Date(date.setDate(lastday));
- 
-  }
-
-// (dayOfCurrWeek(new Date()).toString());
-
-
-export const getWeekDays = () => {
+// ===================================
+ // GET DAYS OF THE CURRENT WEEK | display them
+const getWeekDays = () => {
   //create an array with days in the week
   const weekDays = [];
   // weekDays = [{id: 0, day: "Mon 31 Dec"}, 
@@ -77,13 +92,11 @@ export const getWeekDays = () => {
 
   // loop to get 7 days of the week
   for (let i = 0; i <= 6; i++) {
-    const firstDay = dayOfCurrWeek(today, i).toString();
+    const firstDay = startOfWeek(todayDate, i).toString();
     const day = firstDay.split(" ", 3);
 
     // push every day to the weekDays array as an object
-    weekDays.push({id: i, day: `${day[0]} ${day[2]} ${day[1]}`})  //return day as "Mon Dec 31 2018 23:09:09 GMT+0100"
-    // weekDays.push({id: i, day: `${Date.parse(firstDay)}`}) // return day in miliseconds
-    // weekDays.id = i;
+    weekDays.push({id: i, day: `${day[0]} ${day[2]} ${day[1]}`});
     firstDay++;
   }
   return weekDays;

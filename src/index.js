@@ -9,7 +9,7 @@ import * as Skills from './js/models/Skills';
 
 
 
-elements.headerDate.innerHTML = `${Dates.day} ${Dates.months[Dates.month]} ${Dates.year}`;
+elements.headerDate.innerHTML = `${Dates.dayNr} ${Dates.months[Dates.month]} ${Dates.year}`;
 
 
 /*
@@ -52,7 +52,7 @@ elements.popupSearch.addEventListener('keyup', Skills.displaySearchedIcons)
  */
 
  // display current week number
-elements.weekNumber.innerHTML = Dates.today.getWeek();
+elements.weekNumber.innerHTML = Dates.weekNr(Dates.todayDate);
 
 
 // display all week days
