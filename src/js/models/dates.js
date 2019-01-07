@@ -61,10 +61,10 @@ getSeconds()	Returns the seconds (from 0-59)
 // ===================================
  //GET FIRST DAY OF THE CURRENT WEEK
 
-// export function startOfWeek(date, day) {
-//     var first = date.getDate() - (date.getDay() - day) ;
-//     return new Date(date.setDate(first));
-// }
+export function startOfWeek(date, day) {  // doesn't work on Sunday
+    var first = date.getDate() - (date.getDay() - day) +(date.getDay() === 0 ? -6 : 1);
+    return new Date(date.setDate(first));
+}
 
 // (startOfWeek(new Date()).toString());
 
@@ -75,12 +75,12 @@ getSeconds()	Returns the seconds (from 0-59)
 //   var first =  d- ( dday - 1) + day; 
 //   return new Date(date.setDate(first));
 // }
-function startOfWeek(date, day) {
-    var first = date.getDate() - (date.getDay() - day) + (day === 0 ? -6 : 1);
+// function startOfWeek(date, day) {
+//     var first = date.getDate() - (date.getDay() - day) + (day === 0 ? -6 : 1);
   
-    return new Date(date.setDate(first));
+//     return new Date(date.setDate(first));
  
-  }
+//   }
 
 // ===================================
  // GET DAYS OF THE CURRENT WEEK | display them
