@@ -46,8 +46,28 @@
 
     &--goal {
       display: flex;
-      align-items: center;
+      align-items: space-between;
+      justify-content: space-between;
       padding: .2rem 1.5rem;
+
+      &:hover .button__delete {
+        opacity: 1;
+        transform: scale(1,1);
+      }
     }
+
+    &--input {
+      background-color: transparent;
+      border: none; 
+      outline: $color-1;
+
+      &:focus {
+        border-bottom: 2px solid $color-2;
+        transform: translateY(1px);
+      }
+    }
+    
+    
+
   }
 }

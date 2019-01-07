@@ -63,6 +63,14 @@
       padding-right: .5rem;
     }
 
+    &__delete {
+      font-size: 2rem;
+      color: $color-red;
+      padding-right: .5rem;
+      opacity: 0;
+      transform: scale(0.7,0.7);
+      animation: all 1s linear;
+    }
     &__previous {
       color:$color-2;
       font-size: 3rem;
@@ -79,6 +87,7 @@
       }
     }
 }
+
 
 // SCROLLBARS
 /* width */
