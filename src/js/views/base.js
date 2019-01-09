@@ -8,7 +8,9 @@ export const elements = {
   popupUpdateBtn: document.querySelector('.popup__add--btn'),
   popupSearch: document.querySelector('.search__input'),
   weekNumber: document.querySelector('.week__number'),
-  weekDays: document.querySelector('.week-days')
+  weekDays: document.querySelector('.week-days'),
+  sectionItem: document.querySelector('.section__item'),
+  buttonAdd: document.querySelector('.button__add')
 }
 
 

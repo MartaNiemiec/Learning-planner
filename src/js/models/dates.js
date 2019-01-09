@@ -108,8 +108,8 @@ export const displayWeekDays = () => {
     const markup = `<div class="section__item">
                     <h3 class="header-3 section__item--title"> 
                       <span class="week__day">${el.day}</span>
-                      <button class="button button__add">
-                        <i class="fas fa-plus-circle"></i>
+                      <button class="button ">
+                        <i class="fas fa-plus-circle button__add"></i>
                       </button>
                     </h3>
                     <h3 class="header-3 section__item--content"></h3>
@@ -120,33 +120,14 @@ export const displayWeekDays = () => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // ===================================
  // go to next/previus week | display changed week
 
 
 
 
+// ===================================
+// create an array with goals
 
 
 
@@ -155,7 +136,25 @@ export const displayWeekDays = () => {
 // ===================================
  // add new task after clicking on the plus/add button | display it
 
+export const addGoal = (e) => {
+  const target = e.target;
+  if (target.classList.contains("button__add")) {
+    const markup = `<div class="section__item--goal">
+    <button class="button button__check">
+      <i class="far fa-check-circle"></i>
+    </button>
+    <input type="text" class="paragraph section__item--input" placeholder="text">
+    <button class="button button__delete">
+      <i class="far fa-trash-alt"></i>
+    </button>
+  </div>`;
+                  target.parentNode.parentNode.nextSibling.nextSibling.insertAdjacentHTML('beforeend', markup);;
 
+    // console.log(target.parentNode.parentNode.nextSibling.nextSibling);
+  }
+}
+
+//  document.addEventListener('click', Dates.addGoal);
 
 
 // ===================================

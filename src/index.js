@@ -58,3 +58,6 @@ elements.weekNumber.innerHTML = Dates.weekNr(Dates.todayDate);
 // display all week days
 
 Dates.displayWeekDays();
+
+// add goal after clicking on the add button
+document.addEventListener('click', Dates.addGoal);
