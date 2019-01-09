@@ -140,21 +140,33 @@ export const addGoal = (e) => {
   const target = e.target;
   if (target.classList.contains("button__add")) {
     const markup = `<div class="section__item--goal">
-    <button class="button button__check">
-      <i class="far fa-check-circle"></i>
-    </button>
-    <input type="text" class="paragraph section__item--input" placeholder="text">
-    <button class="button button__delete">
-      <i class="far fa-trash-alt"></i>
-    </button>
-  </div>`;
-                  target.parentNode.parentNode.nextSibling.nextSibling.insertAdjacentHTML('beforeend', markup);;
+                      <button class="button button__check">
+                        <i class="far fa-check-circle"></i>
+                      </button>
+                      <input type="text" class="paragraph section__item--input" placeholder="text">
+                      <button class="button ">
+                        <i class="far fa-trash-alt button__delete"></i>
+                      </button>
+                    </div>`;
+    // add 
+    target.parentNode.parentNode.nextSibling.nextSibling.insertAdjacentHTML('beforeend', markup);;
 
     // console.log(target.parentNode.parentNode.nextSibling.nextSibling);
   }
 }
 
-//  document.addEventListener('click', Dates.addGoal);
+
+
+// ===================================
+ // remove goal | display it
+export const deleteGoal = (e) => {
+  const target = e.target;
+  const dayContent = target.parentNode.parentNode;
+  if (target.classList.contains("button__delete"))  {
+    dayContent.remove(elements.sectionItemContent);
+  }
+  
+}
 
 
 // ===================================

@@ -10,10 +10,8 @@ export const elements = {
   weekNumber: document.querySelector('.week__number'),
   weekDays: document.querySelector('.week-days'),
   sectionItem: document.querySelector('.section__item'),
-  buttonAdd: document.querySelector('.button__add')
+  sectionItemContent: document.querySelector('.section__item--content')
 }
-
-
 
 
 

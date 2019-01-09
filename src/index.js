@@ -61,3 +61,6 @@ Dates.displayWeekDays();
 
 // add goal after clicking on the add button
 document.addEventListener('click', Dates.addGoal);
+
+// delete goal after clicking on delete button
+document.addEventListener('click', Dates.deleteGoal);
