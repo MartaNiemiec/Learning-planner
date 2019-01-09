@@ -64,3 +64,6 @@ document.addEventListener('click', Dates.addGoal);
 
 // delete goal after clicking on delete button
 document.addEventListener('click', Dates.deleteGoal);
+
+// toggle checked and unchecked icon
+document.addEventListener('click', Dates.toggleGoal);

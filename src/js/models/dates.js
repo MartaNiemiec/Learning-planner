@@ -141,7 +141,7 @@ export const addGoal = (e) => {
   if (target.classList.contains("button__add")) {
     const markup = `<div class="section__item--goal">
                       <button class="button button__check">
-                        <i class="far fa-check-circle"></i>
+                        <i class="far fa-circle"></i>
                       </button>
                       <input type="text" class="paragraph section__item--input" placeholder="text">
                       <button class="button ">
@@ -171,3 +171,16 @@ export const deleteGoal = (e) => {
 
 // ===================================
  // toggle checked/unchecked task | display it
+
+ export const toggleGoal = (e) => {
+  const target = e.target;
+  const checked = 'fa-check-circle';
+  const unchecked = 'fa-circle';
+  if (target.classList.contains(unchecked)) {
+    target.classList.remove(unchecked);
+    target.classList.add(checked);
+  } else if (target.classList.contains(checked)) {
+    target.classList.remove(checked);
+    target.classList.add(unchecked);
+  }
+ }
