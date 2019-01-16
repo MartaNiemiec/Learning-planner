@@ -60,10 +60,10 @@ elements.weekNumber.innerHTML = Dates.weekNr(Dates.todayDate);
 Dates.displayWeekDays();
 
 // add goal after clicking on the add button
-document.addEventListener('click', Dates.addGoal);
+document.addEventListener('click', Dates.addTask);
 
 // delete goal after clicking on delete button
-document.addEventListener('click', Dates.deleteGoal);
+// document.addEventListener('click', Dates.deleteTask);
 
 // toggle checked and unchecked icon
-document.addEventListener('click', Dates.toggleGoal);
+// document.addEventListener('click', Dates.toggleTask);

@@ -6,8 +6,8 @@ export let dayNr = todayDate.getDate();
 export let month = todayDate.getMonth();
 export let year = todayDate.getFullYear();
 
-console.log(todayDate);
-console.log(dayNr);
+// console.log(todayDate);
+// console.log(dayNr);
 
 export const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
@@ -32,7 +32,7 @@ getSeconds()	Returns the seconds (from 0-59)
 
 
 // ===================================
-//GET DURRENT WEEK NUMBER
+//GET CURRENT WEEK NUMBER
 
 //  Date.prototype.getWeek = function() {
 //     var onejan = new Date(this.getFullYear(),0,1);
@@ -68,22 +68,41 @@ export function startOfWeek(date, day) {  // doesn't work on Sunday
 
 // (startOfWeek(new Date()).toString());
 
-// function dayOfCurrWeek(date, day) {
-//   // day of the month - (day of the week - 1) + 6 //eg. 4 - (5-1) + 6 = 6
-//   var d = date.getDate();
-//   var dday = date.getDay();
-//   var first =  d- ( dday - 1) + day; 
-//   return new Date(date.setDate(first));
-// }
-// function startOfWeek(date, day) {
-//     var first = date.getDate() - (date.getDay() - day) + (day === 0 ? -6 : 1);
-  
-//     return new Date(date.setDate(first));
- 
-//   }
+
+
+// ===================================
+// create an array with goals
+
+const days = [];
+
+// create class Day 
+class Day {
+  constructor(date, task, checked) {
+    this.date = date;
+    this.tasks = [{task: task, check: checked}];
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // ===================================
  // GET DAYS OF THE CURRENT WEEK | display them
+
 const getWeekDays = () => {
   //create an array with days in the week
   const weekDays = [];
@@ -93,10 +112,9 @@ const getWeekDays = () => {
   // loop to get 7 days of the week
   for (let i = 0; i <= 6; i++) {
     const firstDay = startOfWeek(todayDate, i).toString();
-    const day = firstDay.split(" ", 3);
-
+    const day = firstDay.split(" ", 4);
     // push every day to the weekDays array as an object
-    weekDays.push({id: i, day: `${day[0]} ${day[2]} ${day[1]}`});
+    weekDays.push({id: i, day: `${day[0]} ${day[2]} ${day[1]}`, date: `${day[2]} ${day[1]} ${day[3]}`});
     firstDay++;
   }
   return weekDays;
@@ -105,7 +123,7 @@ const getWeekDays = () => {
 export const displayWeekDays = () => {
   getWeekDays().forEach(el => {
     // console.log(el);
-    const markup = `<div class="section__item">
+    const markup = `<div class="section__item" data-date="${el.date}">
                     <h3 class="header-3 section__item--title"> 
                       <span class="week__day">${el.day}</span>
                       <button class="button ">
@@ -120,14 +138,24 @@ export const displayWeekDays = () => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 // ===================================
  // go to next/previus week | display changed week
 
 
 
 
-// ===================================
-// create an array with goals
+
 
 
 
@@ -136,30 +164,99 @@ export const displayWeekDays = () => {
 // ===================================
  // add new task after clicking on the plus/add button | display it
 
-export const addGoal = (e) => {
-  const target = e.target;
-  if (target.classList.contains("button__add")) {
-    const markup = `<div class="section__item--goal">
-                      <button class="button button__check">
-                        <i class="far fa-circle"></i>
-                      </button>
-                      <input type="text" class="paragraph section__item--input" placeholder="text">
-                      <button class="button ">
-                        <i class="far fa-trash-alt button__delete"></i>
-                      </button>
-                    </div>`;
-    // add 
-    target.parentNode.parentNode.nextSibling.nextSibling.insertAdjacentHTML('beforeend', markup);;
-
-    // console.log(target.parentNode.parentNode.nextSibling.nextSibling);
-  }
+ 
+ export const addTask = (e) => {
+   const target = e.target;
+   if (target.classList.contains("button__add")) {
+     const day = target.parentNode.parentNode.parentNode.dataset.date; // <div class="section__item--goal data-day="${day}">
+     const task = target.parentNode.parentNode.nextSibling.nextSibling.firstChild; //input value
+     
+     // show task
+     const markup = `<div class="section__item--goal">
+                        <button class="button button__check">
+                          <i class="far fa-circle"></i>
+                        </button>
+                        <input type="text" class="paragraph section__item--input" placeholder="text">
+                        <button class="button ">
+                          <i class="far fa-trash-alt button__delete"></i>
+                        </button>
+                      </div>`;
+     
+     // add 
+     target.parentNode.parentNode.nextSibling.nextSibling.insertAdjacentHTML('beforeend', markup);
+     
+   
 }
 
 
 
+ // add task to the days array
+
+
+ elements.weekDays.addEventListener('change' , (e) => {
+  // const target = e.target;
+  // const targetDay = e.target.parentNode.parentNode.parentNode.dataset.date;
+  // // const day = target.parentNode.parentNode.parentNode.childNodes[1].childNodes[1].textContent;
+  // let check = e.target.previousSibling.previousSibling.childNodes[1].classList.value;
+console.log(e);
+  console.log("target ->" + e.target);
+  // console.log("day ->" + day);
+  // console.log("check ->" + check);
+  let task = e.target.value;
+  console.log("task ->" + task);
+  // console.log(targetDay);
+  // console.log(day);
+
+  // const day = new Day(targetDay, task, check)
+  // console.log(day);
+  
+  // days.push(day);
+  // console.log(days);
+  // if (target.classList.contains("section__item--input") && target.classList.contains(day)) {
+  // if (targetDay === day) {
+    
+    
+  //   // console.log(day);
+  //   // console.log(task);
+  //   days.push({
+  //                   date: day,
+  //                   check: check,
+  //                   task: task
+  //                 })
+  //   console.log(days);
+  // }
+
+  // if (days.length == 0) {
+  //   days.push({
+  //     date: day,
+  //     check: check,
+  //     task: task
+  //   })
+  // } else {
+  //   days.forEach(el => {
+  //     if (el.date !== day) {
+  //       days.push({
+  //         date: day,
+  //         check: check,
+  //         task: task
+  //     })
+  //   } 
+  //   // else if (date == day && el.task == task)
+  //   // console.log(object);
+  // })
+  // }
+
+  
+  // console.log("allTask" + days);
+  // // console.log("allTask");
+  
+})
+// console.log(task);
+}
+
 // ===================================
  // remove goal | display it
-export const deleteGoal = (e) => {
+export const deleteTask = (e) => {
   const target = e.target;
   const dayContent = target.parentNode.parentNode;
   if (target.classList.contains("button__delete"))  {
@@ -172,7 +269,7 @@ export const deleteGoal = (e) => {
 // ===================================
  // toggle checked/unchecked task | display it
 
- export const toggleGoal = (e) => {
+ export const toggleTask = (e) => {
   const target = e.target;
   const checked = 'fa-check-circle';
   const unchecked = 'fa-circle';
