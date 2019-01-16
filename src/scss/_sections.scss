@@ -53,13 +53,10 @@
     &--goal {
       display: flex;
       align-items: flex-start;
-      // justify-content: space-between;
       padding: .2rem 0;
       
 
       &:not(:last-child) {
-        border-bottom: 2px solid $color-2;
-        margin-bottom: .5rem;
         padding-bottom: .5rem;
       }
 

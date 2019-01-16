@@ -1,0 +1,62 @@
+
+.popup-task {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  background-color: rgba($color-4, .8);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__bg {
+    color: $color-1;
+    background-color: $color-2;
+    border-radius: .5rem;
+    padding: 2rem;
+
+    display: flex;
+    flex-direction: column;
+    
+    &--close {
+      color: $color-white;
+      font-size: 2.5rem;
+      transform: translate(50%,-1rem);
+    }
+  }
+  
+  &__header {
+    color: $color-white;
+    text-align: center;
+    padding-bottom: 1rem;   
+    transform: translate(0,-1rem);
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    &--text {
+      border-radius: 1rem;
+      padding: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    &--submit {
+      background-color: $color-3;
+      padding: 1rem 2rem;
+      color: $color-white;
+      letter-spacing: .2rem;
+      border-radius: 2.5rem;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $color-5;
+      }
+    }
+  }
+}
