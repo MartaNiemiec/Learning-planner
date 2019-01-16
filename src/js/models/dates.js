@@ -164,26 +164,38 @@ export const displayWeekDays = () => {
 // ===================================
  // add new task after clicking on the plus/add button | display it
 
+ export const hidePopupTask = () => {
+  const popupTask = elements.popupTask;
+  popupTask.classList.add("hide");
+}
+
+
+
  
  export const addTask = (e) => {
    const target = e.target;
+   console.log(target);
    if (target.classList.contains("button__add")) {
-     const day = target.parentNode.parentNode.parentNode.dataset.date; // <div class="section__item--goal data-day="${day}">
-     const task = target.parentNode.parentNode.nextSibling.nextSibling.firstChild; //input value
+    const popupTask = elements.popupTask;
+
+    popupTask.classList.remove("hide");
+
+    //  const day = target.parentNode.parentNode.parentNode.dataset.date; // <div class="section__item--goal data-day="${day}">
+    //  const task = target.parentNode.parentNode.nextSibling.nextSibling.firstChild; //input value
      
-     // show task
-     const markup = `<div class="section__item--goal">
-                        <button class="button button__check">
-                          <i class="far fa-circle"></i>
-                        </button>
-                        <input type="text" class="paragraph section__item--input" placeholder="text">
-                        <button class="button ">
-                          <i class="far fa-trash-alt button__delete"></i>
-                        </button>
-                      </div>`;
+    //  // show task
+    //  const markup = `<div class="section__item--goal">
+    //                     <button class="button button__check">
+    //                       <i class="far fa-circle"></i>
+    //                     </button>
+    //                     <input type="text" class="paragraph section__item--input" placeholder="text">
+    //                     <button class="button ">
+    //                       <i class="far fa-trash-alt button__delete"></i>
+    //                     </button>
+    //                   </div>`;
      
-     // add 
-     target.parentNode.parentNode.nextSibling.nextSibling.insertAdjacentHTML('beforeend', markup);
+    //  // add 
+    //  target.parentNode.parentNode.nextSibling.nextSibling.insertAdjacentHTML('beforeend', markup);
      
    
 }

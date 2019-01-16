@@ -60,6 +60,7 @@ elements.weekNumber.innerHTML = Dates.weekNr(Dates.todayDate);
 Dates.displayWeekDays();
 
 // add goal after clicking on the add button
+elements.popupTaskClose.addEventListener('click', Dates.hidePopupTask)
 document.addEventListener('click', Dates.addTask);
 
 // delete goal after clicking on delete button

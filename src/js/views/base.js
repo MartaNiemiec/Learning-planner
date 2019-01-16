@@ -9,6 +9,8 @@ export const elements = {
   popupSearch: document.querySelector('.search__input'),
   weekNumber: document.querySelector('.week__number'),
   weekDays: document.querySelector('.week-days'),
+  popupTask: document.querySelector('.popup-task'),
+  popupTaskClose: document.querySelector('.popup-task__bg--close'),
   sectionItem: document.querySelector('.section__item'),
   sectionItemContent: document.querySelector('.section__item--content'),
   sectionItemInput: document.querySelector('.section__item--input')
