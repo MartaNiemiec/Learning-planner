@@ -60,6 +60,18 @@
         </div>
       </section>
 
+      <div class="popup-task hide">
+        <div class="popup-task__bg">
+            <button class="button popup-task__bg--close"><i class="fas fa-times-circle"></i></button>
+          <h1 class="popup-task__header"> Add or update your task</h1>
+          <form class="popup-task__form">
+            <!-- <input class="popup-task__form--text" type="text" name="task" placeholder="Your task"> -->
+            <textarea name="task" cols="30" rows="2" placeholder="Your task" class="popup-task__form--text"></textarea>
+            <input class="popup-task__form--submit" type="submit" value="Submit">
+          </form>
+         
+        </div>
+      </div>
 
   <!-- SECTION WEEK -->
       <section class="section week">
@@ -74,7 +86,7 @@
         </div>
         <div class="section__content week-days">
 
-           <!--<div class="section__item">
+           <div class="section__item">
             <h3 class="header-3 section__item--title"> 
               <span class="week__day">Mon 10 Dec</span>
               <button class="button button__add">
@@ -84,16 +96,33 @@
             <h3 class="header-3 section__item--content">
               <div class="section__item--goal">
                 <button class="button button__check">
-                  <i class="far fa-check-circle"></i>
+                  <i class="far fa-circle"></i>
                 </button>
-                <input type="text" class="paragraph section__item--input" placeholder="text">
-                <button class="button button__delete">
+                <!-- <input type="text" class="paragraph section__item--input" placeholder="text"> -->
+                <p class="paragraph section__item--paragraph">Basic HTML and CSS.</p>
+                <button class="button button__edit button__hidden">
+                  <i class="far fa-edit"></i>
+                </button>
+                <button class="button button__delete button__hidden">
+                  <i class="far fa-trash-alt"></i>
+                </button>
+              </div>
+              <div class="section__item--goal">
+                <button class="button button__check">
+                  <i class="far fa-circle"></i>
+                </button>
+                <!-- <input type="text" class="paragraph section__item--input" placeholder="text"> -->
+                <p class="paragraph section__item--paragraph">Basic HTML and CSS.Basic HTML and CSS.Basic HTML and CSS.</p>
+                <button class="button button__edit button__hidden">
+                  <i class="far fa-edit"></i>
+                </button>
+                <button class="button button__delete button__hidden">
                   <i class="far fa-trash-alt"></i>
                 </button>
               </div>
             </h3>
           </div>
-
+<!--
            <div class="section__item">
             <h3 class="header-3 section__item--title"> 
               <span class="week__day">Tue 11 Dec</span>
