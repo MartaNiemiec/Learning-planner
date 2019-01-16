@@ -41,19 +41,36 @@
       display: flex;
       flex-direction: column;
       flex-wrap: wrap;
+
       padding: .5rem 0;
+      width: 95%;
+      margin: 0 auto;
+      
     }
+
+    
 
     &--goal {
       display: flex;
-      align-items: space-between;
-      justify-content: space-between;
-      padding: .2rem 1.5rem;
+      align-items: flex-start;
+      // justify-content: space-between;
+      padding: .2rem 0;
+      
 
-      &:hover .button__delete {
+      &:not(:last-child) {
+        border-bottom: 2px solid $color-2;
+        margin-bottom: .5rem;
+        padding-bottom: .5rem;
+      }
+
+      &:hover .button__hidden {
         opacity: 1;
         transform: scale(1,1);
       }
+    }
+
+    &--paragraph {
+      width: calc(100% - 3rem - 3rem - 2rem); // 100% - icons check\edit\delete
     }
 
     &--input {
