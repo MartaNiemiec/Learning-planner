@@ -61,7 +61,8 @@ Dates.displayWeekDays();
 
 // add goal after clicking on the add button
 elements.popupTaskClose.addEventListener('click', Dates.hidePopupTask)
-document.addEventListener('click', Dates.addTask);
+document.addEventListener('click', Dates.openPopupTask);
+elements.popupTaskForm.addEventListener('submit', Dates.addTask);
 
 // delete goal after clicking on delete button
 // document.addEventListener('click', Dates.deleteTask);

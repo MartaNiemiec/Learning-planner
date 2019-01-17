@@ -11,6 +11,8 @@ export const elements = {
   weekDays: document.querySelector('.week-days'),
   popupTask: document.querySelector('.popup-task'),
   popupTaskClose: document.querySelector('.popup-task__bg--close'),
+  popupTaskForm: document.querySelector('.popup-task__form'),
+  popupTaskText: document.querySelector('.popup-task__form--text'),
   sectionItem: document.querySelector('.section__item'),
   sectionItemContent: document.querySelector('.section__item--content'),
   sectionItemInput: document.querySelector('.section__item--input')

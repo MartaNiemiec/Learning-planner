@@ -73,13 +73,13 @@ export function startOfWeek(date, day) {  // doesn't work on Sunday
 // ===================================
 // create an array with goals
 
-const days = [];
+const daysArray = [];
 
 // create class Day 
 class Day {
-  constructor(date, task, checked) {
+  constructor(date, task, done) {
     this.date = date;
-    this.tasks = [{task: task, check: checked}];
+    this.tasks = [{task: task, done: done}];
   }
 
 }
@@ -167,104 +167,43 @@ export const displayWeekDays = () => {
  export const hidePopupTask = () => {
   const popupTask = elements.popupTask;
   popupTask.classList.add("hide");
+  popupTask.removeAttribute('data-date');
 }
-
-
 
  
- export const addTask = (e) => {
-   const target = e.target;
-   console.log(target);
-   if (target.classList.contains("button__add")) {
-    const popupTask = elements.popupTask;
-
-    popupTask.classList.remove("hide");
-
-    //  const day = target.parentNode.parentNode.parentNode.dataset.date; // <div class="section__item--goal data-day="${day}">
-    //  const task = target.parentNode.parentNode.nextSibling.nextSibling.firstChild; //input value
-     
-    //  // show task
-    //  const markup = `<div class="section__item--goal">
-    //                     <button class="button button__check">
-    //                       <i class="far fa-circle"></i>
-    //                     </button>
-    //                     <input type="text" class="paragraph section__item--input" placeholder="text">
-    //                     <button class="button ">
-    //                       <i class="far fa-trash-alt button__delete"></i>
-    //                     </button>
-    //                   </div>`;
-     
-    //  // add 
-    //  target.parentNode.parentNode.nextSibling.nextSibling.insertAdjacentHTML('beforeend', markup);
-     
-   
+ export const openPopupTask = (e) => {
+  const target = e.target;
+  if (!target.matches(".button__add")) return;
+  const popupTask = elements.popupTask;
+  popupTask.classList.remove("hide");
+  const date = target.parentNode.parentNode.parentNode.dataset.date;
+  popupTask.dataset.date = date;
 }
 
+export function addTask(e) {
+  e.preventDefault(); //prevent refreshing the page/Prevent a link from opening the URL
+  const textInputed = elements.popupTaskText.value;
+  const date = elements.popupTask.dataset.date;
+
+  // create day object
+  const day = new Day(date, textInputed, false);
+  daysArray.push(day);
+
+  //reset an input
+  this.reset(); 
+  console.log(day);
+  console.log(daysArray);
+  hidePopupTask();
+  }
 
 
- // add task to the days array
 
 
- elements.weekDays.addEventListener('change' , (e) => {
-  // const target = e.target;
-  // const targetDay = e.target.parentNode.parentNode.parentNode.dataset.date;
-  // // const day = target.parentNode.parentNode.parentNode.childNodes[1].childNodes[1].textContent;
-  // let check = e.target.previousSibling.previousSibling.childNodes[1].classList.value;
-console.log(e);
-  console.log("target ->" + e.target);
-  // console.log("day ->" + day);
-  // console.log("check ->" + check);
-  let task = e.target.value;
-  console.log("task ->" + task);
-  // console.log(targetDay);
-  // console.log(day);
 
-  // const day = new Day(targetDay, task, check)
-  // console.log(day);
-  
-  // days.push(day);
-  // console.log(days);
-  // if (target.classList.contains("section__item--input") && target.classList.contains(day)) {
-  // if (targetDay === day) {
-    
-    
-  //   // console.log(day);
-  //   // console.log(task);
-  //   days.push({
-  //                   date: day,
-  //                   check: check,
-  //                   task: task
-  //                 })
-  //   console.log(days);
-  // }
 
-  // if (days.length == 0) {
-  //   days.push({
-  //     date: day,
-  //     check: check,
-  //     task: task
-  //   })
-  // } else {
-  //   days.forEach(el => {
-  //     if (el.date !== day) {
-  //       days.push({
-  //         date: day,
-  //         check: check,
-  //         task: task
-  //     })
-  //   } 
-  //   // else if (date == day && el.task == task)
-  //   // console.log(object);
-  // })
-  // }
 
-  
-  // console.log("allTask" + days);
-  // // console.log("allTask");
-  
-})
-// console.log(task);
-}
+
+
 
 // ===================================
  // remove goal | display it
