@@ -56,8 +56,6 @@ getSeconds()	Returns the seconds (from 0-59)
   // weekNr = new Date().getWeek();
 
 
-
-
 // ===================================
  //GET FIRST DAY OF THE CURRENT WEEK
 
@@ -71,32 +69,21 @@ export function startOfWeek(date, day) {  // doesn't work on Sunday
 
 
 // ===================================
-// create an array with goals
+// create an array with tasks
 
 const daysArray = [];
 
 // create class Day 
 class Day {
-  constructor(date, task, done) {
+  constructor(date, task, done = false) {
     this.date = date;
     this.tasks = [{task: task, done: done}];
   }
 
+  addTask(task, done = false) {
+    this.tasks.push({task: task, done: done});
+  }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -137,25 +124,8 @@ export const displayWeekDays = () => {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 // ===================================
  // go to next/previus week | display changed week
-
-
-
-
-
 
 
 
@@ -182,38 +152,43 @@ export const displayWeekDays = () => {
 
 export function addTask(e) {
   e.preventDefault(); //prevent refreshing the page/Prevent a link from opening the URL
-  const textInputed = elements.popupTaskText.value;
-  const date = elements.popupTask.dataset.date;
-
+  const taskInputed = elements.popupTaskText.value;
+  const dateOfCurrentDay = elements.popupTask.dataset.date;
+  const createdCurrentDay = new Day(dateOfCurrentDay, taskInputed);
   // create day object
-  const day = new Day(date, textInputed, false);
-  daysArray.push(day);
+  const isInArray = daysArray.some(el => el.date == dateOfCurrentDay);
+  
+  // checking if the current day(clicked day) is in a daysArray OR if a daysArray is empty AND if the task was written
+    if ((!isInArray || daysArray.length == 0) && taskInputed.length !== 0) {
+      // push currentDay object into daysArray
+      daysArray.push(createdCurrentDay);
+    } else {
+      daysArray.forEach(el => {
+        // looking for current day in a daysArr AND checking if the task was written AND if the task was written before in the current day
+        if (el.date == dateOfCurrentDay && taskInputed.length !== 0 && !el.tasks.some(el => el.task == taskInputed)) {
+          // adding new task into current day
+          console.log();
+          el.addTask(taskInputed);
+        }
+      })
+    }
 
-  //reset an input
+  console.table(daysArray);
+
+  //reset an input(textarea)
   this.reset(); 
-  console.log(day);
-  console.log(daysArray);
   hidePopupTask();
   }
 
 
-
-
-
-
-
-
-
-
 // ===================================
- // remove goal | display it
+ // remove task | display it
 export const deleteTask = (e) => {
   const target = e.target;
   const dayContent = target.parentNode.parentNode;
   if (target.classList.contains("button__delete"))  {
     dayContent.remove(elements.sectionItemContent);
   }
-  
 }
 
 
