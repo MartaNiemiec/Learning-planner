@@ -162,6 +162,7 @@ export function addTask(e) {
     if ((!isInArray || daysArray.length == 0) && taskInputed.length !== 0) {
       // push currentDay object into daysArray
       daysArray.push(createdCurrentDay);
+      displayDaysTasks(dateOfCurrentDay, taskInputed, false);
     } else {
       daysArray.forEach(el => {
         // looking for current day in a daysArr AND checking if the task was written AND if the task was written before in the current day
@@ -169,17 +170,46 @@ export function addTask(e) {
           // adding new task into current day
           console.log();
           el.addTask(taskInputed);
+          displayDaysTasks(el.date, taskInputed, false);
         }
       })
     }
 
   console.table(daysArray);
-
+ 
   //reset an input(textarea)
   this.reset(); 
   hidePopupTask();
   }
 
+const displayDaysTasks = (date, task, done) => {
+  const weekDays = elements.weekDays.querySelectorAll('[data-date]'); // return <div class="section__item" data-date="14 Jan 2019">...</div>
+  const taskUncheckedIcon = `"far fa-circle"`;
+  const taskCheckedIcon = `"far fa-check-circle"`;
+  let isDone;
+
+  done ? isDone = taskCheckedIcon : isDone = taskUncheckedIcon; 
+
+  const html = `<div class="section__item--goal">
+                  <button class="button button__check">
+                    <i class=${isDone}></i>
+                  </button>
+                  <p class="paragraph section__item--paragraph">${task}</p>
+                  <button class="button button__edit button__hidden">
+                    <i class="far fa-edit"></i>
+                  </button>
+                  <button class="button button__delete button__hidden">
+                    <i class="far fa-trash-alt"></i>
+                  </button>
+                </div>`
+
+  weekDays.forEach(e => {
+    if (e.dataset.date == date) {
+      e.children[1].insertAdjacentHTML('beforeend', html);
+    } 
+  })
+
+}
 
 // ===================================
  // remove task | display it
