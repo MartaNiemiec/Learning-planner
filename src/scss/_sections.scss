@@ -61,7 +61,7 @@
       }
 
       &:hover .button__hidden {
-        opacity: 1;
+        visibility: visible;
         transform: scale(1,1);
       }
     }

@@ -64,7 +64,7 @@
     }
 
     &__hidden {
-       opacity: 0;
+      visibility: hidden;
        transform: scale(0.7,0.7);
     }
 
