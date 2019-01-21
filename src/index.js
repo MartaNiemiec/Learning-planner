@@ -60,11 +60,14 @@ elements.weekNumber.innerHTML = Dates.weekNr(Dates.todayDate);
 Dates.displayWeekDays();
 
 // add goal after clicking on the add button
-elements.popupTaskClose.addEventListener('click', Dates.hidePopupTask)
-document.addEventListener('click', Dates.openPopupTask);
+elements.popupTaskClose.addEventListener('click', Dates.hidePopupTask);
+document.addEventListener('click', Dates.isButtonAdd);
 elements.popupTaskForm.addEventListener('submit', Dates.addTask);
 
-// delete goal after clicking on delete button
+// edit task
+document.addEventListener('click', Dates.editTask);
+
+// delete task after clicking on delete button
 // document.addEventListener('click', Dates.deleteTask);
 
 // toggle checked and unchecked icon
