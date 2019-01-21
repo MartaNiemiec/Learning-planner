@@ -178,38 +178,31 @@ export function addTask(e) {
   const isInArray = daysArray.some(el => el.date == dateOfCurrentDay);
   const taskToEdit = this.children[0].placeholder;
 
-  // check if has clicked plus button(adding a task)
+// check if has clicked plus button(adding a task)
   if (dataAction == "addTask") {
     // checking if the current day(clicked day) is in a daysArray OR if a daysArray is empty AND if the task was written
       if ((!isInArray || daysArray.length == 0) && taskInputed.length !== 0) {
         // push currentDay object into daysArray
         daysArray.push(createdCurrentDay);
-        displayDaysTasks(dateOfCurrentDay, taskInputed, false);
+        // displayDaysTasks(dateOfCurrentDay, taskInputed, false);
       } else {
         daysArray.forEach(el => {
           // looking for current day in a daysArr AND checking if the task was written AND if the task was written before in the current day
           if (el.date == dateOfCurrentDay && taskInputed.length !== 0 && !el.tasks.some(el => el.task == taskInputed)) {
             // adding new task into current day
             el.addTask(taskInputed);
-            displayDaysTasks(el.date, taskInputed, false);
+            // displayDaysTasks(el.date, taskInputed, false);
           }
         })
       }
 
-  // console.table(daysArray);
-
-  // check if has clicked edit button next to the task
+// check if has clicked edit button next to the task
   } else if (dataAction == "editTask") {
     daysArray.forEach(el => {
-
       if (el.date == dateOfCurrentDay && taskInputed.length !== 0 && el.tasks.some(el => el.task == taskToEdit)) {
         el.updateTask(taskToEdit, taskInputed);
-        displayDaysTasks(el.date, taskInputed,false)
-        console.log("EDITED TASK");
-      }  else {
-        console.log("el.tasks.task - > " + el.tasks.task);
-        console.log("NOT EDITED!!!!!");
-      }
+        // displayDaysTasks(el.date, taskInputed,false);
+      } 
     })
   }
 
@@ -218,35 +211,43 @@ export function addTask(e) {
  
   //reset an input(textarea)
   this.reset(); 
+  displayDaysTasks(dateOfCurrentDay)
   hidePopupTask();
 }
 
-const displayDaysTasks = (date, task, done) => {
+const displayDaysTasks = (date) => {
   const weekDays = elements.weekDays.querySelectorAll('[data-date]'); // return <div class="section__item" data-date="14 Jan 2019">...</div>
   const taskUncheckedIcon = "far fa-circle";
   const taskCheckedIcon = "far fa-check-circle";
   let isDone;
   
 
-  done ? isDone = taskCheckedIcon : isDone = taskUncheckedIcon; 
-
-  const html = `<div class="section__item--goal">
-                  <button class="button ">
-                    <i class="${isDone} button__check"></i>
-                  </button>
-                  <p class="paragraph section__item--paragraph">${task}</p>
-                  <button class="button button__hidden">
-                    <i class="far fa-edit button__edit"></i>
-                  </button>
-                  <button class="button button__hidden">
-                    <i class="far fa-trash-alt button__delete"></i>
-                  </button>
-                </div>`
-
+  
+  
   weekDays.forEach(e => {
     if (e.dataset.date == date) {
       const dayContent = e.children[1];
-      dayContent.insertAdjacentHTML('beforeend', html);
+      const dayArray = daysArray.find(day => day.date == date);
+      dayContent.innerHTML = "";
+      console.table(dayArray.tasks);
+      dayArray.tasks.forEach(el => {
+        el.done ? isDone = taskCheckedIcon : isDone = taskUncheckedIcon; 
+        
+        const html = `<div class="section__item--goal">
+                        <button class="button ">
+                          <i class="${isDone} button__check"></i>
+                        </button>
+                        <p class="paragraph section__item--paragraph">${el.task}</p>
+                        <button class="button button__hidden">
+                          <i class="far fa-edit button__edit"></i>
+                        </button>
+                        <button class="button button__hidden">
+                          <i class="far fa-trash-alt button__delete"></i>
+                        </button>
+                      </div>`
+        
+        dayContent.insertAdjacentHTML('beforeend', html);
+      })
     } 
   })
 
