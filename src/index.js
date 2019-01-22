@@ -71,4 +71,4 @@ document.addEventListener('click', Dates.editTask);
 // document.addEventListener('click', Dates.deleteTask);
 
 // toggle checked and unchecked icon
-// document.addEventListener('click', Dates.toggleTask);
+document.addEventListener('click', Dates.toggleTask);

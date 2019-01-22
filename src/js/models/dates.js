@@ -86,9 +86,15 @@ class Day {
 
   updateTask(task, newTask) {
     // find the task to edit
-    let taskToEdit = this.tasks.find(el => el.task == task);
+    const taskToEdit = this.tasks.find(el => el.task == task);
     // change it to a new task
     taskToEdit.task = newTask;
+  }
+
+  toggleChecked(task) {
+    const taskToToggle = this.tasks.find(el => el.task == task);
+    // toggle "done" value to true/false
+    taskToToggle.done = !taskToToggle.done;
   }
 }
 
@@ -205,7 +211,7 @@ export function addTask(e) {
   }
 
 
-  console.log(daysArray);
+  // console.log(daysArray);
  
   //reset an input(textarea)
   this.reset(); 
@@ -224,7 +230,7 @@ const displayDaysTasks = (date) => {
       const dayContent = e.children[1];
       const dayArray = daysArray.find(day => day.date == date);
       dayContent.innerHTML = "";
-      console.table(dayArray.tasks);
+      // console.table(dayArray.tasks);
       dayArray.tasks.forEach(el => {
         el.done ? isDone = taskCheckedIcon : isDone = taskUncheckedIcon; 
         
@@ -262,6 +268,7 @@ export const editTask = (e) => {
 
     // open popupTask
     openPopupTask(task);
+    
 
   }
 }
@@ -282,13 +289,14 @@ export const deleteTask = (e) => {
 
  export const toggleTask = (e) => {
   const target = e.target;
-  const checked = 'fa-check-circle';
-  const unchecked = 'fa-circle';
-  if (target.classList.contains(unchecked)) {
-    target.classList.remove(unchecked);
-    target.classList.add(checked);
-  } else if (target.classList.contains(checked)) {
-    target.classList.remove(checked);
-    target.classList.add(unchecked);
-  }
+  const date = target.parentNode.parentNode.parentNode.parentNode.dataset.date;
+  const taskText = target.parentNode.nextSibling.nextSibling;
+  // check if the target has a button__check class
+  if (!target.matches(".button__check")) return;
+  // find current day obcject in the daysArray 
+  const dayArray = daysArray.find(day => day.date == date);
+  // toggle done key (value true or false)
+  dayArray.toggleChecked(taskText.textContent)
+  // display all tasks for current day
+  displayDaysTasks(date);
  }
