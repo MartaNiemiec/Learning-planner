@@ -116,7 +116,6 @@ const getWeekDays = () => {
 
 export const displayWeekDays = () => {
   getWeekDays().forEach(el => {
-    // console.log(el);
     const markup = `<div class="section__item" data-date="${el.date}">
                     <h3 class="header-3 section__item--title"> 
                       <span class="week__day">${el.day}</span>
@@ -161,6 +160,7 @@ export const displayWeekDays = () => {
   const popupTask = elements.popupTask;
   popupTask.classList.remove("hide");
   elements.popupTaskText.placeholder = savedTask;
+  elements.popupTaskText.focus();
 }
 
 const setCurrentDate = (date) => {
@@ -191,7 +191,6 @@ export function addTask(e) {
           if (el.date == dateOfCurrentDay && taskInputed.length !== 0 && !el.tasks.some(el => el.task == taskInputed)) {
             // adding new task into current day
             el.addTask(taskInputed);
-            // displayDaysTasks(el.date, taskInputed, false);
           }
         })
       }
@@ -201,7 +200,6 @@ export function addTask(e) {
     daysArray.forEach(el => {
       if (el.date == dateOfCurrentDay && taskInputed.length !== 0 && el.tasks.some(el => el.task == taskToEdit)) {
         el.updateTask(taskToEdit, taskInputed);
-        // displayDaysTasks(el.date, taskInputed,false);
       } 
     })
   }
@@ -220,9 +218,6 @@ const displayDaysTasks = (date) => {
   const taskUncheckedIcon = "far fa-circle";
   const taskCheckedIcon = "far fa-check-circle";
   let isDone;
-  
-
-  
   
   weekDays.forEach(e => {
     if (e.dataset.date == date) {
@@ -267,19 +262,6 @@ export const editTask = (e) => {
 
     // open popupTask
     openPopupTask(task);
-
-    // update task after clicking on the submit button
-// const taskInputed = elements.popupTaskText.value;
-
-// daysArray.forEach(el => { 
-  // if (el.date == date ) {
-    // console.log(el.date);
-    // console.log(taskInputed); ;
-  // }
-  // console.table(daysArray);
-// })
-
-    // display updated task
 
   }
 }
