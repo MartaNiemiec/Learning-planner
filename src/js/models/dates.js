@@ -6,9 +6,6 @@ export let dayNr = todayDate.getDate();
 export let month = todayDate.getMonth();
 export let year = todayDate.getFullYear();
 
-// console.log(todayDate);
-// console.log(dayNr);
-
 export const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 /*
@@ -99,8 +96,7 @@ class Day {
 
   deleteTask(task) {
     const taskToDeleteIndex = this.tasks.findIndex(el => el.task == task);
-    this.tasks.splice(taskToDeleteIndex,1)
-    console.log(this.tasks);
+    this.tasks.splice(taskToDeleteIndex,1);
   }
 }
 
@@ -180,7 +176,6 @@ const setCurrentDate = (date) => {
 }
 
 
-
 export function addTask(e) {
   e.preventDefault(); //prevent refreshing the page/Prevent a link from opening the URL
   const dataAction = e.target.parentNode.parentNode.dataset.action;
@@ -215,10 +210,6 @@ export function addTask(e) {
       } 
     })
   }
-
-
-  // console.log(daysArray);
- 
   //reset an input(textarea)
   this.reset(); 
   displayDaysTasks(dateOfCurrentDay)
@@ -236,7 +227,6 @@ const displayDaysTasks = (date) => {
       const dayContent = e.children[1];
       const dayArray = daysArray.find(day => day.date == date);
       dayContent.innerHTML = "";
-      // console.table(dayArray.tasks);
       dayArray.tasks.forEach(el => {
         el.done ? isDone = taskCheckedIcon : isDone = taskUncheckedIcon; 
         
@@ -252,14 +242,11 @@ const displayDaysTasks = (date) => {
                           <i class="far fa-trash-alt button__delete"></i>
                         </button>
                       </div>`
-        
         dayContent.insertAdjacentHTML('beforeend', html);
       })
     } 
   })
-
 }
-
 
 
 // ===================================
@@ -274,7 +261,6 @@ export const editTask = (e) => {
 
     // open popupTask
     openPopupTask(task);
-    
   }
 }
 
@@ -286,7 +272,6 @@ export const deleteTask = (e) => {
     // dayContent.remove(elements.sectionItemContent);
     const task = target.parentNode.parentNode.children[1].textContent;
     const dateOfCurrentDay = target.parentNode.parentNode.parentNode.parentNode.dataset.date;
-    console.log(dateOfCurrentDay);
 
     daysArray.forEach((el, index) => {
       if (el.date == dateOfCurrentDay) {
@@ -294,14 +279,13 @@ export const deleteTask = (e) => {
       } 
 
       displayDaysTasks(dateOfCurrentDay);
-  })
-}
+    })
+  }
 }
 
 
 // ===================================
  // toggle checked/unchecked task | display it
-
  export const toggleTask = (e) => {
   const target = e.target;
   // check if the target has a button__check class
