@@ -96,6 +96,12 @@ class Day {
     // toggle "done" value to true/false
     taskToToggle.done = !taskToToggle.done;
   }
+
+  deleteTask(task) {
+    const taskToDeleteIndex = this.tasks.findIndex(el => el.task == task);
+    this.tasks.splice(taskToDeleteIndex,1)
+    console.log(this.tasks);
+  }
 }
 
 
@@ -269,7 +275,6 @@ export const editTask = (e) => {
     // open popupTask
     openPopupTask(task);
     
-
   }
 }
 
@@ -277,10 +282,20 @@ export const editTask = (e) => {
  // remove task | display it
 export const deleteTask = (e) => {
   const target = e.target;
-  const dayContent = target.parentNode.parentNode;
   if (target.classList.contains("button__delete"))  {
-    dayContent.remove(elements.sectionItemContent);
-  }
+    // dayContent.remove(elements.sectionItemContent);
+    const task = target.parentNode.parentNode.children[1].textContent;
+    const dateOfCurrentDay = target.parentNode.parentNode.parentNode.parentNode.dataset.date;
+    console.log(dateOfCurrentDay);
+
+    daysArray.forEach((el, index) => {
+      if (el.date == dateOfCurrentDay) {
+        el.deleteTask(task,index);
+      } 
+
+      displayDaysTasks(dateOfCurrentDay);
+  })
+}
 }
 
 
@@ -289,14 +304,14 @@ export const deleteTask = (e) => {
 
  export const toggleTask = (e) => {
   const target = e.target;
-  const date = target.parentNode.parentNode.parentNode.parentNode.dataset.date;
-  const taskText = target.parentNode.nextSibling.nextSibling;
   // check if the target has a button__check class
   if (!target.matches(".button__check")) return;
+  const date = target.parentNode.parentNode.parentNode.parentNode.dataset.date;
+  const taskText = target.parentNode.nextSibling.nextSibling.textContent;
   // find current day obcject in the daysArray 
   const dayArray = daysArray.find(day => day.date == date);
   // toggle done key (value true or false)
-  dayArray.toggleChecked(taskText.textContent)
+  dayArray.toggleChecked(taskText);
   // display all tasks for current day
   displayDaysTasks(date);
  }

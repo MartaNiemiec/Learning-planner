@@ -68,7 +68,7 @@ elements.popupTaskForm.addEventListener('submit', Dates.addTask);
 document.addEventListener('click', Dates.editTask);
 
 // delete task after clicking on delete button
-// document.addEventListener('click', Dates.deleteTask);
+document.addEventListener('click', Dates.deleteTask);
 
 // toggle checked and unchecked icon
 document.addEventListener('click', Dates.toggleTask);
