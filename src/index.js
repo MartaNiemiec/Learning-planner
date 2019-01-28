@@ -51,13 +51,8 @@ elements.popupSearch.addEventListener('keyup', Skills.displaySearchedIcons)
 ====================
  */
 
- // display current week number
-elements.weekNumber.innerHTML = Dates.weekNr(Dates.todayDate);
-
-
 // display all week days
-
-Dates.displayWeekDays();
+Dates.displayWeekDays(Dates.todayDate);
 
 // add goal after clicking on the add button
 elements.popupTaskClose.addEventListener('click', Dates.hidePopupTask);
@@ -72,3 +67,6 @@ document.addEventListener('click', Dates.deleteTask);
 
 // toggle checked and unchecked icon
 document.addEventListener('click', Dates.toggleTask);
+
+document.addEventListener('click', Dates.nextWeek);
+document.addEventListener('click', Dates.previousWeek);

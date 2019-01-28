@@ -5,6 +5,7 @@ export let todayDate = new Date();
 export let dayNr = todayDate.getDate();
 export let month = todayDate.getMonth();
 export let year = todayDate.getFullYear();
+let lastChosedDay = todayDate;
 
 export const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
@@ -35,8 +36,8 @@ getSeconds()	Returns the seconds (from 0-59)
 //     var onejan = new Date(this.getFullYear(),0,1);
 //     return Math.ceil((((this - onejan) / 86400000) + onejan.getDay()+1)/7);
 //   }
-  
 
+  
   export const weekNr = dt => {
      var tdt = new Date(dt.valueOf());  // .valueOf returns a Number, representing the number of milliseconds between the date object and midnight January 1, 1970 UTCmiliseconds
      var dayn = (dt.getDay() + 6) % 7;
@@ -48,15 +49,17 @@ getSeconds()	Returns the seconds (from 0-59)
       tdt.setMonth(0, 1 + ((4 - tdt.getDay()) + 7) % 7);
         }
      return 1 + Math.ceil((firstThursday - tdt) / 604800000);
-  }
-
-  // weekNr = new Date().getWeek();
-
+    }
+    // weekNr = new Date().getWeek();
+    
+    const displayWeekNr = (date) => {
+      elements.weekNumber.innerHTML = weekNr(date);
+    }
 
 // ===================================
  //GET FIRST DAY OF THE CURRENT WEEK
 
-export function startOfWeek(date, day) {  // doesn't work on Sunday
+function startOfWeek(date, day) {  // does it work on Sunday???
     var first = date.getDate() - (date.getDay() - day) +(date.getDay() === 0 ? -6 : 1);
     return new Date(date.setDate(first));
 }
@@ -65,9 +68,77 @@ export function startOfWeek(date, day) {  // doesn't work on Sunday
 
 
 
+export const nextWeek = (e) => {
+  // debugger;
+  const target = e.target;
+  if (!target.matches(".button__next")) return;
+  changeWeek(lastChosedDay, -1);
+}
+
+export const previousWeek = (e) => {
+  const target = e.target;
+  if (!target.matches(".button__previous")) return;
+  changeWeek(lastChosedDay, 1);
+}
+
+const changeWeek = (date, count) => {
+  let firstDay = startOfWeek(new Date(date.getTime() - 7 * count * 24 * 60 * 60 * 1000), 1);
+  lastChosedDay = new Date(firstDay);
+  getWeekDays(firstDay);
+  displayWeekDays(firstDay);
+  weekNr(firstDay);
+  displayWeekNr(lastChosedDay);
+}
+
+
+
+
+// ===================================
+// GET DAYS OF THE CURRENT WEEK | display them
+
+const getWeekDays = (date) => {
+  //create an array with days in the week
+  const weekDays = [];
+  // weekDays = [{id: 0, day: "Mon 31 Dec"}, 
+  //             {id: 1, day: "Tue 01 Jan"}, ...]
+
+  // loop to get 7 days of the week
+  for (let i = 0; i <= 6; i++) {
+    const firstDay = startOfWeek(new Date(date), i).toString();
+    const day = firstDay.split(" ", 4);
+    // push every day to the weekDays array as an object
+    weekDays.push({id: i, day: `${day[0]} ${day[2]} ${day[1]}`, date: `${day[2]} ${day[1]} ${day[3]}`});
+    firstDay++;
+
+  }
+  return weekDays;
+}
+
+export const displayWeekDays = (date) => {
+  elements.weekDays.innerHTML = "";
+  getWeekDays(date).forEach(el => {
+    const markup = `<div class="section__item" data-date="${el.date}">
+                    <h3 class="header-3 section__item--title"> 
+                      <span class="week__day">${el.day}</span>
+                      <button class="button ">
+                        <i class="fas fa-plus-circle button__add"></i>
+                      </button>
+                    </h3>
+                    <h3 class="header-3 section__item--content"></h3>
+                  </div>`;
+    elements.weekDays.insertAdjacentHTML('beforeend', markup);
+  });
+  displayWeekNr(lastChosedDay);
+}
+
+
+// ===================================
+ // go to next/previus week | display changed week
+
+
+
 // ===================================
 // create an array with tasks
-
 const daysArray = [];
 
 // create class Day 
@@ -99,50 +170,6 @@ class Day {
     this.tasks.splice(taskToDeleteIndex,1);
   }
 }
-
-
-
-// ===================================
- // GET DAYS OF THE CURRENT WEEK | display them
-
-const getWeekDays = () => {
-  //create an array with days in the week
-  const weekDays = [];
-  // weekDays = [{id: 0, day: "Mon 31 Dec"}, 
-  //             {id: 1, day: "Tue 01 Jan"}, ...]
-
-  // loop to get 7 days of the week
-  for (let i = 0; i <= 6; i++) {
-    const firstDay = startOfWeek(todayDate, i).toString();
-    const day = firstDay.split(" ", 4);
-    // push every day to the weekDays array as an object
-    weekDays.push({id: i, day: `${day[0]} ${day[2]} ${day[1]}`, date: `${day[2]} ${day[1]} ${day[3]}`});
-    firstDay++;
-  }
-  return weekDays;
-}
-
-export const displayWeekDays = () => {
-  getWeekDays().forEach(el => {
-    const markup = `<div class="section__item" data-date="${el.date}">
-                    <h3 class="header-3 section__item--title"> 
-                      <span class="week__day">${el.day}</span>
-                      <button class="button ">
-                        <i class="fas fa-plus-circle button__add"></i>
-                      </button>
-                    </h3>
-                    <h3 class="header-3 section__item--content"></h3>
-                  </div>`;
-    elements.weekDays.insertAdjacentHTML('beforeend', markup);
-  });
-}
-
-
-// ===================================
- // go to next/previus week | display changed week
-
-
-
 
 
 // ===================================
