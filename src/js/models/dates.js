@@ -107,9 +107,8 @@ const getWeekDays = (date) => {
     const firstDay = startOfWeek(new Date(date), i).toString();
     const day = firstDay.split(" ", 4);
     // push every day to the weekDays array as an object
-    weekDays.push({id: i, day: `${day[0]} ${day[2]} ${day[1]}`, date: `${day[2]} ${day[1]} ${day[3]}`});
+    weekDays.push({day: `${day[0]} ${day[2]} ${day[1]}`, date: `${day[2]} ${day[1]} ${day[3]}`});
     firstDay++;
-
   }
   return weekDays;
 }
@@ -127,6 +126,14 @@ export const displayWeekDays = (date) => {
                     <h3 class="header-3 section__item--content"></h3>
                   </div>`;
     elements.weekDays.insertAdjacentHTML('beforeend', markup);
+
+    // find weekDay in the daysArray
+    const dayArray = daysArray.find(day => day.date == el.date);
+    // check is there any day object of the burrent weekDay
+    if (dayArray) {
+      // display tasks from the current weekDay
+      displayDaysTasks(el.date)
+    } 
   });
   displayWeekNr(lastChosedDay);
 }
