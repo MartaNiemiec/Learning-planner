@@ -1,6 +1,6 @@
 import './scss/main.scss';
 import { elements } from './js/views/base.js';
-import * as Dates from './js/models/dates'
+import * as Week from './js/models/week'
 
 import * as Skills from './js/models/Skills';
 
@@ -9,7 +9,7 @@ import * as Skills from './js/models/Skills';
 
 
 
-elements.headerDate.innerHTML = `${Dates.dayNr} ${Dates.months[Dates.month]} ${Dates.year}`;
+elements.headerDate.innerHTML = `${Week.dayNr} ${Week.months[Week.month]} ${Week.year}`;
 
 
 /*
@@ -52,21 +52,21 @@ elements.popupSearch.addEventListener('keyup', Skills.displaySearchedIcons)
  */
 
 // display all week days
-Dates.displayWeekDays(Dates.todayDate);
+Week.displayWeekDays(Week.todayDate);
 
 // add goal after clicking on the add button
-elements.popupTaskClose.addEventListener('click', Dates.hidePopupTask);
-document.addEventListener('click', Dates.isButtonAdd);
-elements.popupTaskForm.addEventListener('submit', Dates.addTask);
+elements.popupTaskClose.addEventListener('click', Week.hidePopupTask);
+document.addEventListener('click', Week.isButtonAdd);
+elements.popupTaskForm.addEventListener('submit', Week.addTask);
 
 // edit task
-document.addEventListener('click', Dates.editTask);
+document.addEventListener('click', Week.editTask);
 
 // delete task after clicking on delete button
-document.addEventListener('click', Dates.deleteTask);
+document.addEventListener('click', Week.deleteTask);
 
 // toggle checked and unchecked icon
-document.addEventListener('click', Dates.toggleTask);
+document.addEventListener('click', Week.toggleTask);
 
-document.addEventListener('click', Dates.nextWeek);
-document.addEventListener('click', Dates.previousWeek);
+document.addEventListener('click', Week.nextWeek);
+document.addEventListener('click', Week.previousWeek);

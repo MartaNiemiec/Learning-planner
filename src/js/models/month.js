@@ -1,5 +1,5 @@
 import { elements } from '../views/base';
-import { months } from '../models/dates';
+import { months } from './week';
 
 
 export const displayMonth = (monthNumber) => {
