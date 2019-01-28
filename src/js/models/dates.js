@@ -1,4 +1,5 @@
 import { elements } from '../views/base';
+import * as Month from './month'
 
 // DATE ON HEADER
 export let todayDate = new Date();
@@ -8,6 +9,7 @@ export let year = todayDate.getFullYear();
 let lastChosedDay = todayDate;
 
 export const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
 
 /*
 ==================================================
@@ -56,6 +58,7 @@ getSeconds()	Returns the seconds (from 0-59)
       elements.weekNumber.innerHTML = weekNr(date);
     }
 
+
 // ===================================
  //GET FIRST DAY OF THE CURRENT WEEK
 
@@ -88,6 +91,7 @@ const changeWeek = (date, count) => {
   displayWeekDays(firstDay);
   weekNr(firstDay);
   displayWeekNr(lastChosedDay);
+  Month.displayMonth(lastChosedDay);
 }
 
 
@@ -136,6 +140,7 @@ export const displayWeekDays = (date) => {
     } 
   });
   displayWeekNr(lastChosedDay);
+  Month.displayMonth(lastChosedDay);
 }
 
 
