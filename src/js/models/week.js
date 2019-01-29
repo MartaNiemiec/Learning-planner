@@ -6,7 +6,8 @@ export let todayDate = new Date();
 export let dayNr = todayDate.getDate();
 export let month = todayDate.getMonth();
 export let year = todayDate.getFullYear();
-let lastChosedDay = todayDate;
+export let lastChosedDay = todayDate;
+
 
 export const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
@@ -91,9 +92,33 @@ const changeWeek = (date, count) => {
   displayWeekDays(firstDay);
   weekNr(firstDay);
   displayWeekNr(lastChosedDay);
-  Month.displayMonth(lastChosedDay);
 }
 
+
+
+const weeks = [];
+const genereteWeeks = () => {
+  const firstDayYear = new Date(lastChosedDay.getFullYear(), 0, 1);
+  // console.log(firstDayYear);
+  for (let i = 0; i<=51; i++) {
+    // console.log("todayDate", lastChosedDay);
+    let firstDay = startOfWeek(new Date(firstDayYear.getTime() + 7 * i * 24 * 60 * 60 * 1000), 0);
+    // console.log("todayDate", firstDay.getMonth());
+    firstDay++;
+    const newDay = new Date(firstDay);
+    const first = newDay.toString().split(" ", 4);
+    const last = new Date((newDay.getTime() + 6 * 24 * 60 * 60 * 1000)).toString().split(" ", 4);
+    // weeks.push(newDay.getDate());
+    weeks.push({
+      weekNr: i+1,
+      firstDay: `${first[2]} ${first[1]}`, 
+      lastDay: `${last[2]} ${last[1]}`
+    })
+  }
+  return weeks;
+}
+genereteWeeks();
+console.log(weeks);
 
 
 
