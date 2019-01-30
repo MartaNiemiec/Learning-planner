@@ -80,5 +80,5 @@ document.addEventListener('click', Week.previousWeek);
  MONTH SECTION
 ====================
  */
-
- Month.displayWeeks();
+Month.generateWeeks();
+Month.displayWeeks();
