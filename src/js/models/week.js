@@ -8,6 +8,7 @@ export let month = todayDate.getMonth();
 export let year = todayDate.getFullYear();
 export let lastChosedDay = todayDate;
 
+Month.generateWeeks();
 
 export const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
@@ -63,7 +64,7 @@ getSeconds()	Returns the seconds (from 0-59)
 // ===================================
  //GET FIRST DAY OF THE CURRENT WEEK
 
-function startOfWeek(date, day) {  // does it work on Sunday???
+export function startOfWeek(date, day) {  // does it work on Sunday???
     var first = date.getDate() - (date.getDay() - day) +(date.getDay() === 0 ? -6 : 1);
     return new Date(date.setDate(first));
 }
@@ -92,6 +93,7 @@ const changeWeek = (date, count) => {
   displayWeekDays(firstDay);
   weekNr(firstDay);
   displayWeekNr(lastChosedDay);
+  Month.getMonthsWeeks();
 }
 
 

@@ -2,7 +2,7 @@ import { elements } from '../views/base';
 import * as Week from './Week';
 
 
-const weeks = [];
+export const weeks = [];
 
 // display mont name in the month section
 export const displayMonth = (monthNumber) => {
@@ -10,7 +10,7 @@ export const displayMonth = (monthNumber) => {
 }
 
 // generate all weeks numbers, theirs first and tast day from the current year 
-const genereteWeeks = () => {
+export const generateWeeks = () => {
   const firstDayYear = new Date(Week.lastChosedDay.getFullYear(), 0, 1);
   // console.log(firstDayYear);
   for (let i = 0; i<=51; i++) {
@@ -31,5 +31,9 @@ const genereteWeeks = () => {
   return weeks;
 }
 
-genereteWeeks();
-console.log(weeks);
+
+export const getMonthsWeeks = () => {
+  let currentMonth = Week.lastChosedDay.toString().split(" ", 2)[1];
+  let weeksOfCurrentMonth = weeks.filter(week => week.firstDay.includes(currentMonth) || week.lastDay.includes(currentMonth));
+  return weeksOfCurrentMonth;
+}

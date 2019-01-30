@@ -1,6 +1,6 @@
 import './scss/main.scss';
 import { elements } from './js/views/base.js';
-import * as Week from './js/models/week'
+import * as Week from './js/models/Week'
 
 import * as Skills from './js/models/Skills';
 
