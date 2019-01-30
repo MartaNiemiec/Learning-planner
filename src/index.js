@@ -1,6 +1,7 @@
 import './scss/main.scss';
 import { elements } from './js/views/base.js';
 import * as Week from './js/models/Week'
+import * as Month from './js/models/Month'
 
 import * as Skills from './js/models/Skills';
 
@@ -54,6 +55,8 @@ elements.popupSearch.addEventListener('keyup', Skills.displaySearchedIcons)
 // display all week days
 Week.displayWeekDays(Week.todayDate);
 
+
+
 // add goal after clicking on the add button
 elements.popupTaskClose.addEventListener('click', Week.hidePopupTask);
 document.addEventListener('click', Week.isButtonAdd);
@@ -70,3 +73,12 @@ document.addEventListener('click', Week.toggleTask);
 
 document.addEventListener('click', Week.nextWeek);
 document.addEventListener('click', Week.previousWeek);
+
+
+/*
+====================
+ MONTH SECTION
+====================
+ */
+
+ Month.displayWeeks();

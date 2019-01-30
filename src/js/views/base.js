@@ -16,7 +16,9 @@ export const elements = {
   sectionItem: document.querySelector('.section__item'),
   sectionItemContent: document.querySelector('.section__item--content'),
   sectionItemInput: document.querySelector('.section__item--input'),
-  month: document.querySelector('.month-name')
+  month: document.querySelector('.month-name'),
+  monthWeeks: document.querySelector('.month__weeks')
+
 }
 
 

@@ -94,6 +94,8 @@ const changeWeek = (date, count) => {
   weekNr(firstDay);
   displayWeekNr(lastChosedDay);
   Month.getMonthsWeeks();
+  console.log(Month.getMonthsWeeks());
+  Month.displayWeeks()
 }
 
 
