@@ -56,7 +56,6 @@ elements.popupSearch.addEventListener('keyup', Skills.displaySearchedIcons)
 Week.displayWeekDays(Week.todayDate);
 
 
-
 // add goal after clicking on the add button
 elements.popupTaskClose.addEventListener('click', Week.hidePopupTask);
 document.addEventListener('click', Week.isButtonAdd);
@@ -71,8 +70,8 @@ document.addEventListener('click', Week.deleteTask);
 // toggle checked and unchecked icon
 document.addEventListener('click', Week.toggleTask);
 
-document.addEventListener('click', Week.nextWeek);
-document.addEventListener('click', Week.previousWeek);
+elements.weekNext.addEventListener('click', Week.nextWeek);
+elements.weekPrevious.addEventListener('click', Week.previousWeek);
 
 
 /*
@@ -82,3 +81,6 @@ document.addEventListener('click', Week.previousWeek);
  */
 Month.generateWeeks();
 Month.displayWeeks();
+
+elements.nextMonth.addEventListener('click', Month.nextMonth)
+elements.previousMonth.addEventListener('click', Month.previousMonth)

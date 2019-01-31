@@ -11,7 +11,7 @@ export const displayMonth = (monthNumber) => {
 
 // generate all weeks numbers, theirs first and tast day from the current year 
 export const generateWeeks = () => {
-  const firstDayYear = new Date(Week.lastChosedDay.getFullYear(), 0, 1);
+  const firstDayYear = new Date(Week.lastChoosedDay.getFullYear(), 0, 1);
   for (let i = 0; i<=51; i++) {
     let firstDay = Week.startOfWeek(new Date(firstDayYear.getTime() + 7 * i * 24 * 60 * 60 * 1000), 0);
     firstDay++;
@@ -29,7 +29,7 @@ export const generateWeeks = () => {
 
 
 export const getMonthsWeeks = () => {
-  let currentMonth = Week.lastChosedDay.toString().split(" ", 2)[1];
+  let currentMonth = Week.lastChoosedDay.toString().split(" ", 2)[1];
   let weeksOfCurrentMonth = weeks.filter(week => week.firstDay.includes(currentMonth) || week.lastDay.includes(currentMonth));
   return weeksOfCurrentMonth;
 }
@@ -48,6 +48,23 @@ export const displayWeeks = () => {
                       <h3 class="header-3 section__item--content"></h3>
                     </div>`;
     elements.monthWeeks.insertAdjacentHTML('beforeend', markup);
-    // } 
   });
+}
+
+const changeMonth = (target) => {
+  let lastChoosedMonth = Week.lastChoosedDay.getMonth();
+  let lastChoosedYear = Week.lastChoosedDay.getFullYear();
+  const targetClass = target.classList[2];
+  // if the target is a button nextMonth or previousMonth then add or subtract a month by 1 
+  targetClass == "button__previous--month" ? lastChoosedMonth-- : lastChoosedMonth++;
+  let newDay = new Date(Week.lastChoosedDay.setFullYear(lastChoosedYear, lastChoosedMonth,1));
+  Week.changeWeek(newDay);
+}
+
+export const nextMonth = (e) => {
+  changeMonth(e.target)
+}
+
+export const previousMonth = (e) => {
+  changeMonth(e.target)
 }

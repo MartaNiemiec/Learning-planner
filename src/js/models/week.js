@@ -6,42 +6,16 @@ export let todayDate = new Date();
 export let dayNr = todayDate.getDate();
 export let month = todayDate.getMonth();
 export let year = todayDate.getFullYear();
-export let lastChosedDay = todayDate;
+export let lastChoosedDay = todayDate;
 
 
 
 export const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 
-/*
-==================================================
- WEEK section
-==================================================
- */
-
-
-
-/*
-getDate()	Returns the day of the month (from 1-31)
-getDay()	Returns the day of the week (from 0-6)
-getFullYear()	Returns the year
-getHours()	Returns the hour (from 0-23)
-getMilliseconds()	Returns the milliseconds (from 0-999)
-getMinutes()	Returns the minutes (from 0-59)
-getMonth()	Returns the month (from 0-11)
-getSeconds()	Returns the seconds (from 0-59)
-*/
-
-
 // ===================================
 //GET CURRENT WEEK NUMBER
 
-//  Date.prototype.getWeek = function() {
-//     var onejan = new Date(this.getFullYear(),0,1);
-//     return Math.ceil((((this - onejan) / 86400000) + onejan.getDay()+1)/7);
-//   }
-
-  
 export const weekNr = dt => {
     var tdt = new Date(dt.valueOf());  // .valueOf returns a Number, representing the number of milliseconds between the date object and midnight January 1, 1970 UTCmiliseconds
     var dayn = (dt.getDay() + 6) % 7;
@@ -56,7 +30,7 @@ export const weekNr = dt => {
   }
   // weekNr = new Date().getWeek();
   
-const displayWeekNr = (date) => {
+export const displayWeekNr = (date) => {
   elements.weekNumber.innerHTML = weekNr(date);
 }
 
@@ -72,41 +46,38 @@ export function startOfWeek(date, day) {  // does it work on Sunday???
 // (startOfWeek(new Date()).toString());
 
 
+// ===================================
+ // go to next/previus week | display changed week
 
-export const nextWeek = (e) => {
-  // debugger;
-  const target = e.target;
-  if (!target.matches(".button__next--week")) return;
-  changeWeek(lastChosedDay, -1);
+export const nextWeek = () => {
+  firstDayOfWeek(lastChoosedDay, -1);
+  changeWeek(lastChoosedDay);
 }
 
-export const previousWeek = (e) => {
-  const target = e.target;
-  if (!target.matches(".button__previous--week")) return;
-  changeWeek(lastChosedDay, 1);
+export const previousWeek = () => {
+  firstDayOfWeek(lastChoosedDay, 1);
+  changeWeek(lastChoosedDay);
 }
 
-const changeWeek = (date, count) => {
+const firstDayOfWeek = (date, count) => {
   let firstDay = startOfWeek(new Date(date.getTime() - 7 * count * 24 * 60 * 60 * 1000), 1);
-  lastChosedDay = new Date(firstDay);
-  getWeekDays(firstDay);
-  displayWeekDays(firstDay);
-  weekNr(firstDay);
-  displayWeekNr(lastChosedDay);
+  lastChoosedDay = new Date(firstDay);
+}
+
+export const changeWeek = (date) => {
+  getWeekDays(date);
+  displayWeekDays(date);
+  weekNr(date);
+  displayWeekNr(date);
   Month.getMonthsWeeks();
   Month.displayWeeks()
 }
 
 
-
-
-
-
-
 // ===================================
 // GET DAYS OF THE CURRENT WEEK | display them
 
-const getWeekDays = (date) => {
+export const getWeekDays = (date) => {
   //create an array with days in the week
   const weekDays = [];
   // weekDays = [{id: 0, day: "Mon 31 Dec"}, 
@@ -145,13 +116,11 @@ export const displayWeekDays = (date) => {
       displayDaysTasks(el.date)
     } 
   });
-  displayWeekNr(lastChosedDay);
-  Month.displayMonth(lastChosedDay);
+  displayWeekNr(lastChoosedDay);
+  Month.displayMonth(lastChoosedDay);
 }
 
 
-// ===================================
- // go to next/previus week | display changed week
 
 
 
@@ -202,8 +171,8 @@ class Day {
 
  export const isButtonAdd = (e) => {
   const target = e.target;
-  const date = e.target.parentNode.parentNode.parentNode.dataset.date;
   if (!target.matches(".button__add")) return;
+  const date = e.target.parentNode.parentNode.parentNode.dataset.date;
   openPopupTask();
   setCurrentDate(date);
   elements.popupTask.dataset.action = "addTask";
@@ -296,6 +265,7 @@ const displayDaysTasks = (date) => {
 
 // ===================================
  // edit task
+ 
 export const editTask = (e) => {
   if (e.target.classList.contains("button__edit")) {
     // read the current day's date
@@ -311,6 +281,7 @@ export const editTask = (e) => {
 
 // ===================================
  // remove task | display it
+
 export const deleteTask = (e) => {
   const target = e.target;
   if (target.classList.contains("button__delete"))  {
@@ -331,6 +302,7 @@ export const deleteTask = (e) => {
 
 // ===================================
  // toggle checked/unchecked task | display it
+
  export const toggleTask = (e) => {
   const target = e.target;
   // check if the target has a button__check class

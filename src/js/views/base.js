@@ -9,6 +9,8 @@ export const elements = {
   popupSearch: document.querySelector('.search__input'),
   weekNumber: document.querySelector('.week__number'),
   weekDays: document.querySelector('.week-days'),
+  weekNext: document.querySelector('.button__next--week'),
+  weekPrevious: document.querySelector('.button__previous--week'),
   popupTask: document.querySelector('.popup-task'),
   popupTaskClose: document.querySelector('.popup-task__bg--close'),
   popupTaskForm: document.querySelector('.popup-task__form'),
@@ -17,8 +19,9 @@ export const elements = {
   sectionItemContent: document.querySelector('.section__item--content'),
   sectionItemInput: document.querySelector('.section__item--input'),
   month: document.querySelector('.month-name'),
-  monthWeeks: document.querySelector('.month__weeks')
-
+  monthWeeks: document.querySelector('.month__weeks'),
+  nextMonth: document.querySelector('.button__next--month'),
+  previousMonth: document.querySelector('.button__previous--month')
 }
 
 
