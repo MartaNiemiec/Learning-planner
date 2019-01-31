@@ -1,8 +1,10 @@
 import { elements } from '../views/base';
 import * as Week from './Week';
 
-
+// generated weeks of the year
 export const weeks = [];
+// array with weekly tasks
+export const weeklyTasks = [];
 
 // display mont name in the month section
 export const displayMonth = (monthNumber) => {
@@ -16,12 +18,14 @@ export const generateWeeks = () => {
     let firstDay = Week.startOfWeek(new Date(firstDayYear.getTime() + 7 * i * 24 * 60 * 60 * 1000), 0);
     firstDay++;
     const newDay = new Date(firstDay);
+    const year = newDay.getFullYear();
     const first = newDay.toString().split(" ", 4);
     const last = new Date((newDay.getTime() + 6 * 24 * 60 * 60 * 1000)).toString().split(" ", 4);
     weeks.push({
       weekNr: i+1,
       firstDay: `${first[2]} ${first[1]}`, 
-      lastDay: `${last[2]} ${last[1]}`
+      lastDay: `${last[2]} ${last[1]}`,
+      year: year
     })
   }
   return weeks;
@@ -36,13 +40,14 @@ export const getMonthsWeeks = () => {
 
 export const displayWeeks = () => {
   elements.monthWeeks.innerHTML = "";
+
   getMonthsWeeks().forEach(el => {
-    const markup = `<div class="section__item">
+    const markup = `<div class="section__item" data-date="Week-${el.weekNr} ${el.year}">
                       <h3 class="header-3 section__item--title">
                         <span class="month__week-nr">Week ${el.weekNr}</span>
                         <span class="month__dates">${el.firstDay.split(" ", 2)[0]}-${el.lastDay}</span>
-                        <button class="button button__add">
-                          <i class="fas fa-plus-circle"></i>
+                        <button class="button ">
+                          <i class="fas fa-plus-circle button__add button__add--month"></i>
                         </button>
                       </h3>
                       <h3 class="header-3 section__item--content"></h3>

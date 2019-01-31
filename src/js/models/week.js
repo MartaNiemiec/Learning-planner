@@ -101,7 +101,7 @@ export const displayWeekDays = (date) => {
                     <h3 class="header-3 section__item--title"> 
                       <span class="week__day">${el.day}</span>
                       <button class="button ">
-                        <i class="fas fa-plus-circle button__add"></i>
+                        <i class="fas fa-plus-circle button__add button__add--week"></i>
                       </button>
                     </h3>
                     <h3 class="header-3 section__item--content"></h3>
@@ -171,10 +171,21 @@ class Day {
 
  export const isButtonAdd = (e) => {
   const target = e.target;
+  let date;
+  let section;
+
   if (!target.matches(".button__add")) return;
-  const date = e.target.parentNode.parentNode.parentNode.dataset.date;
+
+  if (target.matches(".button__add--week")) {
+    date = e.target.parentNode.parentNode.parentNode.dataset.date;
+    section = "week";
+  } else if (target.matches(".button__add--month")){
+    date = e.target.parentNode.parentNode.parentNode.dataset.date;
+    section = "month";
+  }
   openPopupTask();
   setCurrentDate(date);
+  setCurrentSection(section);
   elements.popupTask.dataset.action = "addTask";
  }
 
@@ -185,29 +196,39 @@ class Day {
   elements.popupTaskText.focus();
 }
 
+const setCurrentSection = (section) => {
+  elements.popupTask.dataset.section = section;
+}
+
 const setCurrentDate = (date) => {
   elements.popupTask.dataset.date = date;
 }
 
 
-export function addTask(e) {
+export function addTask(e, arr) {
   e.preventDefault(); //prevent refreshing the page/Prevent a link from opening the URL
+  const dataSection = e.target.parentNode.parentNode.dataset.section;
   const dataAction = e.target.parentNode.parentNode.dataset.action;
   const taskInputed = elements.popupTaskText.value;
   const dateOfCurrentDay = elements.popupTask.dataset.date;
   const createdCurrentDay = new Day(dateOfCurrentDay, taskInputed);
-  const isInArray = daysArray.some(el => el.date == dateOfCurrentDay);
+  if (dataSection == "week") {
+    arr = daysArray;
+  } else if (dataSection == "month") {
+    arr = Month.weeklyTasks;
+  }
+  const isInArray = arr.some(el => el.date == dateOfCurrentDay);
   const taskToEdit = this.children[0].placeholder;
 
 // check if has clicked plus button(adding a task)
   if (dataAction == "addTask") {
     // checking if the current day(clicked day) is in a daysArray OR if a daysArray is empty AND if the task was written
-      if ((!isInArray || daysArray.length == 0) && taskInputed.length !== 0) {
+      if ((!isInArray || arr.length == 0) && taskInputed.length !== 0) {
         // push currentDay object into daysArray
-        daysArray.push(createdCurrentDay);
+        arr.push(createdCurrentDay);
         // displayDaysTasks(dateOfCurrentDay, taskInputed, false);
       } else {
-        daysArray.forEach(el => {
+        arr.forEach(el => {
           // looking for current day in a daysArr AND checking if the task was written AND if the task was written before in the current day
           if (el.date == dateOfCurrentDay && taskInputed.length !== 0 && !el.tasks.some(el => el.task == taskInputed)) {
             // adding new task into current day
@@ -218,7 +239,7 @@ export function addTask(e) {
 
 // check if has clicked edit button next to the task
   } else if (dataAction == "editTask") {
-    daysArray.forEach(el => {
+    arr.forEach(el => {
       if (el.date == dateOfCurrentDay && taskInputed.length !== 0 && el.tasks.some(el => el.task == taskToEdit)) {
         el.updateTask(taskToEdit, taskInputed);
       } 
@@ -228,6 +249,7 @@ export function addTask(e) {
   this.reset(); 
   displayDaysTasks(dateOfCurrentDay)
   hidePopupTask();
+  console.log(arr);
 }
 
 const displayDaysTasks = (date) => {
@@ -303,14 +325,14 @@ export const deleteTask = (e) => {
 // ===================================
  // toggle checked/unchecked task | display it
 
- export const toggleTask = (e) => {
+ export const toggleTask = (e, arr) => {
   const target = e.target;
   // check if the target has a button__check class
   if (!target.matches(".button__check")) return;
   const date = target.parentNode.parentNode.parentNode.parentNode.dataset.date;
   const taskText = target.parentNode.nextSibling.nextSibling.textContent;
   // find current day obcject in the daysArray 
-  const dayArray = daysArray.find(day => day.date == date);
+  const dayArray = arr.find(day => day.date == date);
   // toggle done key (value true or false)
   dayArray.toggleChecked(taskText);
   // display all tasks for current day
