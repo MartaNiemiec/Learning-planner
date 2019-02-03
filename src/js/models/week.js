@@ -70,7 +70,7 @@ export const changeWeek = (date) => {
   weekNr(date);
   displayWeekNr(date);
   Month.getMonthsWeeks();
-  Month.displayWeeks()
+  Month.displayWeeks();
 }
 
 
@@ -210,14 +210,14 @@ export function addTask(e, arr) {
   const dataSection = e.target.parentNode.parentNode.dataset.section;
   const dataAction = e.target.parentNode.parentNode.dataset.action;
   const taskInputed = elements.popupTaskText.value;
-  const dateOfCurrentDay = elements.popupTask.dataset.date;
-  const createdCurrentDay = new Day(dateOfCurrentDay, taskInputed);
+  const currentDay = elements.popupTask.dataset.date;
+  const createdCurrentDay = new Day(currentDay, taskInputed);
   if (dataSection == "week") {
     arr = daysArray;
   } else if (dataSection == "month") {
     arr = Month.weeklyTasks;
   }
-  const isInArray = arr.some(el => el.date == dateOfCurrentDay);
+  const isInArray = arr.some(el => el.date == currentDay);
   const taskToEdit = this.children[0].placeholder;
 
 // check if has clicked plus button(adding a task)
@@ -226,11 +226,11 @@ export function addTask(e, arr) {
       if ((!isInArray || arr.length == 0) && taskInputed.length !== 0) {
         // push currentDay object into daysArray
         arr.push(createdCurrentDay);
-        // displayDaysTasks(dateOfCurrentDay, taskInputed, false);
+        // displayDaysTasks(currentDay, taskInputed, false);
       } else {
         arr.forEach(el => {
           // looking for current day in a daysArr AND checking if the task was written AND if the task was written before in the current day
-          if (el.date == dateOfCurrentDay && taskInputed.length !== 0 && !el.tasks.some(el => el.task == taskInputed)) {
+          if (el.date == currentDay && taskInputed.length !== 0 && !el.tasks.some(el => el.task == taskInputed)) {
             // adding new task into current day
             el.addTask(taskInputed);
           }
@@ -240,14 +240,15 @@ export function addTask(e, arr) {
 // check if has clicked edit button next to the task
   } else if (dataAction == "editTask") {
     arr.forEach(el => {
-      if (el.date == dateOfCurrentDay && taskInputed.length !== 0 && el.tasks.some(el => el.task == taskToEdit)) {
+      if (el.date == currentDay && taskInputed.length !== 0 && el.tasks.some(el => el.task == taskToEdit)) {
         el.updateTask(taskToEdit, taskInputed);
       } 
     })
   }
   //reset an input(textarea)
   this.reset(); 
-  displayDaysTasks(dateOfCurrentDay)
+  displayDaysTasks(currentDay);
+  Month.displayWeeklyTasks(currentDay);
   hidePopupTask();
   console.log(arr);
 }
@@ -309,14 +310,14 @@ export const deleteTask = (e) => {
   if (target.classList.contains("button__delete"))  {
     // dayContent.remove(elements.sectionItemContent);
     const task = target.parentNode.parentNode.children[1].textContent;
-    const dateOfCurrentDay = target.parentNode.parentNode.parentNode.parentNode.dataset.date;
+    const currentDay = target.parentNode.parentNode.parentNode.parentNode.dataset.date;
 
     daysArray.forEach((el, index) => {
-      if (el.date == dateOfCurrentDay) {
+      if (el.date == currentDay) {
         el.deleteTask(task,index);
       } 
 
-      displayDaysTasks(dateOfCurrentDay);
+      displayDaysTasks(currentDay);
     })
   }
 }
