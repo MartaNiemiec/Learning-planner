@@ -73,7 +73,7 @@ export const displayWeeks = () => {
                               </button>
                               <p class="paragraph section__item--paragraph">${task.task}</p>
                               <button class="button button__hidden">
-                                <i class="far fa-edit button__edit"></i>
+                                <i class="far fa-edit button__edit button__edit--month"></i>
                               </button>
                               <button class="button button__hidden">
                                 <i class="far fa-trash-alt button__delete"></i>

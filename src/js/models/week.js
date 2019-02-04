@@ -174,15 +174,21 @@ class Day {
   let date;
   let section;
 
-  if (!target.matches(".button__add")) return;
+  // if target has a class button__add then set the date
+  if (target.matches(".button__add")) {
+    date = e.target.parentNode.parentNode.parentNode.dataset.date;
+  } 
 
-  if (target.matches(".button__add--week")) {
-    date = e.target.parentNode.parentNode.parentNode.dataset.date;
+  // if target has a class button__add--week or button__edit--week then set the section to week
+  if (target.matches(".button__add--week") || target.matches(".button__edit--week")) {
     section = "week";
-  } else if (target.matches(".button__add--month")){
-    date = e.target.parentNode.parentNode.parentNode.dataset.date;
+    // if target has a class button__add--month or button__edit--month then set the section to month
+  } else if (target.matches(".button__add--month") || target.matches(".button__edit--month")) {
     section = "month";
+  } else {
+    return;
   }
+
   openPopupTask();
   setCurrentDate(date);
   setCurrentSection(section);
@@ -202,6 +208,19 @@ const setCurrentSection = (section) => {
 
 const setCurrentDate = (date) => {
   elements.popupTask.dataset.date = date;
+}
+
+
+const setArray = (target) => {
+  const section = target.parentNode.parentNode.parentNode.dataset.section;
+  let arr;
+
+  if(section == "week") {
+    arr = daysArray;
+  } else if (section == "month") {
+    arr = Month.weeklyTasks;
+  }
+  return arr;
 }
 
 
@@ -248,7 +267,6 @@ export function addTask(e, arr) {
   //reset an input(textarea)
   this.reset(); 
   displayDaysTasks(currentDay);
-  // Month.displayWeeklyTasks(currentDay);
   Month.displayWeeks()
   hidePopupTask();
   console.log(arr);
@@ -274,7 +292,7 @@ const displayDaysTasks = (date) => {
                         </button>
                         <p class="paragraph section__item--paragraph">${el.task}</p>
                         <button class="button button__hidden">
-                          <i class="far fa-edit button__edit"></i>
+                          <i class="far fa-edit button__edit button__edit--week"></i>
                         </button>
                         <button class="button button__hidden">
                           <i class="far fa-trash-alt button__delete"></i>
@@ -295,7 +313,7 @@ export const editTask = (e) => {
     // read the current day's date
     const date = e.target.parentNode.parentNode.parentNode.parentNode.dataset.date;
     const task = e.target.parentNode.previousSibling.previousSibling.textContent;
-
+    
     setCurrentDate(date);
     elements.popupTask.dataset.action = "editTask";
 
@@ -312,14 +330,7 @@ export const deleteTask = (e) => {
   if (target.classList.contains("button__delete"))  {
     const task = target.parentNode.parentNode.children[1].textContent;
     const currentDay = target.parentNode.parentNode.parentNode.parentNode.dataset.date;
-    const section = target.parentNode.parentNode.parentNode.dataset.section;
-    let arr;
-
-    if(section == "week") {
-      arr = daysArray;
-    } else if (section == "month") {
-      arr = Month.weeklyTasks;
-    }
+    const arr = setArray(target);
 
     arr.forEach((el, index) => {
       if (el.date == currentDay) {
@@ -333,12 +344,13 @@ export const deleteTask = (e) => {
 
 
 // ===================================
- // toggle checked/unchecked task | display it
+// toggle checked/unchecked task | display it
 
- export const toggleTask = (e, arr) => {
+export const toggleTask = (e) => {
   const target = e.target;
   // check if the target has a button__check class
   if (!target.matches(".button__check")) return;
+  const arr = setArray(target);
   const date = target.parentNode.parentNode.parentNode.parentNode.dataset.date;
   const taskText = target.parentNode.nextSibling.nextSibling.textContent;
   // find current day obcject in the daysArray 
@@ -347,4 +359,5 @@ export const deleteTask = (e) => {
   dayArray.toggleChecked(taskText);
   // display all tasks for current day
   displayDaysTasks(date);
- }
+  Month.displayWeeks()
+}
