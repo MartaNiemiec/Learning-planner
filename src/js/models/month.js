@@ -41,18 +41,48 @@ export const getMonthsWeeks = () => {
 export const displayWeeks = () => {
   elements.monthWeeks.innerHTML = "";
 
-  getMonthsWeeks().forEach(el => {
+  getMonthsWeeks().forEach((el,index) => {
     const markup = `<div class="section__item" data-date="Week-${el.weekNr} ${el.year}">
-    <h3 class="header-3 section__item--title">
-    <span class="month__week-nr">Week ${el.weekNr}</span>
-    <span class="month__dates">${el.firstDay.split(" ", 2)[0]}-${el.lastDay}</span>
-    <button class="button ">
-    <i class="fas fa-plus-circle button__add button__add--month"></i>
-    </button>
-    </h3>
-    <h3 class="header-3 section__item--content"></h3>
-    </div>`;
+                      <h3 class="header-3 section__item--title">
+                        <span class="month__week-nr">Week ${el.weekNr}</span>
+                        <span class="month__dates">${el.firstDay.split(" ", 2)[0]}-${el.lastDay}</span>
+                        <button class="button ">
+                          <i class="fas fa-plus-circle button__add button__add--month"></i>
+                        </button>
+                      </h3>
+                      <h3 class="header-3 section__item--content" data-section="month"></h3>
+                    </div>`;
     elements.monthWeeks.insertAdjacentHTML('beforeend', markup);
+
+    const monthWeeks = elements.monthWeeks.querySelectorAll('[data-date]');
+    const findWeek = weeklyTasks.find(week => week.date == `Week-${el.weekNr} ${el.year}`);
+    if (findWeek !== undefined) {
+      const weekFromArray = findWeek;
+      const tasksFromArray = weekFromArray.tasks;
+      
+      tasksFromArray.forEach(task => {
+        const taskUncheckedIcon = "far fa-circle";
+        const taskCheckedIcon = "far fa-check-circle";
+        let isDone;
+        const weekContent = monthWeeks[index].children[1];
+        task.done ? isDone = taskCheckedIcon : isDone = taskUncheckedIcon; 
+
+        const html = `<div class="section__item--goal">
+                              <button class="button ">
+                                <i class="${isDone} button__check"></i>
+                              </button>
+                              <p class="paragraph section__item--paragraph">${task.task}</p>
+                              <button class="button button__hidden">
+                                <i class="far fa-edit button__edit"></i>
+                              </button>
+                              <button class="button button__hidden">
+                                <i class="far fa-trash-alt button__delete"></i>
+                              </button>
+                            </div>`
+        weekContent.insertAdjacentHTML('beforeend', html);
+        })
+    }
+
   });
 }
 
@@ -75,38 +105,38 @@ export const previousMonth = (e) => {
 }
 
 
-export const displayWeeklyTasks = (date) => {
-  const monthWeeks = elements.monthWeeks.querySelectorAll('[data-date]'); // return <div class="section__item" data-date="14 Jan 2019">...</div>
-  const taskUncheckedIcon = "far fa-circle";
-  const taskCheckedIcon = "far fa-check-circle";
-  let isDone;
-  
-  monthWeeks.forEach(e => {
-    if (e.dataset.date == date) {
-      // console.log("displayWeeklyTasks  e  =", e.dataset.date.split('-',2));
-      console.log("displayWeeklyTasks  e  =", e.dataset.date);
-      const dayContent = e.children[1];
-      const weeksTasks = weeklyTasks.find(day => day.date == date);
-      dayContent.innerHTML = "";
-      // console.log(weeksTasks);
-      weeksTasks.tasks.forEach(el => {
-        // console.log("dayContent",dayContent);
-        el.done ? isDone = taskCheckedIcon : isDone = taskUncheckedIcon; 
+// export const displayWeeklyTasks = (date) => {
+//   const monthWeeks = elements.monthWeeks.querySelectorAll('[data-date]'); // return <div class="section__item" data-date="14 Jan 2019">...</div>
+//   const taskUncheckedIcon = "far fa-circle";
+//   const taskCheckedIcon = "far fa-check-circle";
+//   let isDone;
+//   // console.log(weeklyTasks);
+//   monthWeeks.forEach(e => {
+//     if (e.dataset.date == date) {
+//       // console.log("displayWeeklyTasks  e  =", e.dataset.date.split('-',2));
+//       console.log("displayWeeklyTasks  e  =", e.dataset.date);
+//       const dayContent = e.children[1];
+//       const weeksTasks = weeklyTasks.find(day => day.date == date);
+//       dayContent.innerHTML = "";
+//       // console.log(weeksTasks);
+//       weeksTasks.tasks.forEach(el => {
+//         // console.log("dayContent",dayContent);
+//         el.done ? isDone = taskCheckedIcon : isDone = taskUncheckedIcon; 
         
-        const html = `<div class="section__item--goal">
-                        <button class="button ">
-                          <i class="${isDone} button__check"></i>
-                        </button>
-                        <p class="paragraph section__item--paragraph">${el.task}</p>
-                        <button class="button button__hidden">
-                          <i class="far fa-edit button__edit"></i>
-                        </button>
-                        <button class="button button__hidden">
-                          <i class="far fa-trash-alt button__delete"></i>
-                        </button>
-                      </div>`
-        dayContent.insertAdjacentHTML('beforeend', html);
-      })
-    } 
-  })
-}
+//         const html = `<div class="section__item--goal">
+//                         <button class="button ">
+//                           <i class="${isDone} button__check"></i>
+//                         </button>
+//                         <p class="paragraph section__item--paragraph">${el.task}</p>
+//                         <button class="button button__hidden">
+//                           <i class="far fa-edit button__edit"></i>
+//                         </button>
+//                         <button class="button button__hidden">
+//                           <i class="far fa-trash-alt button__delete"></i>
+//                         </button>
+//                       </div>`
+//         dayContent.insertAdjacentHTML('beforeend', html);
+//       })
+//     } 
+//   })
+// }

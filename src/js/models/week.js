@@ -104,7 +104,7 @@ export const displayWeekDays = (date) => {
                         <i class="fas fa-plus-circle button__add button__add--week"></i>
                       </button>
                     </h3>
-                    <h3 class="header-3 section__item--content"></h3>
+                    <h3 class="header-3 section__item--content" data-section="week"></h3>
                   </div>`;
     elements.weekDays.insertAdjacentHTML('beforeend', markup);
 
@@ -248,7 +248,8 @@ export function addTask(e, arr) {
   //reset an input(textarea)
   this.reset(); 
   displayDaysTasks(currentDay);
-  Month.displayWeeklyTasks(currentDay);
+  // Month.displayWeeklyTasks(currentDay);
+  Month.displayWeeks()
   hidePopupTask();
   console.log(arr);
 }
@@ -294,6 +295,7 @@ export const editTask = (e) => {
     // read the current day's date
     const date = e.target.parentNode.parentNode.parentNode.parentNode.dataset.date;
     const task = e.target.parentNode.previousSibling.previousSibling.textContent;
+
     setCurrentDate(date);
     elements.popupTask.dataset.action = "editTask";
 
@@ -308,16 +310,23 @@ export const editTask = (e) => {
 export const deleteTask = (e) => {
   const target = e.target;
   if (target.classList.contains("button__delete"))  {
-    // dayContent.remove(elements.sectionItemContent);
     const task = target.parentNode.parentNode.children[1].textContent;
     const currentDay = target.parentNode.parentNode.parentNode.parentNode.dataset.date;
+    const section = target.parentNode.parentNode.parentNode.dataset.section;
+    let arr;
 
-    daysArray.forEach((el, index) => {
+    if(section == "week") {
+      arr = daysArray;
+    } else if (section == "month") {
+      arr = Month.weeklyTasks;
+    }
+
+    arr.forEach((el, index) => {
       if (el.date == currentDay) {
         el.deleteTask(task,index);
       } 
-
       displayDaysTasks(currentDay);
+      Month.displayWeeks()
     })
   }
 }
