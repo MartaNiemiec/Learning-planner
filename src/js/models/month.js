@@ -62,7 +62,7 @@ export const displayWeeks = () => {
       
       tasksFromArray.forEach(task => {
         const taskUncheckedIcon = "far fa-circle";
-        const taskCheckedIcon = "far fa-check-circle";
+        const taskCheckedIcon = "fas fa-check-circle";
         let isDone;
         const weekContent = monthWeeks[index].children[1];
         task.done ? isDone = taskCheckedIcon : isDone = taskUncheckedIcon; 
@@ -97,46 +97,10 @@ const changeMonth = (target) => {
 }
 
 export const nextMonth = (e) => {
-  changeMonth(e.target)
+  changeMonth(e.target);
 }
 
 export const previousMonth = (e) => {
-  changeMonth(e.target)
+  changeMonth(e.target);
 }
 
-
-// export const displayWeeklyTasks = (date) => {
-//   const monthWeeks = elements.monthWeeks.querySelectorAll('[data-date]'); // return <div class="section__item" data-date="14 Jan 2019">...</div>
-//   const taskUncheckedIcon = "far fa-circle";
-//   const taskCheckedIcon = "far fa-check-circle";
-//   let isDone;
-//   // console.log(weeklyTasks);
-//   monthWeeks.forEach(e => {
-//     if (e.dataset.date == date) {
-//       // console.log("displayWeeklyTasks  e  =", e.dataset.date.split('-',2));
-//       console.log("displayWeeklyTasks  e  =", e.dataset.date);
-//       const dayContent = e.children[1];
-//       const weeksTasks = weeklyTasks.find(day => day.date == date);
-//       dayContent.innerHTML = "";
-//       // console.log(weeksTasks);
-//       weeksTasks.tasks.forEach(el => {
-//         // console.log("dayContent",dayContent);
-//         el.done ? isDone = taskCheckedIcon : isDone = taskUncheckedIcon; 
-        
-//         const html = `<div class="section__item--goal">
-//                         <button class="button ">
-//                           <i class="${isDone} button__check"></i>
-//                         </button>
-//                         <p class="paragraph section__item--paragraph">${el.task}</p>
-//                         <button class="button button__hidden">
-//                           <i class="far fa-edit button__edit"></i>
-//                         </button>
-//                         <button class="button button__hidden">
-//                           <i class="far fa-trash-alt button__delete"></i>
-//                         </button>
-//                       </div>`
-//         dayContent.insertAdjacentHTML('beforeend', html);
-//       })
-//     } 
-//   })
-// }

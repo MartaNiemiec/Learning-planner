@@ -129,7 +129,7 @@ export const displayWeekDays = (date) => {
 const daysArray = [];
 
 // create class Day 
-class Day {
+class taskObject {
   constructor(date, task, done = false) {
     this.date = date;
     this.tasks = [{task: task, done: done}];
@@ -230,7 +230,7 @@ export function addTask(e, arr) {
   const dataAction = e.target.parentNode.parentNode.dataset.action;
   const taskInputed = elements.popupTaskText.value;
   const currentDay = elements.popupTask.dataset.date;
-  const createdCurrentDay = new Day(currentDay, taskInputed);
+  const createdCurrentDay = new taskObject(currentDay, taskInputed);
   if (dataSection == "week") {
     arr = daysArray;
   } else if (dataSection == "month") {
@@ -275,7 +275,7 @@ export function addTask(e, arr) {
 const displayDaysTasks = (date) => {
   const weekDays = elements.weekDays.querySelectorAll('[data-date]'); // return <div class="section__item" data-date="14 Jan 2019">...</div>
   const taskUncheckedIcon = "far fa-circle";
-  const taskCheckedIcon = "far fa-check-circle";
+  const taskCheckedIcon = "fas fa-check-circle";
   let isDone;
   
   weekDays.forEach(e => {
