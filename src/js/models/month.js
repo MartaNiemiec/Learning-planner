@@ -1,5 +1,6 @@
 import { elements } from '../views/base';
 import * as Week from './Week';
+import * as Year from './Year';
 
 // generated weeks of the year
 export const weeks = [];
@@ -8,7 +9,7 @@ export const weeklyTasks = [];
 
 // display mont name in the month section
 export const displayMonth = (monthNumber) => {
-  elements.month.innerHTML = Week.months[monthNumber.getMonth()];
+  elements.month.innerHTML = Year.months[monthNumber.getMonth()];
 }
 
 // generate all weeks numbers, theirs first and last day from the current year 

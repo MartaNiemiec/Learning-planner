@@ -11,7 +11,7 @@ import * as Skills from './js/models/Skills';
 
 
 
-elements.headerDate.innerHTML = `${Week.dayNr} ${Week.months[Week.month]} ${Week.year}`;
+elements.headerDate.innerHTML = `${Week.dayNr} ${Year.months[Week.month]} ${Week.year}`;
 
 
 /*
