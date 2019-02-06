@@ -1,5 +1,6 @@
 import { elements } from '../views/base';
-import * as Month from './Month'
+import * as Month from './Month';
+import * as Year from './Year';
 
 // DATE ON HEADER
 export let todayDate = new Date();
@@ -118,6 +119,7 @@ export const displayWeekDays = (date) => {
   });
   displayWeekNr(lastChoosedDay);
   Month.displayMonth(lastChoosedDay);
+  Year.displayCurrentYear(lastChoosedDay);
 }
 
 

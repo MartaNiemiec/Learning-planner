@@ -21,7 +21,8 @@ export const elements = {
   month: document.querySelector('.month-name'),
   monthWeeks: document.querySelector('.month__weeks'),
   nextMonth: document.querySelector('.button__next--month'),
-  previousMonth: document.querySelector('.button__previous--month')
+  previousMonth: document.querySelector('.button__previous--month'),
+  year: document.querySelector('.year-number')
 }
 
 

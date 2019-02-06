@@ -1,7 +1,8 @@
 import './scss/main.scss';
 import { elements } from './js/views/base.js';
-import * as Week from './js/models/Week'
-import * as Month from './js/models/Month'
+import * as Week from './js/models/Week';
+import * as Month from './js/models/Month';
+import * as Year from './js/models/Year';
 
 import * as Skills from './js/models/Skills';
 
@@ -84,3 +85,19 @@ Month.displayWeeks();
 
 elements.nextMonth.addEventListener('click', Month.nextMonth)
 elements.previousMonth.addEventListener('click', Month.previousMonth)
+
+
+
+
+
+/*
+====================
+ YEAR SECTION
+====================
+ */
+
+
+
+
+
+
