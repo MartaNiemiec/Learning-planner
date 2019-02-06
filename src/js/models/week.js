@@ -176,6 +176,7 @@ class taskObject {
   // if target has a class button__add then set the date
   if (target.matches(".button__add")) {
     date = e.target.parentNode.parentNode.parentNode.dataset.date;
+    console.log(date);
   } 
 
   // if target has a class button__add--week or button__edit--week then set the section to week
@@ -184,6 +185,9 @@ class taskObject {
     // if target has a class button__add--month or button__edit--month then set the section to month
   } else if (target.matches(".button__add--month") || target.matches(".button__edit--month")) {
     section = "month";
+  } else if (target.matches(".button__add--year") || target.matches(".button__edit--year")) {
+    section = "year";
+    console.log(section);
   } else {
     return;
   }
@@ -218,6 +222,8 @@ const setArray = (target) => {
     arr = daysArray;
   } else if (section == "month") {
     arr = Month.weeklyTasks;
+  } else if (section == "year") {
+    arr = Year.monthlyTasks;
   }
   return arr;
 }
@@ -234,6 +240,8 @@ export function addTask(e, arr) {
     arr = daysArray;
   } else if (dataSection == "month") {
     arr = Month.weeklyTasks;
+  } else if (dataSection == "year") {
+    arr = Year.monthlyTasks;
   }
   const isInArray = arr.some(el => el.date == currentDay);
   const taskToEdit = this.children[0].placeholder;

@@ -98,6 +98,6 @@ elements.previousMonth.addEventListener('click', Month.previousMonth)
 
 
 
-
+Year.displayMonths()
 
 
