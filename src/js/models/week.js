@@ -69,6 +69,7 @@ export const changeWeek = (date) => {
   displayWeekNr(date);
   Month.getMonthsWeeks();
   Month.displayWeeks();
+  Year.displayMonths();
 }
 
 
@@ -176,7 +177,6 @@ class taskObject {
   // if target has a class button__add then set the date
   if (target.matches(".button__add")) {
     date = e.target.parentNode.parentNode.parentNode.dataset.date;
-    console.log(date);
   } 
 
   // if target has a class button__add--week or button__edit--week then set the section to week
@@ -187,7 +187,6 @@ class taskObject {
     section = "month";
   } else if (target.matches(".button__add--year") || target.matches(".button__edit--year")) {
     section = "year";
-    console.log(section);
   } else {
     return;
   }
@@ -274,9 +273,9 @@ export function addTask(e, arr) {
   //reset an input(textarea)
   this.reset(); 
   displayDaysTasks(currentDay);
-  Month.displayWeeks()
+  Month.displayWeeks();
+  Year.displayMonths();
   hidePopupTask();
-  console.log(arr);
 }
 
 const displayDaysTasks = (date) => {
@@ -338,13 +337,14 @@ export const deleteTask = (e) => {
     const task = target.parentNode.parentNode.children[1].textContent;
     const currentDay = target.parentNode.parentNode.parentNode.parentNode.dataset.date;
     const arr = setArray(target);
-
+    
     arr.forEach((el, index) => {
       if (el.date == currentDay) {
         el.deleteTask(task,index);
       } 
       displayDaysTasks(currentDay);
-      Month.displayWeeks()
+      Month.displayWeeks();
+      Year.displayMonths();
     })
   }
 }
@@ -366,5 +366,6 @@ export const toggleTask = (e) => {
   dayArray.toggleChecked(taskText);
   // display all tasks for current day
   displayDaysTasks(date);
-  Month.displayWeeks()
+  Month.displayWeeks();
+  Year.displayMonths()
 }

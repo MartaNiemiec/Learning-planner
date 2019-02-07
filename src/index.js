@@ -97,7 +97,7 @@ elements.previousMonth.addEventListener('click', Month.previousMonth)
  */
 
 
-
-Year.displayMonths()
+Year.generateMonths();
+Year.displayMonths();
 
 
