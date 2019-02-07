@@ -86,6 +86,24 @@ export const displayMonths = () => {
 
 }
 
+const changeYear = (target) => {
+  // let lastChoosedMonth = Week.lastChoosedDay.getMonth();
+  let lastChoosedYear = Week.lastChoosedDay.getFullYear();
+  const targetClass = target.classList[2];
+  // if the target is a button nextMonth or previousMonth then add or subtract a month by 1 
+  targetClass == "button__previous--year" ? lastChoosedYear-- : lastChoosedYear++;
+  let newDay = new Date(Week.lastChoosedDay.setFullYear(lastChoosedYear, 0,1));
+  Week.changeWeek(newDay);
+}
+
+
+export const previousYear = (e) => {
+  changeYear(e.target);
+}
+
+export const nextYear = (e) => {
+  changeYear(e.target);
+}
 
 
 

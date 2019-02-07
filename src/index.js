@@ -100,4 +100,8 @@ elements.previousMonth.addEventListener('click', Month.previousMonth)
 Year.generateMonths();
 Year.displayMonths();
 
+elements.previousYear.addEventListener('click', Year.previousYear);
+elements.nextYear.addEventListener('click', Year.nextYear);
+
+
 
