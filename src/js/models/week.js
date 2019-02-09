@@ -99,7 +99,7 @@ export const displayWeekDays = (date) => {
     const markup = `<div class="section__item" data-date="${el.date}">
                     <h3 class="header-3 section__item--title"> 
                       <span class="week__day">${el.day}</span>
-                      <button class="button ">
+                      <button class="button button__add button__add--week">
                         <i class="fas fa-plus-circle button__add button__add--week"></i>
                       </button>
                     </h3>
@@ -169,14 +169,35 @@ class taskObject {
   popupTask.removeAttribute('data-action');
 }
 
+
+
+
+let getClosest = (elem, selector) => {
+	for ( ; elem && elem !== document; elem = elem.parentNode ) {
+		if ( elem.matches( selector ) ) return elem;
+	}
+	return null;
+};
+
+
+
+
+
+
+
+
  export const isButtonAdd = (e) => {
-  const target = e.target;
+   const target = e.target;
+   console.log(target);
   let date;
   let section;
 
   // if target has a class button__add then set the date
   if (target.matches(".button__add")) {
-    date = e.target.parentNode.parentNode.parentNode.dataset.date;
+    console.log("button add");
+    // date = e.target.parentNode.parentNode.dataset.date;
+    date = getClosest(target, ".section__item").dataset.date;
+    console.log("date", date);
   } 
 
   // if target has a class button__add--week or button__edit--week then set the section to week
@@ -293,14 +314,14 @@ const displayDaysTasks = (date) => {
         el.done ? isDone = taskCheckedIcon : isDone = taskUncheckedIcon; 
         
         const html = `<div class="section__item--goal">
-                        <button class="button ">
+                        <button class="button button__check">
                           <i class="${isDone} button__check"></i>
                         </button>
                         <p class="paragraph section__item--paragraph">${el.task}</p>
-                        <button class="button button__hidden">
+                        <button class="button button__hidden button__edit button__edit--week">
                           <i class="far fa-edit button__edit button__edit--week"></i>
                         </button>
-                        <button class="button button__hidden">
+                        <button class="button button__hidden button__delete">
                           <i class="far fa-trash-alt button__delete"></i>
                         </button>
                       </div>`
