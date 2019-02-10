@@ -67,7 +67,7 @@ export const displayMonths = () => {
         task.done ? isDone = taskCheckedIcon : isDone = taskUncheckedIcon; 
 
         const html = `<div class="section__item--goal">
-                              <button class="button ">
+                              <button class="button button__check">
                                 <i class="${isDone} button__check"></i>
                               </button>
                               <p class="paragraph section__item--paragraph">${task.task}</p>

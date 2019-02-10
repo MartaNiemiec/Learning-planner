@@ -383,10 +383,16 @@ export const toggleTask = (e) => {
   // check if the target has a button__check class
   if (!target.matches(".button__check")) return;
   const arr = setArray(target);
-  const date = target.parentNode.parentNode.parentNode.parentNode.dataset.date;
-  const taskText = target.parentNode.nextSibling.nextSibling.textContent;
+  // const date = target.parentNode.parentNode.parentNode.parentNode.dataset.date;
+  const date = getClosestParent(e.target, ".section__item").dataset.date;
+  console.log(date);
+  const taskParent = getClosestParent(e.target, ".section__item--goal");
+    const taskText = taskParent.children[1].textContent;
+    console.log(taskText);
+  // const taskText = target.parentNode.nextSibling.nextSibling.textContent;
   // find current day obcject in the daysArray 
   const dayArray = arr.find(day => day.date == date);
+  console.log(dayArray);
   // toggle done key (value true or false)
   dayArray.toggleChecked(taskText);
   // display all tasks for current day
