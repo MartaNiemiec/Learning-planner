@@ -172,7 +172,7 @@ class taskObject {
 
 
 
-let getClosest = (elem, selector) => {
+let getClosestParent = (elem, selector) => {
 	for ( ; elem && elem !== document; elem = elem.parentNode ) {
 		if ( elem.matches( selector ) ) return elem;
 	}
@@ -196,7 +196,7 @@ let getClosest = (elem, selector) => {
   if (target.matches(".button__add")) {
     console.log("button add");
     // date = e.target.parentNode.parentNode.dataset.date;
-    date = getClosest(target, ".section__item").dataset.date;
+    date = getClosestParent(target, ".section__item").dataset.date;
     console.log("date", date);
   } 
 
@@ -336,10 +336,15 @@ const displayDaysTasks = (date) => {
  // edit task
  
 export const editTask = (e) => {
-  if (e.target.classList.contains("button__edit")) {
+  if (e.target.classList.contains("button__edit" )) {
     // read the current day's date
-    const date = e.target.parentNode.parentNode.parentNode.parentNode.dataset.date;
-    const task = e.target.parentNode.previousSibling.previousSibling.textContent;
+    // const date = e.target.parentNode.parentNode.parentNode.parentNode.dataset.date;
+    const date = getClosestParent(e.target, ".section__item").dataset.date;
+    console.log(date);
+    // const task = e.target.parentNode.previousSibling.previousSibling.textContent;
+    const taskParent = getClosestParent(e.target, ".section__item--goal");
+    const task = taskParent.children[1].textContent;
+    console.log("task", task);
     
     setCurrentDate(date);
     elements.popupTask.dataset.action = "editTask";

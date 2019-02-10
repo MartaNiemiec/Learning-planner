@@ -47,7 +47,7 @@ export const displayWeeks = () => {
                       <h3 class="header-3 section__item--title">
                         <span class="month__week-nr">Week ${el.weekNr}</span>
                         <span class="month__dates">${el.firstDay.split(" ", 2)[0]}-${el.lastDay}</span>
-                        <button class="button ">
+                        <button class="button button__add button__add--month">
                           <i class="fas fa-plus-circle button__add button__add--month"></i>
                         </button>
                       </h3>
@@ -73,10 +73,10 @@ export const displayWeeks = () => {
                                 <i class="${isDone} button__check"></i>
                               </button>
                               <p class="paragraph section__item--paragraph">${task.task}</p>
-                              <button class="button button__hidden">
+                              <button class="button button__hidden button__edit button__edit--month">
                                 <i class="far fa-edit button__edit button__edit--month"></i>
                               </button>
-                              <button class="button button__hidden">
+                              <button class="button button__hidden button__delete">
                                 <i class="far fa-trash-alt button__delete"></i>
                               </button>
                             </div>`

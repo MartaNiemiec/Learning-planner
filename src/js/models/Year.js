@@ -44,7 +44,7 @@ export const displayMonths = () => {
     const html = `<div class="section__item" data-date="${el.month} ${el.year}">
                     <h3 class="header-3 section__item--title">
                       <span class="month__week-nr">${el.month}</span>
-                      <button class="button ">
+                      <button class="button button__add button__add--year">
                         <i class="fas fa-plus-circle button__add button__add--year"></i>
                       </button>
                     </h3>
@@ -71,10 +71,10 @@ export const displayMonths = () => {
                                 <i class="${isDone} button__check"></i>
                               </button>
                               <p class="paragraph section__item--paragraph">${task.task}</p>
-                              <button class="button button__hidden">
+                              <button class="button button__hidden button__edit button__edit--year">
                                 <i class="far fa-edit button__edit button__edit--year"></i>
                               </button>
-                              <button class="button button__hidden">
+                              <button class="button button__hidden button__delete">
                                 <i class="far fa-trash-alt button__delete"></i>
                               </button>
                             </div>`
