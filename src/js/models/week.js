@@ -170,8 +170,6 @@ class taskObject {
 }
 
 
-
-
 let getClosestParent = (elem, selector) => {
 	for ( ; elem && elem !== document; elem = elem.parentNode ) {
 		if ( elem.matches( selector ) ) return elem;
@@ -181,9 +179,16 @@ let getClosestParent = (elem, selector) => {
 
 
 
+const getDateOfTask = (target) => {
+  const date = getClosestParent(target, ".section__item").dataset.date;
+  return date;
+}
 
-
-
+const getTaskContent = (target) => {
+  const taskParent = getClosestParent(target, ".section__item--goal");
+  const task = taskParent.children[1].textContent;
+  return task;
+}
 
 
  export const isButtonAdd = (e) => {
@@ -193,7 +198,6 @@ let getClosestParent = (elem, selector) => {
 
   // if target has a class button__add then set the date
   if (target.matches(".button__add")) {
-    // date = e.target.parentNode.parentNode.dataset.date;
     date = getClosestParent(target, ".section__item").dataset.date;
   } 
 
@@ -232,7 +236,6 @@ const setCurrentDate = (date) => {
 
 
 const setArray = (target) => {
-  // const section = target.parentNode.parentNode.parentNode.dataset.section;
   const section = getClosestParent(target, ".section__item--content").dataset.section;
   let arr;
 
@@ -249,8 +252,9 @@ const setArray = (target) => {
 
 export function addTask(e, arr) {
   e.preventDefault(); //prevent refreshing the page/Prevent a link from opening the URL
-  const dataSection = e.target.parentNode.parentNode.dataset.section;
-  const dataAction = e.target.parentNode.parentNode.dataset.action;
+  const target = e.target;
+  const dataSection = getClosestParent(target, ".popup-task").dataset.section;
+  const dataAction = getClosestParent(target, ".popup-task").dataset.action;
   const taskInputed = elements.popupTaskText.value;
   const currentDay = elements.popupTask.dataset.date;
   const createdCurrentDay = new taskObject(currentDay, taskInputed);
@@ -334,13 +338,11 @@ const displayDaysTasks = (date) => {
  // edit task
  
 export const editTask = (e) => {
+  const target = e.target;
   if (e.target.classList.contains("button__edit" )) {
     // read the current day's date
-    // const date = e.target.parentNode.parentNode.parentNode.parentNode.dataset.date;
-    const date = getClosestParent(e.target, ".section__item").dataset.date;
-    // const task = e.target.parentNode.previousSibling.previousSibling.textContent;
-    const taskParent = getClosestParent(e.target, ".section__item--goal");
-    const task = taskParent.children[1].textContent;
+    const date = getDateOfTask(target);
+    const task = getTaskContent(target);
     
     setCurrentDate(date);
     elements.popupTask.dataset.action = "editTask";
@@ -356,18 +358,15 @@ export const editTask = (e) => {
 export const deleteTask = (e) => {
   const target = e.target;
   if (target.classList.contains("button__delete"))  {
-    // const task = target.parentNode.parentNode.children[1].textContent;
-    const taskParent = getClosestParent(e.target, ".section__item--goal");
-    const task = taskParent.children[1].textContent;
-    // const currentDay = target.parentNode.parentNode.parentNode.parentNode.dataset.date;
-    const currentDay = getClosestParent(e.target, ".section__item").dataset.date;
+    const task = getTaskContent(target);
+    const date = getDateOfTask(target);
     const arr = setArray(target);
     
     arr.forEach((el, index) => {
-      if (el.date == currentDay) {
+      if (el.date == date) {
         el.deleteTask(task,index);
       } 
-      displayDaysTasks(currentDay);
+      displayDaysTasks(date);
       Month.displayWeeks();
       Year.displayMonths();
     })
@@ -383,16 +382,11 @@ export const toggleTask = (e) => {
   // check if the target has a button__check class
   if (!target.matches(".button__check")) return;
   const arr = setArray(target);
-  // const date = target.parentNode.parentNode.parentNode.parentNode.dataset.date;
-  const date = getClosestParent(e.target, ".section__item").dataset.date;
-  console.log(date);
-  const taskParent = getClosestParent(e.target, ".section__item--goal");
+  const date = getDateOfTask(target);
+  const taskParent = getClosestParent(target, ".section__item--goal");
     const taskText = taskParent.children[1].textContent;
-    console.log(taskText);
-  // const taskText = target.parentNode.nextSibling.nextSibling.textContent;
   // find current day obcject in the daysArray 
   const dayArray = arr.find(day => day.date == date);
-  console.log(dayArray);
   // toggle done key (value true or false)
   dayArray.toggleChecked(taskText);
   // display all tasks for current day

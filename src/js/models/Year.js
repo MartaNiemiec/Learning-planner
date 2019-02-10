@@ -23,7 +23,6 @@ export const generateMonths = () => {
       month: months[i]
     })
   }
-  console.log(monthsArray);
   return monthsArray;
 }
 
