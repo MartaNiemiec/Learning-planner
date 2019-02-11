@@ -90,7 +90,6 @@ export const getWeekDays = (date) => {
     weekDays.push({day: `${day[0]} ${day[2]} ${day[1]}`, date: `${day[2]} ${day[1]} ${day[3]}`});
     firstDay++;
   }
-  console.log("weekDays -> ", weekDays);
   return weekDays;
 }
 
@@ -278,7 +277,7 @@ export function addTask(e, arr) {
   } else if (dataSection == "year") {
     arr = Year.monthlyTasks;
     //displaying in the month section the month to which one the task is adding
-    lastChoosedDay = new Date(currentDay);
+    lastChoosedDay = new Date(`2 ${currentDay}`);
     changeWeek(lastChoosedDay)
   }
   const isInArray = arr.some(el => el.date == currentDay);
@@ -290,7 +289,6 @@ export function addTask(e, arr) {
       if ((!isInArray || arr.length == 0) && taskInputed.length !== 0) {
         // push currentDay object into daysArray
         arr.push(createdCurrentDay);
-        console.log(arr);
         // displayDaysTasks(currentDay, taskInputed, false);
       } else {
         arr.forEach(el => {
@@ -316,9 +314,6 @@ export function addTask(e, arr) {
   Month.displayWeeks();
   Year.displayMonths();
   hidePopupTask();
-  console.log("currentDay", currentDay);
-    
-  console.log("lastChoosedDay", lastChoosedDay);
 }
 
 const displayDaysTasks = (date) => {
