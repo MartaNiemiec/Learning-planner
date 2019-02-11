@@ -36,6 +36,7 @@ export const generateWeeks = () => {
 export const getMonthsWeeks = () => {
   let currentMonth = Week.lastChoosedDay.toString().split(" ", 2)[1];
   let weeksOfCurrentMonth = weeks.filter(week => week.firstDay.includes(currentMonth) || week.lastDay.includes(currentMonth));
+  console.log(weeksOfCurrentMonth);
   return weeksOfCurrentMonth;
 }
 
@@ -43,7 +44,7 @@ export const displayWeeks = () => {
   elements.monthWeeks.innerHTML = "";
 
   getMonthsWeeks().forEach((el,index) => {
-    const markup = `<div class="section__item" data-date="Week-${el.weekNr} ${el.year}">
+    const markup = `<div class="section__item" data-date="Week-${el.weekNr} ${el.year}" data-fulldate="${el.firstDay} ${el.year}">
                       <h3 class="header-3 section__item--title">
                         <span class="month__week-nr">Week ${el.weekNr}</span>
                         <span class="month__dates">${el.firstDay.split(" ", 2)[0]}-${el.lastDay}</span>

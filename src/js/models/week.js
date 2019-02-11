@@ -90,6 +90,7 @@ export const getWeekDays = (date) => {
     weekDays.push({day: `${day[0]} ${day[2]} ${day[1]}`, date: `${day[2]} ${day[1]} ${day[3]}`});
     firstDay++;
   }
+  console.log("weekDays -> ", weekDays);
   return weekDays;
 }
 
@@ -167,6 +168,7 @@ class taskObject {
   popupTask.classList.add("hide");
   popupTask.removeAttribute('data-date');
   popupTask.removeAttribute('data-action');
+  popupTask.removeAttribute('data-fulldate');
 }
 
 
@@ -199,18 +201,22 @@ const ifTargetMatches = (target, selector) => {
  export const isButtonAdd = (e) => {
   const target = e.target;
   let date;
+  let fulldate;
   let section;
   // if target has a class button__add then set the date
   if (ifTargetMatches(target, ".button__add")) {
     date = getClosestParent(target, ".section__item").dataset.date;
+    fulldate = getClosestParent(target, ".section__item").dataset.fulldate;
   } 
 
   // if target has a class button__add--week or button__edit--week then set the section to week
   if (ifTargetMatches(target, ".button__add--week") || ifTargetMatches(target, ".button__edit--week")) {
     section = "week";
+    
     // if target has a class button__add--month or button__edit--month then set the section to month
   } else if (ifTargetMatches(target, ".button__add--month") || ifTargetMatches(target, ".button__edit--month")) {
     section = "month";
+    elements.popupTask.dataset.fulldate = fulldate;
   } else if (ifTargetMatches(target, ".button__add--year") || ifTargetMatches(target, ".button__edit--year")) {
     section = "year";
   } else {
@@ -266,8 +272,14 @@ export function addTask(e, arr) {
     arr = daysArray;
   } else if (dataSection == "month") {
     arr = Month.weeklyTasks;
+    //displaying in the week section the week to which one the task is adding
+    lastChoosedDay = new Date(elements.popupTask.dataset.fulldate);
+    changeWeek(lastChoosedDay);
   } else if (dataSection == "year") {
     arr = Year.monthlyTasks;
+    //displaying in the month section the month to which one the task is adding
+    lastChoosedDay = new Date(currentDay);
+    changeWeek(lastChoosedDay)
   }
   const isInArray = arr.some(el => el.date == currentDay);
   const taskToEdit = this.children[0].placeholder;
@@ -278,6 +290,7 @@ export function addTask(e, arr) {
       if ((!isInArray || arr.length == 0) && taskInputed.length !== 0) {
         // push currentDay object into daysArray
         arr.push(createdCurrentDay);
+        console.log(arr);
         // displayDaysTasks(currentDay, taskInputed, false);
       } else {
         arr.forEach(el => {
@@ -303,6 +316,9 @@ export function addTask(e, arr) {
   Month.displayWeeks();
   Year.displayMonths();
   hidePopupTask();
+  console.log("currentDay", currentDay);
+    
+  console.log("lastChoosedDay", lastChoosedDay);
 }
 
 const displayDaysTasks = (date) => {
