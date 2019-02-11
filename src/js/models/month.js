@@ -48,7 +48,7 @@ export const displayWeeks = () => {
                         <span class="month__week-nr">Week ${el.weekNr}</span>
                         <span class="month__dates">${el.firstDay.split(" ", 2)[0]}-${el.lastDay}</span>
                         <button class="button button__add button__add--month">
-                          <i class="fas fa-plus-circle button__add button__add--month"></i>
+                          <i class="fas fa-plus-circle"></i>
                         </button>
                       </h3>
                       <h3 class="header-3 section__item--content" data-section="month"></h3>
@@ -70,14 +70,14 @@ export const displayWeeks = () => {
 
         const html = `<div class="section__item--goal">
                               <button class="button button__check">
-                                <i class="${isDone} button__check"></i>
+                                <i class="${isDone}"></i>
                               </button>
                               <p class="paragraph section__item--paragraph">${task.task}</p>
                               <button class="button button__hidden button__edit button__edit--month">
-                                <i class="far fa-edit button__edit button__edit--month"></i>
+                                <i class="far fa-edit"></i>
                               </button>
                               <button class="button button__hidden button__delete">
-                                <i class="far fa-trash-alt button__delete"></i>
+                                <i class="far fa-trash-alt"></i>
                               </button>
                             </div>`
         weekContent.insertAdjacentHTML('beforeend', html);

@@ -100,7 +100,7 @@ export const displayWeekDays = (date) => {
                     <h3 class="header-3 section__item--title"> 
                       <span class="week__day">${el.day}</span>
                       <button class="button button__add button__add--week">
-                        <i class="fas fa-plus-circle button__add button__add--week"></i>
+                        <i class="fas fa-plus-circle"></i>
                       </button>
                     </h3>
                     <h3 class="header-3 section__item--content" data-section="week"></h3>
@@ -190,24 +190,28 @@ const getTaskContent = (target) => {
   return task;
 }
 
+const ifTargetMatches = (target, selector) => {
+  const ifTargetOrParentMatches = (target.matches(selector) || target.parentNode.matches(selector))
+  return ifTargetOrParentMatches;
+}
+
 
  export const isButtonAdd = (e) => {
-   const target = e.target;
+  const target = e.target;
   let date;
   let section;
-
   // if target has a class button__add then set the date
-  if (target.matches(".button__add")) {
+  if (ifTargetMatches(target, ".button__add")) {
     date = getClosestParent(target, ".section__item").dataset.date;
   } 
 
   // if target has a class button__add--week or button__edit--week then set the section to week
-  if (target.matches(".button__add--week") || target.matches(".button__edit--week")) {
+  if (ifTargetMatches(target, ".button__add--week") || ifTargetMatches(target, ".button__edit--week")) {
     section = "week";
     // if target has a class button__add--month or button__edit--month then set the section to month
-  } else if (target.matches(".button__add--month") || target.matches(".button__edit--month")) {
+  } else if (ifTargetMatches(target, ".button__add--month") || ifTargetMatches(target, ".button__edit--month")) {
     section = "month";
-  } else if (target.matches(".button__add--year") || target.matches(".button__edit--year")) {
+  } else if (ifTargetMatches(target, ".button__add--year") || ifTargetMatches(target, ".button__edit--year")) {
     section = "year";
   } else {
     return;
@@ -317,14 +321,14 @@ const displayDaysTasks = (date) => {
         
         const html = `<div class="section__item--goal">
                         <button class="button button__check">
-                          <i class="${isDone} button__check"></i>
+                          <i class="${isDone}"></i>
                         </button>
                         <p class="paragraph section__item--paragraph">${el.task}</p>
                         <button class="button button__hidden button__edit button__edit--week">
-                          <i class="far fa-edit button__edit button__edit--week"></i>
+                          <i class="far fa-edit"></i>
                         </button>
                         <button class="button button__hidden button__delete">
-                          <i class="far fa-trash-alt button__delete"></i>
+                          <i class="far fa-trash-alt"></i>
                         </button>
                       </div>`
         dayContent.insertAdjacentHTML('beforeend', html);
@@ -339,7 +343,7 @@ const displayDaysTasks = (date) => {
  
 export const editTask = (e) => {
   const target = e.target;
-  if (e.target.classList.contains("button__edit" )) {
+  if (ifTargetMatches(target, ".button__edit" )) {
     // read the current day's date
     const date = getDateOfTask(target);
     const task = getTaskContent(target);
@@ -357,7 +361,7 @@ export const editTask = (e) => {
 
 export const deleteTask = (e) => {
   const target = e.target;
-  if (target.classList.contains("button__delete"))  {
+  if (ifTargetMatches(target, ".button__delete"))  {
     const task = getTaskContent(target);
     const date = getDateOfTask(target);
     const arr = setArray(target);
@@ -380,11 +384,11 @@ export const deleteTask = (e) => {
 export const toggleTask = (e) => {
   const target = e.target;
   // check if the target has a button__check class
-  if (!target.matches(".button__check")) return;
+  if (!ifTargetMatches(target, ".button__check")) return;
   const arr = setArray(target);
   const date = getDateOfTask(target);
   const taskParent = getClosestParent(target, ".section__item--goal");
-    const taskText = taskParent.children[1].textContent;
+  const taskText = taskParent.children[1].textContent;
   // find current day obcject in the daysArray 
   const dayArray = arr.find(day => day.date == date);
   // toggle done key (value true or false)
