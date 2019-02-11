@@ -108,7 +108,7 @@ export const devicons = [
     "tags": ["language"],
     "versions": {
       "svg": ["original", "plain", "line"],
-      "font": ["plain", "plain-wordmark", "line", "line-wordmark"]
+      "font": ["plain", "line"]
     }
   },
   // {
@@ -172,7 +172,7 @@ export const devicons = [
     "tags": ["language"],
     "versions": {
       "svg": ["original", "plain", "line"],
-      "font": ["plain", "plain-wordmark", "line", "line-wordmark"]
+      "font": ["plain", "line"]
     }
   },
   {
@@ -180,7 +180,7 @@ export const devicons = [
     "tags": ["language"],
     "versions": {
       "svg": ["original", "plain", "line"],
-      "font": ["plain", "plain-wordmark", "line", "line-wordmark"]
+      "font": ["plain", "line"]
     }
   },
   {
@@ -215,20 +215,20 @@ export const devicons = [
       "font": ["plain", "plain-wordmark"]
     }
   },
-  {
-    "name": "devicon",
-    "tags": ["iconset"],
-    "versions": {
-      "svg": ["original", "original-wordmark", "plain", "plain-wordmark"],
-      "font": ["plain", "plain-wordmark"]
-    }
-  },
+  // {
+  //   "name": "devicon",
+  //   "tags": ["iconset"],
+  //   "versions": {
+  //     "svg": ["original", "original-wordmark", "plain", "plain-wordmark"],
+  //     "font": ["plain", "plain-wordmark"]
+  //   }
+  // },
   {
     "name": "django",
     "tags": [],
     "versions": {
       "svg": ["original", "plain", "line"],
-      "font": ["plain", "plain-wordmark", "line", "line-wordmark"]
+      "font": ["plain", "line"]
     }
   },
   {
@@ -303,14 +303,14 @@ export const devicons = [
       "font": ["original", "original-wordmark"]
     }
   },
-  {
-    "name": "facebook",
-    "tags": ["auth"],
-    "versions": {
-      "svg": ["original", "plain"],
-      "font": ["plain"]
-    }
-  },
+  // {
+  //   "name": "facebook",
+  //   "tags": ["auth"],
+  //   "versions": {
+  //     "svg": ["original", "plain"],
+  //     "font": ["plain"]
+  //   }
+  // },
   {
     "name": "firefox",
     "tags": ["browser"],
@@ -420,7 +420,7 @@ export const devicons = [
     "tags": ["cloud"],
     "versions": {
       "svg": ["original", "original-wordmark", "plain", "plain-wordmark"],
-      "font": ["original", "original-wordmark", "plain", "plain-wordmark", "line", "line-wordmark"]
+      "font": ["original", "original-wordmark", "plain", "plain-wordmark"]
     }
   },
   {
@@ -508,7 +508,8 @@ export const devicons = [
     "tags": [],
     "versions": {
       "svg": ["original", "plain"],
-      "font": ["plain", "plain-wordmark", "line", "line-wordmark"]
+      // "font": ["plain", "plain-wordmark", "line", "line-wordmark"]
+      "font": ["plain"]
     }
   },
   {
@@ -604,7 +605,8 @@ export const devicons = [
     "tags": ["server"],
     "versions": {
       "svg": ["original"],
-      "font": ["original", "original-wordmark", "plain", "plain-wordmark"]
+      // "font": ["original", "original-wordmark", "plain", "plain-wordmark"]
+      "font": ["original"]
     }
   },
   {
@@ -847,14 +849,14 @@ export const devicons = [
       "font": ["plain", "plain-wordmark"]
     }
   },
-  {
-    "name": "twitter",
-    "tags": ["auth"],
-    "versions": {
-      "svg": ["original"],
-      "font": ["plain"]
-    }
-  },
+  // {
+  //   "name": "twitter",
+  //   "tags": ["auth"],
+  //   "versions": {
+  //     "svg": ["original"],
+  //     "font": ["plain"]
+  //   }
+  // },
   {
     "name": "typescript",
     "tags": ["programming", "transpiler"],
