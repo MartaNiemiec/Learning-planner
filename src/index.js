@@ -5,6 +5,7 @@ import * as Month from './js/models/Month';
 import * as Year from './js/models/Year';
 
 import * as Skills from './js/models/Skills';
+import * as SkillsView from './js/views/skillsView';
 
 
 
@@ -16,7 +17,7 @@ elements.headerDate.innerHTML = `${Week.dayNr} ${Year.months[Week.month]} ${Week
 
 /*
 ==================================================
- skills module
+ SKILLS SECTION
 ==================================================
  */
 
@@ -24,18 +25,18 @@ elements.headerDate.innerHTML = `${Week.dayNr} ${Year.months[Week.month]} ${Week
 Skills.getIcons();
 
  // show or hide popup
-elements.skills.addEventListener('click', Skills.showPopup);
-elements.popupCloseBtn.addEventListener('click', Skills.hidePopup);
+elements.skills.addEventListener('click', SkillsView.showPopup);
+elements.popupCloseBtn.addEventListener('click', SkillsView.hidePopup);
 
 // select an icon after clicking on it
-elements.popupIcons.addEventListener('click', Skills.selectIcon);
+elements.popupIcons.addEventListener('click', SkillsView.selectIcon);
 
 // update selected skills icons and show them in the skill section
-elements.popupUpdateBtn.addEventListener('click', Skills.updateSkills);
+elements.popupUpdateBtn.addEventListener('click', SkillsView.updateSkills);
 
 // display searched icons in the popup 
-elements.popupSearch.addEventListener('change', Skills.displaySearchedIcons)
-elements.popupSearch.addEventListener('keyup', Skills.displaySearchedIcons)
+elements.popupSearch.addEventListener('change', SkillsView.displaySearchedIcons)
+elements.popupSearch.addEventListener('keyup', SkillsView.displaySearchedIcons)
 
 
 
