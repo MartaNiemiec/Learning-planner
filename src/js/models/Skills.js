@@ -19,8 +19,13 @@ export const showPopup = (e) => {
   renderIcons();
 }
 
+const clearPopup = () => {
+  elements.popupIcons.innerHTML = '';
+}
+
 export const hidePopup = () => {
   const popup = elements.popup;
+  clearPopup();
   popup.classList.add("hide");
 }
 
@@ -62,7 +67,7 @@ export const getIcons = () => {
 
 // render icons
 const renderIcons = () => {
-  elements.popupIcons.innerHTML = '';
+  clearPopup();
   allIcons.forEach(icon => {
     const markup = `<i class="skills__icon devicon-${icon.name}-${icon.font} ${icon.selectedClass}"></i>`;
     elements.popupIcons.insertAdjacentHTML('beforeend', markup);
@@ -166,16 +171,16 @@ export const updateSkills = () => {
  }
 
  export const displaySearchedIcons = () => {
-   // clear all icons in the popup  
-  elements.popupIcons.innerHTML = '';
+    // clear all icons in the popup  
+    clearPopup();
     // read inputted values
-   const icons = searchIcons(elements.popupSearch.value, allIcons);
-   // create a new array witch searched icons 
-   const html = icons.map(icon => {
-     return `
-     <i class="skills__icon devicon-${icon.name}-${icon.font} ${icon.selectedClass}"></i>
-     `
-   }).join('');
-   // display searched icons
-   elements.popupIcons.insertAdjacentHTML('beforeend', html);
+    const icons = searchIcons(elements.popupSearch.value, allIcons);
+    // create a new array witch searched icons 
+    const html = icons.map(icon => {
+      return `
+      <i class="skills__icon devicon-${icon.name}-${icon.font} ${icon.selectedClass}"></i>
+      `
+    }).join('');
+    // display searched icons
+    elements.popupIcons.insertAdjacentHTML('beforeend', html);
  }
