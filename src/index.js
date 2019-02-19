@@ -7,6 +7,8 @@ import * as Year from './js/models/Year';
 import * as Skills from './js/models/Skills';
 import * as SkillsView from './js/views/skillsView';
 
+import * as Tasks from './js/models/Tasks'
+
 
 
 
@@ -59,18 +61,18 @@ Week.displayWeekDays(Week.todayDate);
 
 
 // add goal after clicking on the add button
-elements.popupTaskClose.addEventListener('click', Week.hidePopupTask);
-document.addEventListener('click', Week.isButtonAdd);
-elements.popupTaskForm.addEventListener('submit', Week.addTask);
+elements.popupTaskClose.addEventListener('click', Tasks.hidePopupTask);
+document.addEventListener('click', Tasks.isButtonAdd);
+elements.popupTaskForm.addEventListener('submit', Tasks.addTask);
 
 // edit task
-document.addEventListener('click', Week.editTask);
+document.addEventListener('click', Tasks.editTask);
 
 // delete task after clicking on delete button
-document.addEventListener('click', Week.deleteTask);
+document.addEventListener('click', Tasks.deleteTask);
 
 // toggle checked and unchecked icon
-document.addEventListener('click', Week.toggleTask);
+document.addEventListener('click', Tasks.toggleTask);
 
 elements.weekNext.addEventListener('click', Week.nextWeek);
 elements.weekPrevious.addEventListener('click', Week.previousWeek);

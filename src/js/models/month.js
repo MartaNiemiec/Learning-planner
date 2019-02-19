@@ -1,4 +1,5 @@
 import { elements } from '../views/base';
+import { ifTargetMatches } from '../models/Tasks';
 import * as Week from './Week';
 import * as Year from './Year';
 
@@ -90,9 +91,9 @@ export const displayWeeks = () => {
 const changeMonth = (target) => {
   let lastChoosedMonth = Week.lastChoosedDay.getMonth();
   let lastChoosedYear = Week.lastChoosedDay.getFullYear();
-  const targetClass = target.classList[2];
+  const isButtonPrevious = ifTargetMatches(target, ".button__previous--month");
   // if the target is a button nextMonth or previousMonth then add or subtract a month by 1 
-  targetClass == "button__previous--month" ? lastChoosedMonth-- : lastChoosedMonth++;
+  isButtonPrevious ? lastChoosedMonth-- : lastChoosedMonth++;
   let newDay = new Date(Week.lastChoosedDay.setFullYear(lastChoosedYear, lastChoosedMonth,1));
   Week.changeWeek(newDay);
 }
