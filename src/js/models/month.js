@@ -42,7 +42,7 @@ export const getMonthsWeeks = () => {
 
 export const displayWeeks = () => {
   elements.monthWeeks.innerHTML = "";
-
+  
   getMonthsWeeks().forEach((el,index) => {
     const markup = `<div class="section__item" data-date="Week-${el.weekNr} ${el.year}" data-fulldate="${el.firstDay} ${el.year}">
                       <h3 class="header-3 section__item--title">

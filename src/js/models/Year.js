@@ -28,7 +28,6 @@ export const generateMonths = () => {
 
 export const getYearMonths = () => {
   let currentYear = Week.lastChoosedDay.toString().split(" ", 4)[3];
-  console.log("monthsArray",monthsArray);
   let monthsOfCurrentYear = monthsArray.filter(month => month.year == currentYear);
   if(monthsArray.every(month => month.year !== currentYear)) {
     generateMonths();
@@ -39,7 +38,7 @@ export const getYearMonths = () => {
 
 export const displayMonths = () => {
   elements.yearMonths.innerHTML = "";
-
+  
   getYearMonths().forEach((el, index) => {
     const html = `<div class="section__item" data-date="${el.month} ${el.year}">
                     <h3 class="header-3 section__item--title">

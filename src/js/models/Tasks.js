@@ -1,5 +1,5 @@
 import { elements } from '../views/base';
-import { changeWeek, lastChoosedDay, daysArray, displayDaysTasks } from './Week';
+import { changeWeek, daysArray, displayDaysTasks } from './Week';
 
 import * as Month from './Month';
 import * as Year from './Year';
@@ -45,7 +45,7 @@ export const isButtonAdd = (e) => {
   let fulldate;
   let section;
   // if target has a class button__add then set the date
-  if (ifTargetMatches(target, ".button__add")) {
+  if (ifTargetMatches(target, ".button__add") || ifTargetMatches(target, ".button__edit")) {
     date = getClosestParent(target, ".section__item").dataset.date;
     fulldate = getClosestParent(target, ".section__item").dataset.fulldate;
   } 
@@ -188,8 +188,6 @@ export function addTask(e, arr) {
 // check if has clicked edit button next to the task
   } else if (dataAction == "editTask") {
     arr.forEach(el => {
-      console.log("currentDay", currentDay);
-      console.log("el.date", el.date);
       if (el.date == currentDay && taskInputed.length !== 0 && el.tasks.some(el => el.task == taskToEdit)) {
         el.updateTask(taskToEdit, taskInputed);
       } 
@@ -212,14 +210,10 @@ export function addTask(e, arr) {
  
  export const editTask = (e) => {
    const target = e.target;
-  // debugger;
-  //  console.log(ifTargetMatches(target, ".button__edit" ));
   if (ifTargetMatches(target, ".button__edit" )) {
     // read the current day's date
     const date = getDateOfTask(target);
     const task = getTaskContent(target);
-    console.log("date",date);
-    console.log("task", task);
     setCurrentDate(date);
     elements.popupTask.dataset.action = "editTask";
 
