@@ -38,6 +38,26 @@ class taskObject {
 
 
 // ===================================
+// // selection of the month or week and updating contents of the sections 
+export const selectDate = (e) => {
+  const target = e.target;
+  if (ifTargetMatches(target, ".section__item--title")) {
+    const sectionItem = getClosestParent(target, ".section__item");
+    const sectionContent = getClosestParent(target, ".section__content").dataset.section
+    let date;
+    if (sectionContent == "year") {
+      date = new Date(`2 ${sectionItem.dataset.date}`)
+    } else if (sectionContent == "month") {
+      date = new Date(sectionItem.dataset.fulldate);
+    } else {
+      return
+    }
+    changeWeek(date)
+  }
+}
+
+
+// ===================================
 // open/hide task's popup
 const openPopupTask = (savedTask = "Your task") => {
   const popupTask = elements.popupTask;

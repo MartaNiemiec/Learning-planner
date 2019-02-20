@@ -45,10 +45,7 @@
       padding: .5rem 0;
       width: 95%;
       margin: 0 auto;
-      
     }
-
-    
 
     &--goal {
       display: flex;
@@ -80,8 +77,12 @@
         transform: translateY(1px);
       }
     }
-    
-    
-
   }
+}
+
+
+.month__weeks > *:hover,
+.year__months > *:hover {
+  cursor: pointer;
+  opacity: .9;
 }

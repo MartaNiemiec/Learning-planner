@@ -16,6 +16,15 @@ import * as Tasks from './js/models/Tasks'
 
 elements.headerDate.innerHTML = `${Week.dayNr} ${Year.months[Week.month]} ${Week.year}`;
 
+/*
+==================================================
+ YEAR AND MONTH SECTIONS
+==================================================
+ */
+
+ // selection of the month or week and updating contents of the sections 
+document.addEventListener('click', Tasks.selectDate);
+
 
 /*
 ==================================================
@@ -40,14 +49,6 @@ elements.popupUpdateBtn.addEventListener('click', SkillsView.updateSkills);
 elements.popupSearch.addEventListener('change', SkillsView.displaySearchedIcons)
 elements.popupSearch.addEventListener('keyup', SkillsView.displaySearchedIcons)
 
-
-
-
-/*
-==================================================
- dates
-==================================================
- */
 
 
 /*
