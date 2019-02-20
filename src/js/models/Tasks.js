@@ -5,6 +5,7 @@ import * as Month from './Month';
 import * as Year from './Year';
 
 
+// ===================================
 // create class Day 
 class taskObject {
   constructor(date, task, done = false) {
@@ -36,9 +37,105 @@ class taskObject {
 }
 
 
+// ===================================
+// open/hide task's popup
+const openPopupTask = (savedTask = "Your task") => {
+  const popupTask = elements.popupTask;
+  popupTask.classList.remove("hide");
+  elements.popupTaskText.placeholder = savedTask;
+  elements.popupTaskText.focus();
+}
 
 
+export const hidePopupTask = () => {
+  const popupTask = elements.popupTask;
+  popupTask.classList.add("hide");
+  popupTask.removeAttribute('data-date');
+  popupTask.removeAttribute('data-action');
+  popupTask.removeAttribute('data-fulldate');
+}
 
+
+// ===================================
+// display months/weeks/days in year/month/week sections
+const displaySections = (date) => {
+  displayDaysTasks(date);
+  Month.displayWeeks();
+  Year.displayMonths();
+}
+
+
+// ===================================
+// set the current section in the popupTask
+const setCurrentSection = (section) => {
+  elements.popupTask.dataset.section = section;
+}
+
+
+// ===================================
+// set the current date in the popupTask
+const setCurrentDate = (date) => {
+  elements.popupTask.dataset.date = date;
+}
+
+
+// ===================================
+// set the array with tasks depends of the selected section(year, month or week section)
+const setArray = (target) => {
+  const section = getClosestParent(target, ".section__item--content").dataset.section;
+  let arr;
+
+  if(section == "week") {
+    arr = daysArray;
+  } else if (section == "month") {
+    arr = Month.weeklyTasks;
+  } else if (section == "year") {
+    arr = Year.monthlyTasks;
+  }
+  return arr;
+}
+
+
+// ===================================
+// get the closest parent of the selected element(target) with the specific selector
+let getClosestParent = (elem, selector) => {
+	for ( ; elem && elem !== document; elem = elem.parentNode ) {
+		if ( elem.matches( selector ) ) return elem;
+	}
+	return null;
+};
+
+
+// ===================================
+// get task's date of the selected target (from dataset.date of the section__item )
+const getDateOfTask = (target) => {
+  const date = getClosestParent(target, ".section__item").dataset.date;
+  return date;
+}
+
+
+// ===================================
+// get task's content from the <p> element
+const getTaskContent = (target) => {
+  const taskParent = getClosestParent(target, ".section__item--goal");
+  console.log("taskParent",taskParent);
+  const task = taskParent.children[1].textContent;
+
+  console.log(target,task);
+  return task;
+}
+
+
+// ===================================
+// checking if target or his parent matches a specific selector / returns boolean
+export const ifTargetMatches = (target, selector) => {
+  const ifTargetOrParentMatches = (target.matches(selector) || target.parentNode.matches(selector));
+  return ifTargetOrParentMatches;
+}
+
+
+// ===================================
+// checking if the target is a button__add and if it is the n set up the section an dateof the task 
 export const isButtonAdd = (e) => {
   const target = e.target;
   let date;
@@ -71,76 +168,8 @@ export const isButtonAdd = (e) => {
  }
 
 
-
-
-
- const openPopupTask = (savedTask = "Your task") => {
-  const popupTask = elements.popupTask;
-  popupTask.classList.remove("hide");
-  elements.popupTaskText.placeholder = savedTask;
-  elements.popupTaskText.focus();
-}
-
-
-export const hidePopupTask = () => {
-  const popupTask = elements.popupTask;
-  popupTask.classList.add("hide");
-  popupTask.removeAttribute('data-date');
-  popupTask.removeAttribute('data-action');
-  popupTask.removeAttribute('data-fulldate');
-}
-
-
-
-const setCurrentSection = (section) => {
-  elements.popupTask.dataset.section = section;
-}
-
-const setCurrentDate = (date) => {
-  elements.popupTask.dataset.date = date;
-}
-
-
-const setArray = (target) => {
-  const section = getClosestParent(target, ".section__item--content").dataset.section;
-  let arr;
-
-  if(section == "week") {
-    arr = daysArray;
-  } else if (section == "month") {
-    arr = Month.weeklyTasks;
-  } else if (section == "year") {
-    arr = Year.monthlyTasks;
-  }
-  return arr;
-}
-
-
-let getClosestParent = (elem, selector) => {
-	for ( ; elem && elem !== document; elem = elem.parentNode ) {
-		if ( elem.matches( selector ) ) return elem;
-	}
-	return null;
-};
-
-
-const getDateOfTask = (target) => {
-  const date = getClosestParent(target, ".section__item").dataset.date;
-  return date;
-}
-
-const getTaskContent = (target) => {
-  const taskParent = getClosestParent(target, ".section__item--goal");
-  const task = taskParent.children[1].textContent;
-  return task;
-}
-
-export const ifTargetMatches = (target, selector) => {
-  const ifTargetOrParentMatches = (target.matches(selector) || target.parentNode.matches(selector))
-  return ifTargetOrParentMatches;
-}
-
-
+// ===================================
+// add task to the array and display it
 export function addTask(e, arr) {
   e.preventDefault(); //prevent refreshing the page/Prevent a link from opening the URL
   const target = e.target;
@@ -195,19 +224,13 @@ export function addTask(e, arr) {
   }
   //reset an input(textarea)
   this.reset(); 
-  displayDaysTasks(currentDay);
-  Month.displayWeeks();
-  Year.displayMonths();
+  displaySections(currentDay);
   hidePopupTask();
 }
 
 
-
-
-
 // ===================================
- // edit task
- 
+// edit task in the array and display it
  export const editTask = (e) => {
    const target = e.target;
   if (ifTargetMatches(target, ".button__edit" )) {
@@ -225,9 +248,9 @@ export function addTask(e, arr) {
   }
 }
 
-// ===================================
- // remove task | display it
 
+// ===================================
+// remove task from the array and from html
 export const deleteTask = (e) => {
   const target = e.target;
   if (ifTargetMatches(target, ".button__delete"))  {
@@ -239,16 +262,14 @@ export const deleteTask = (e) => {
       if (el.date == date) {
         el.deleteTask(task,index);
       } 
-      displayDaysTasks(date);
-      Month.displayWeeks();
-      Year.displayMonths();
+      displaySections(date);
     })
   }
 }
 
-// ===================================
-// toggle checked/unchecked task | display it
 
+// ===================================
+// toggle checked/unchecked task in the array and display it
 export const toggleTask = (e) => {
   const target = e.target;
   // check if the target has a button__check class
@@ -262,7 +283,5 @@ export const toggleTask = (e) => {
   // toggle done key (value true or false)
   dayArray.toggleChecked(taskText);
   // display all tasks for current day
-  displayDaysTasks(date);
-  Month.displayWeeks();
-  Year.displayMonths();
+  displaySections(date);
 }
