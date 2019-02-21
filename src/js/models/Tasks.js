@@ -3,6 +3,7 @@ import { elements } from '../views/base';
 import * as weekView from '../views/weekView';
 import * as Week from './Week';
 import * as Month from './Month';
+import * as monthView from '../views/monthView';
 import * as Year from './Year';
 
 
@@ -81,7 +82,7 @@ export const hidePopupTask = () => {
 // display months/weeks/days in year/month/week sections
 const displaySections = (date) => {
   weekView.displayDaysTasks(date);
-  Month.displayWeeks();
+  monthView.displayWeeks();
   Year.displayMonths();
 }
 
@@ -139,10 +140,8 @@ const getDateOfTask = (target) => {
 // get task's content from the <p> element
 const getTaskContent = (target) => {
   const taskParent = getClosestParent(target, ".section__item--goal");
-  console.log("taskParent",taskParent);
   const task = taskParent.children[1].textContent;
 
-  console.log(target,task);
   return task;
 }
 

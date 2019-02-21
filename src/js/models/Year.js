@@ -88,11 +88,11 @@ export const displayMonths = () => {
 
 const changeYear = (target) => {
   let lastChoosedYear = Week.lastChoosedDay.getFullYear();
-  const targetClass = target.classList[2];
   // if the target is a button nextMonth or previousMonth then add or subtract a month by 1 
   const isButtonPrevious = Tasks.ifTargetMatches(target, ".button__previous--year");
   isButtonPrevious ? lastChoosedYear-- : lastChoosedYear++;
   let newDay = new Date(Week.lastChoosedDay.setFullYear(lastChoosedYear, 0,1));
+  // console.log("newDay",newDay);
   weekView.changeWeek(newDay);
 }
 

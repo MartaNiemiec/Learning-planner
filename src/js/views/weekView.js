@@ -1,6 +1,7 @@
 import { elements } from './base';
 import * as Week from '../models/Week';
 import * as Month from '../models/Month';
+import * as monthView from './monthView';
 import * as Year from '../models/Year';
 
 
@@ -37,7 +38,7 @@ export const displayWeekDays = (date) => {
   });
   Week.changeLastChoosedDay(date);
   displayWeekNr(date);
-  Month.displayMonth(date);
+  monthView.displayMonth(date);
   Year.displayCurrentYear(date);
 }
 
@@ -51,7 +52,7 @@ export const changeWeek = (date) => {
   Week.weekNr(date);
   displayWeekNr(date);
   Month.getMonthsWeeks();
-  Month.displayWeeks();
+  monthView.displayWeeks();
   Year.displayMonths();
 }
 
