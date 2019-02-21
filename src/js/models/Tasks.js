@@ -1,6 +1,7 @@
 import { elements } from '../views/base';
-import { changeWeek, daysArray, displayDaysTasks } from './Week';
 
+import * as weekView from '../views/weekView';
+import * as Week from './Week';
 import * as Month from './Month';
 import * as Year from './Year';
 
@@ -52,7 +53,7 @@ export const selectDate = (e) => {
     } else {
       return
     }
-    changeWeek(date)
+    weekView.changeWeek(date)
   }
 }
 
@@ -79,7 +80,7 @@ export const hidePopupTask = () => {
 // ===================================
 // display months/weeks/days in year/month/week sections
 const displaySections = (date) => {
-  displayDaysTasks(date);
+  weekView.displayDaysTasks(date);
   Month.displayWeeks();
   Year.displayMonths();
 }
@@ -106,7 +107,7 @@ const setArray = (target) => {
   let arr;
 
   if(section == "week") {
-    arr = daysArray;
+    arr = Week.daysArray;
   } else if (section == "month") {
     arr = Month.weeklyTasks;
   } else if (section == "year") {
@@ -202,17 +203,17 @@ export function addTask(e, arr) {
   let newDay;
 
   if (dataSection == "week") {
-    arr = daysArray;
+    arr = Week.daysArray;
   } else if (dataSection == "month") {
     arr = Month.weeklyTasks;
     //displaying in the week section the week to which one the task is adding
     newDay = new Date(elements.popupTask.dataset.fulldate);
-    changeWeek(newDay);
+    weekView.changeWeek(newDay);
   } else if (dataSection == "year") {
     arr = Year.monthlyTasks;
     //displaying in the month section the month to which one the task is adding
     newDay = new Date(`2 ${currentDay}`);
-    changeWeek(newDay)
+    weekView.changeWeek(newDay)
   }
   const isInArray = arr.some(el => el.date == currentDay);
   const taskToEdit = this.children[0].placeholder;

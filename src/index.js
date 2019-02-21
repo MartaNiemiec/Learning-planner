@@ -1,6 +1,7 @@
 import './scss/main.scss';
 import { elements } from './js/views/base.js';
 import * as Week from './js/models/Week';
+import * as weekView from './js/views/weekView';
 import * as Month from './js/models/Month';
 import * as Year from './js/models/Year';
 
@@ -58,7 +59,7 @@ elements.popupSearch.addEventListener('keyup', SkillsView.displaySearchedIcons)
  */
 
 // display all week days
-Week.displayWeekDays(Week.todayDate);
+weekView.displayWeekDays(Week.todayDate);
 
 
 // add goal after clicking on the add button

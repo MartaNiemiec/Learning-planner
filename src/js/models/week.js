@@ -1,6 +1,5 @@
-import { elements } from '../views/base';
-import * as Month from './Month';
-import * as Year from './Year';
+import { changeWeek } from '../views/weekView';
+
 
 // DATE ON HEADER
 export let todayDate = new Date();
@@ -9,14 +8,21 @@ export let month = todayDate.getMonth();
 export let year = todayDate.getFullYear();
 export let lastChoosedDay = todayDate;
 
+
 // ===================================
 // create an array with tasks
 export const daysArray = [];
 
 
 // ===================================
-//GET CURRENT WEEK NUMBER
+// change the new last choosed day
+export const changeLastChoosedDay = (date) => {
+  lastChoosedDay = date;
+}
 
+
+// ===================================
+//GET CURRENT WEEK NUMBER
 export const weekNr = dt => {
     var tdt = new Date(dt.valueOf());  // .valueOf returns a Number, representing the number of milliseconds between the date object and midnight January 1, 1970 UTCmiliseconds
     var dayn = (dt.getDay() + 6) % 7;
@@ -30,25 +36,23 @@ export const weekNr = dt => {
     return 1 + Math.ceil((firstThursday - tdt) / 604800000);
   }
   // weekNr = new Date().getWeek();
-  
-export const displayWeekNr = (date) => {
-  elements.weekNumber.innerHTML = weekNr(date);
-}
 
 
 // ===================================
- //GET FIRST DAY OF THE CURRENT WEEK
-
+//GET FIRST DAY OF THE CURRENT WEEK
 export function startOfWeek(date, day) {  // does it work on Sunday???
     var first = date.getDate() - (date.getDay() - day) +(date.getDay() === 0 ? -6 : 1);
     return new Date(date.setDate(first));
 }
-
 // (startOfWeek(new Date()).toString());
 
 
 // ===================================
- // go to next/previus week | display changed week
+// go to next/previus week 
+const firstDayOfWeek = (date, count) => {
+  let firstDay = startOfWeek(new Date(date.getTime() - 7 * count * 24 * 60 * 60 * 1000), 1);
+  lastChoosedDay = new Date(firstDay);
+}
 
 export const nextWeek = () => {
   firstDayOfWeek(lastChoosedDay, -1);
@@ -60,26 +64,9 @@ export const previousWeek = () => {
   changeWeek(lastChoosedDay);
 }
 
-const firstDayOfWeek = (date, count) => {
-  let firstDay = startOfWeek(new Date(date.getTime() - 7 * count * 24 * 60 * 60 * 1000), 1);
-  lastChoosedDay = new Date(firstDay);
-}
-
-export const changeWeek = (date) => {
-  lastChoosedDay = date;
-  getWeekDays(date);
-  displayWeekDays(date);
-  weekNr(date);
-  displayWeekNr(date);
-  Month.getMonthsWeeks();
-  Month.displayWeeks();
-  Year.displayMonths();
-}
-
 
 // ===================================
-// GET DAYS OF THE CURRENT WEEK | display them
-
+// GET DAYS OF THE CURRENT WEEK
 export const getWeekDays = (date) => {
   //create an array with days in the week
   const weekDays = [];
@@ -96,317 +83,3 @@ export const getWeekDays = (date) => {
   }
   return weekDays;
 }
-
-export const displayWeekDays = (date) => {
-  elements.weekDays.innerHTML = "";
-  getWeekDays(date).forEach(el => {
-    const markup = `<div class="section__item" data-date="${el.date}">
-                    <h3 class="header-3 section__item--title"> 
-                      <span class="week__day">${el.day}</span>
-                      <button class="button button__add button__add--week">
-                        <i class="fas fa-plus-circle"></i>
-                      </button>
-                    </h3>
-                    <h3 class="header-3 section__item--content" data-section="week"></h3>
-                  </div>`;
-    elements.weekDays.insertAdjacentHTML('beforeend', markup);
-
-    // find weekDay in the daysArray
-    const dayArray = daysArray.find(day => day.date == el.date);
-    // check is there any day object of the burrent weekDay
-    if (dayArray) {
-      // display tasks from the current weekDay
-      displayDaysTasks(el.date)
-    } 
-  });
-  displayWeekNr(lastChoosedDay);
-  Month.displayMonth(lastChoosedDay);
-  Year.displayCurrentYear(lastChoosedDay);
-}
-
-
-
-
-
-
-// // create class Day 
-// class taskObject {
-//   constructor(date, task, done = false) {
-//     this.date = date;
-//     this.tasks = [{task: task, done: done}];
-//   }
-
-//   addTask(task, done = false) {
-//     this.tasks.push({task: task, done: done});
-//   }
-
-//   updateTask(task, newTask) {
-//     // find the task to edit
-//     const taskToEdit = this.tasks.find(el => el.task == task);
-//     // change it to a new task
-//     taskToEdit.task = newTask;
-//   }
-
-//   toggleChecked(task) {
-//     const taskToToggle = this.tasks.find(el => el.task == task);
-//     // toggle "done" value to true/false
-//     taskToToggle.done = !taskToToggle.done;
-//   }
-
-//   deleteTask(task) {
-//     const taskToDeleteIndex = this.tasks.findIndex(el => el.task == task);
-//     this.tasks.splice(taskToDeleteIndex,1);
-//   }
-// }
-
-
-// ===================================
- // add new task after clicking on the plus/add button | display it
-
-//  export const hidePopupTask = () => {
-//   const popupTask = elements.popupTask;
-//   popupTask.classList.add("hide");
-//   popupTask.removeAttribute('data-date');
-//   popupTask.removeAttribute('data-action');
-//   popupTask.removeAttribute('data-fulldate');
-// }
-
-
-// let getClosestParent = (elem, selector) => {
-// 	for ( ; elem && elem !== document; elem = elem.parentNode ) {
-// 		if ( elem.matches( selector ) ) return elem;
-// 	}
-// 	return null;
-// };
-
-
-
-// const getDateOfTask = (target) => {
-//   const date = getClosestParent(target, ".section__item").dataset.date;
-//   return date;
-// }
-
-// const getTaskContent = (target) => {
-//   const taskParent = getClosestParent(target, ".section__item--goal");
-//   const task = taskParent.children[1].textContent;
-//   return task;
-// }
-
-// const ifTargetMatches = (target, selector) => {
-//   const ifTargetOrParentMatches = (target.matches(selector) || target.parentNode.matches(selector))
-//   return ifTargetOrParentMatches;
-// }
-
-
-//  export const isButtonAdd = (e) => {
-//   const target = e.target;
-//   let date;
-//   let fulldate;
-//   let section;
-//   // if target has a class button__add then set the date
-//   if (ifTargetMatches(target, ".button__add")) {
-//     date = getClosestParent(target, ".section__item").dataset.date;
-//     fulldate = getClosestParent(target, ".section__item").dataset.fulldate;
-//   } 
-
-//   // if target has a class button__add--week or button__edit--week then set the section to week
-//   if (ifTargetMatches(target, ".button__add--week") || ifTargetMatches(target, ".button__edit--week")) {
-//     section = "week";
-    
-//     // if target has a class button__add--month or button__edit--month then set the section to month
-//   } else if (ifTargetMatches(target, ".button__add--month") || ifTargetMatches(target, ".button__edit--month")) {
-//     section = "month";
-//     elements.popupTask.dataset.fulldate = fulldate;
-//   } else if (ifTargetMatches(target, ".button__add--year") || ifTargetMatches(target, ".button__edit--year")) {
-//     section = "year";
-//   } else {
-//     return;
-//   }
-
-//   openPopupTask();
-//   setCurrentDate(date);
-//   setCurrentSection(section);
-//   elements.popupTask.dataset.action = "addTask";
-//  }
-
-//  const openPopupTask = (savedTask = "Your task") => {
-//   const popupTask = elements.popupTask;
-//   popupTask.classList.remove("hide");
-//   elements.popupTaskText.placeholder = savedTask;
-//   elements.popupTaskText.focus();
-// }
-
-// const setCurrentSection = (section) => {
-//   elements.popupTask.dataset.section = section;
-// }
-
-// const setCurrentDate = (date) => {
-//   elements.popupTask.dataset.date = date;
-// }
-
-
-// const setArray = (target) => {
-//   const section = getClosestParent(target, ".section__item--content").dataset.section;
-//   let arr;
-
-//   if(section == "week") {
-//     arr = daysArray;
-//   } else if (section == "month") {
-//     arr = Month.weeklyTasks;
-//   } else if (section == "year") {
-//     arr = Year.monthlyTasks;
-//   }
-//   return arr;
-// }
-
-
-// export function addTask(e, arr) {
-//   e.preventDefault(); //prevent refreshing the page/Prevent a link from opening the URL
-//   const target = e.target;
-//   const dataSection = getClosestParent(target, ".popup-task").dataset.section;
-//   const dataAction = getClosestParent(target, ".popup-task").dataset.action;
-//   const taskInputed = elements.popupTaskText.value;
-//   const currentDay = elements.popupTask.dataset.date;
-//   const createdCurrentDay = new taskObject(currentDay, taskInputed);
-//   if (dataSection == "week") {
-//     arr = daysArray;
-//   } else if (dataSection == "month") {
-//     arr = Month.weeklyTasks;
-//     //displaying in the week section the week to which one the task is adding
-//     lastChoosedDay = new Date(elements.popupTask.dataset.fulldate);
-//     changeWeek(lastChoosedDay);
-//   } else if (dataSection == "year") {
-//     arr = Year.monthlyTasks;
-//     //displaying in the month section the month to which one the task is adding
-//     lastChoosedDay = new Date(`2 ${currentDay}`);
-//     changeWeek(lastChoosedDay)
-//   }
-//   const isInArray = arr.some(el => el.date == currentDay);
-//   const taskToEdit = this.children[0].placeholder;
-
-// // check if has clicked plus button(adding a task)
-//   if (dataAction == "addTask") {
-//     // checking if the current day(clicked day) is in a daysArray OR if a daysArray is empty AND if the task was written
-//       if ((!isInArray || arr.length == 0) && taskInputed.length !== 0) {
-//         // push currentDay object into daysArray
-//         arr.push(createdCurrentDay);
-//         // displayDaysTasks(currentDay, taskInputed, false);
-//       } else {
-//         arr.forEach(el => {
-//           // looking for current day in a daysArr AND checking if the task was written AND if the task was written before in the current day
-//           if (el.date == currentDay && taskInputed.length !== 0 && !el.tasks.some(el => el.task == taskInputed)) {
-//             // adding new task into current day
-//             el.addTask(taskInputed);
-//           }
-//         })
-//       }
-
-// // check if has clicked edit button next to the task
-//   } else if (dataAction == "editTask") {
-//     arr.forEach(el => {
-//       if (el.date == currentDay && taskInputed.length !== 0 && el.tasks.some(el => el.task == taskToEdit)) {
-//         el.updateTask(taskToEdit, taskInputed);
-//       } 
-//     })
-//   }
-//   //reset an input(textarea)
-//   this.reset(); 
-//   displayDaysTasks(currentDay);
-//   Month.displayWeeks();
-//   Year.displayMonths();
-//   hidePopupTask();
-// }
-
-export const displayDaysTasks = (date) => {
-  const weekDays = elements.weekDays.querySelectorAll('[data-date]'); // return <div class="section__item" data-date="14 Jan 2019">...</div>
-  const taskUncheckedIcon = "far fa-circle";
-  const taskCheckedIcon = "fas fa-check-circle";
-  let isDone;
-  
-  weekDays.forEach(e => {
-    if (e.dataset.date == date) {
-      const dayContent = e.children[1];
-      const dayArray = daysArray.find(day => day.date == date);
-      dayContent.innerHTML = "";
-      dayArray.tasks.forEach(el => {
-        el.done ? isDone = taskCheckedIcon : isDone = taskUncheckedIcon; 
-        
-        const html = `<div class="section__item--goal">
-                        <button class="button button__check">
-                          <i class="${isDone}"></i>
-                        </button>
-                        <p class="paragraph section__item--paragraph">${el.task}</p>
-                        <button class="button button__hidden button__edit button__edit--week">
-                          <i class="far fa-edit"></i>
-                        </button>
-                        <button class="button button__hidden button__delete">
-                          <i class="far fa-trash-alt"></i>
-                        </button>
-                      </div>`
-        dayContent.insertAdjacentHTML('beforeend', html);
-      })
-    } 
-  })
-}
-
-
-// // ===================================
-//  // edit task
- 
-// export const editTask = (e) => {
-//   const target = e.target;
-//   if (ifTargetMatches(target, ".button__edit" )) {
-//     // read the current day's date
-//     const date = getDateOfTask(target);
-//     const task = getTaskContent(target);
-    
-//     setCurrentDate(date);
-//     elements.popupTask.dataset.action = "editTask";
-
-//     // open popupTask
-//     openPopupTask(task);
-//   }
-// }
-
-// // ===================================
-//  // remove task | display it
-
-// export const deleteTask = (e) => {
-//   const target = e.target;
-//   if (ifTargetMatches(target, ".button__delete"))  {
-//     const task = getTaskContent(target);
-//     const date = getDateOfTask(target);
-//     const arr = setArray(target);
-    
-//     arr.forEach((el, index) => {
-//       if (el.date == date) {
-//         el.deleteTask(task,index);
-//       } 
-//       displayDaysTasks(date);
-//       Month.displayWeeks();
-//       Year.displayMonths();
-//     })
-//   }
-// }
-
-
-// // ===================================
-// // toggle checked/unchecked task | display it
-
-// export const toggleTask = (e) => {
-//   const target = e.target;
-//   // check if the target has a button__check class
-//   if (!ifTargetMatches(target, ".button__check")) return;
-//   const arr = setArray(target);
-//   const date = getDateOfTask(target);
-//   const taskParent = getClosestParent(target, ".section__item--goal");
-//   const taskText = taskParent.children[1].textContent;
-//   // find current day obcject in the daysArray 
-//   const dayArray = arr.find(day => day.date == date);
-//   // toggle done key (value true or false)
-//   dayArray.toggleChecked(taskText);
-//   // display all tasks for current day
-//   displayDaysTasks(date);
-//   Month.displayWeeks();
-//   Year.displayMonths()
-// }
