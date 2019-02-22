@@ -86,7 +86,9 @@ elements.weekPrevious.addEventListener('click', Week.previousWeek);
  MONTH SECTION
 ====================
  */
-Month.generateWeeks();
+
+Month.getWeeks();
+// Month.generateWeeks();
 monthView.displayWeeks();
 
 elements.nextMonth.addEventListener('click', Month.nextMonth)

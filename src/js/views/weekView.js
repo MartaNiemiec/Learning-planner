@@ -9,6 +9,7 @@ import * as Year from '../models/Year';
 // display week's number in the title of the week section
 export const displayWeekNr = (date) => {
   elements.weekNumber.innerHTML = Week.weekNr(date);
+  console.log("displayWeekNr - date", date);
 }
 
 

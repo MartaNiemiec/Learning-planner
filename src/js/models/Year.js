@@ -1,5 +1,6 @@
 import { elements } from '../views/base';
 import * as Week from './Week';
+import * as Month from './Month';
 import * as weekView from '../views/weekView';
 import * as Tasks from './Tasks';
 
@@ -93,6 +94,7 @@ const changeYear = (target) => {
   isButtonPrevious ? lastChoosedYear-- : lastChoosedYear++;
   let newDay = new Date(Week.lastChoosedDay.setFullYear(lastChoosedYear, 0,1));
   // console.log("newDay",newDay);
+  Month.generateWeeks()
   weekView.changeWeek(newDay);
 }
 
