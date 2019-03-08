@@ -5,6 +5,7 @@ import * as weekView from './js/views/weekView';
 import * as Month from './js/models/Month';
 import * as monthView from './js/views/monthView';
 import * as Year from './js/models/Year';
+import * as yearView from './js/views/yearView';
 
 import * as Skills from './js/models/Skills';
 import * as SkillsView from './js/views/skillsView';
@@ -106,7 +107,7 @@ elements.previousMonth.addEventListener('click', Month.previousMonth)
 
 
 Year.generateMonths();
-Year.displayMonths();
+yearView.displayMonths();
 
 elements.previousYear.addEventListener('click', Year.previousYear);
 elements.nextYear.addEventListener('click', Year.nextYear);

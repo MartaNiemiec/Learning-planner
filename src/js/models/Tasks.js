@@ -5,6 +5,7 @@ import * as Week from './Week';
 import * as Month from './Month';
 import * as monthView from '../views/monthView';
 import * as Year from './Year';
+import * as yearView from '../views/yearView';
 
 
 // ===================================
@@ -83,7 +84,7 @@ export const hidePopupTask = () => {
 const displaySections = (date) => {
   weekView.displayDaysTasks(date);
   monthView.displayWeeks();
-  Year.displayMonths();
+  yearView.displayMonths();
 }
 
 

@@ -3,6 +3,7 @@ import * as Week from '../models/Week';
 import * as Month from '../models/Month';
 import * as monthView from './monthView';
 import * as Year from '../models/Year';
+import * as yearView from './yearView';
 
 
 // ===================================
@@ -54,7 +55,7 @@ export const changeWeek = (date) => {
   displayWeekNr(date);
   Month.getMonthsWeeks();
   monthView.displayWeeks();
-  Year.displayMonths();
+  yearView.displayMonths();
 }
 
 
