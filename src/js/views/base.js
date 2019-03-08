@@ -16,6 +16,7 @@ export const elements = {
   popupTaskForm: document.querySelector('.popup-task__form'),
   popupTaskText: document.querySelector('.popup-task__form--text'),
   sectionItem: document.querySelector('.section__item'),
+  sections: document.querySelector('.sections'),
   sectionItemContent: document.querySelector('.section__item--content'),
   sectionItemInput: document.querySelector('.section__item--input'),
   month: document.querySelector('.month-name'),
