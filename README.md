@@ -9,4 +9,4 @@ Building using:
 * Vanilla JavaScript(ES6)
 
 
-![Planner app](My-planner-app.png)
+![Planner app](Learning_planner.png)
