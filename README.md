@@ -1,4 +1,4 @@
-# :calendar: My dev learning plan app 
+# :calendar: Learning planner
 :pencil: *in progress...*
 
 Building using:
