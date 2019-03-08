@@ -1,4 +1,6 @@
 .container {
+  position: relative;
+  margin-top: 6rem;
   padding: 3rem 4rem;
   top: 0;
 
@@ -9,6 +11,7 @@
 
   @media only screen and (max-width: $bp-medium) {
     padding: 1.5rem 3.5rem;
+    margin-top: 8rem;
   }
  
   @media only screen and (max-width: $bp-small) {
@@ -17,17 +20,30 @@
 }
 
 .header {
-  font-family: 'Rammetto One', cursive;
-  padding-bottom: 2rem;
-  color: $color-1;
+  font-family: 'Lemon', cursive;
+  padding: 1rem 2rem;
+  color:$color-7;
+  
+  background-color: rgba($color-6, 0.5);
+  z-index: 5000;
+
+  position: fixed;
+  overflow: hidden;
+  top:0;
+  width: 100%;
 
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  @media only screen and (max-width: $bp-medium) {
-    flex-direction: column;
-    text-align: center;
+  &__date {
+    padding-left: 1.5rem;
+  }
+}
+
+.app-title {
+  @media only screen and (max-width: 550px) {
+    display: none;
   }
 }
 

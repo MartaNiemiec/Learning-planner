@@ -3,12 +3,14 @@
 
 $color-white: #fff;
 
-$color-1:#0B3C5D;
-$color-2: #328CC1;
-$color-3:#F79E02;
-$color-4:#1D2731;
-$color-5:#F9BB4D;
-$color-red: #FF5049;
+$color-1:rgb(11, 60, 93);
+$color-2: rgb(50, 140, 193);
+$color-3:rgb(247, 158, 2);
+$color-4:rgb(29, 39, 49);
+$color-5:rgb(249, 187, 77);
+$color-6: rgb(0, 32, 68);
+$color-7: rgb(220, 235, 252);
+$color-red: rgb(255, 80, 73);
 
 // BREAKPOINTS
 $bp-largest: 75em;    //1200px/16px=75em | bp = breakpoint
@@ -40,29 +42,29 @@ html {
 
 body {
   font-family: 'Roboto', sans-serif;
-  background-image: linear-gradient(to left top, rgba($color-1 ,0.4), rgba($color-2,0.4)),url(../images/background-small.jpg);
+  background-image: linear-gradient(to right top, rgba($color-6, 0.9), rgba($color-2, 0.9)),url(../images/background2.jpg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
 
-  @media only screen and (min-width: $bp-small),
-         only screen and (min-resolution: 192dpi) and (min-width: 18.75em),
-         only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 18.75em) {
-          background-image: linear-gradient(to left top, rgba($color-1 ,0.4), rgba($color-2,0.4)),url(../images/background-medium.jpg);
-  }
+  // @media only screen and (min-width: $bp-small),
+  //        only screen and (min-resolution: 192dpi) and (min-width: 18.75em),
+  //        only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 18.75em) {
+  //         background-image: linear-gradient(to left top, rgba($color-1 ,0.4), rgba($color-2,0.4)),url(../images/background-medium.jpg);
+  // }
   
-  @media only screen and (min-resolution: 192dpi) and (min-width: $bp-small),
-         only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: $bp-small),
-         only screen and (min-width: $bp-largest) {
-          background-image: linear-gradient(to left top, rgba($color-1 ,0.4), rgba($color-2,0.4)),url(../images/background-large.jpg);
-  }
+  // @media only screen and (min-resolution: 192dpi) and (min-width: $bp-small),
+  //        only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: $bp-small),
+  //        only screen and (min-width: $bp-largest) {
+  //         background-image: linear-gradient(to left top, rgba($color-1 ,0.4), rgba($color-2,0.4)),url(../images/background-large.jpg);
+  // }
 
-  @media only screen and (min-resolution: 192dpi) and (min-width: $bp-largest),
-         only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: $bp-largest),
-         only screen and (min-width: 150em) {
-          background-image: linear-gradient(to left top, rgba($color-1 ,0.4), rgba($color-2,0.4)),url(../images/background.jpg);
-  }
+  // @media only screen and (min-resolution: 192dpi) and (min-width: $bp-largest),
+  //        only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: $bp-largest),
+  //        only screen and (min-width: 150em) {
+  //         background-image: linear-gradient(to left top, rgba($color-1 ,0.4), rgba($color-2,0.4)),url(../images/background.jpg);
+  // }
 }
 
 ::selection {
