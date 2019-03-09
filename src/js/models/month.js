@@ -42,7 +42,6 @@ export const generateWeeks = () => {
 export const getMonthsWeeks = () => {
   let currentMonth = Week.lastChoosedDay.toString().split(" ", 2)[1];
   let currentYear = Week.lastChoosedDay.toString().split(" ", 4)[3];
-  // console.log("currentMonth",currentMonth);
   generateWeeks()
   let weeksOfCurrentYear = weeks.filter(week => week.year == currentYear);
   let weeksOfCurrentMonth = weeksOfCurrentYear.filter(week => 
@@ -50,7 +49,6 @@ export const getMonthsWeeks = () => {
     week.firstDay.includes(currentMonth) && week.lastDay.includes("Jan") && week.year.includes(Number(currentYear)+1) || 
     week.lastDay.includes(currentMonth)
     );
-  // console.log("weeksOfCurrentMonth",weeksOfCurrentMonth);
   return weeksOfCurrentMonth;
 }
 
