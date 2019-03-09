@@ -41,7 +41,18 @@ class taskObject {
 
 
 // ===================================
-// // selection of the month or week and updating contents of the sections 
+// set check/unchecked icon class to the HTML
+export const setCheckIcon = (task) => {
+  const taskUncheckedIcon = "far fa-circle";
+  const taskCheckedIcon = "fas fa-check-circle";
+  let checkIcon;
+  task.done ? checkIcon = taskCheckedIcon : checkIcon = taskUncheckedIcon; 
+  return checkIcon;
+}
+
+
+// ===================================
+// selection of the month or week and updating contents of the sections 
 export const selectDate = (e) => {
   const target = e.target;
   if (ifTargetMatches(target, ".section__item--title")) {
@@ -202,6 +213,8 @@ export function addTask(e, arr) {
 
   let newDay;
 
+  //----------------------
+  //SET AN ARRRAY
   if (dataSection == "week") {
     arr = Week.daysArray;
   } else if (dataSection == "month") {
@@ -215,6 +228,7 @@ export function addTask(e, arr) {
     newDay = new Date(`2 ${currentDay}`);
     weekView.changeWeek(newDay)
   }
+
   const isInArray = arr.some(el => el.date == currentDay);
   const taskToEdit = this.children[0].placeholder;
 
