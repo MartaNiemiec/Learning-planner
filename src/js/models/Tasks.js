@@ -219,7 +219,7 @@ export function addTask(e, arr) {
     arr = Week.daysArray;
   } else if (dataSection == "month") {
     arr = Month.weeklyTasks;
-    //displaying in the week section the week to which one the task is adding
+    //displaying in the month section the week to which one the task is adding
     newDay = new Date(elements.popupTask.dataset.fulldate);
     weekView.changeWeek(newDay);
   } else if (dataSection == "year") {

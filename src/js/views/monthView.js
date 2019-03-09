@@ -15,7 +15,7 @@ export const displayMonth = (monthNumber) => {
 // display Week item
 const displayWeekItem = (el) => {
   const html = `
-              <div class="section__item" data-date="Week-${el.weekNr} ${el.year}" data-fulldate="${el.firstDay} ${el.year}">
+              <div class="section__item" data-date="Week-${el.weekNr} ${el.year}" data-fulldate="${el.lastDay} ${el.year}">
                 <h3 class="header-3 section__item--title">
                   <span class="month__week-nr">Week ${el.weekNr}</span>
                   <span class="month__dates">${el.firstDay.split(" ", 2)[0]}-${el.lastDay}</span>
@@ -52,7 +52,7 @@ const displayWeeklyTask = (isDone, task, index) => {
 
 // ===================================
 //display weeks with tasks
-const displayMonthsTasks = (index, el) => {
+const displayWeeksTasks = (index, el) => {
   const findWeek = Month.weeklyTasks.find(week => week.date == `Week-${el.weekNr} ${el.year}`);
   if (findWeek !== undefined) {
     const weekFromArray = findWeek;
@@ -73,6 +73,6 @@ export const displayWeeks = () => {
   elements.monthWeeks.innerHTML = "";
   Month.getMonthsWeeks().forEach((el,index) => {
     displayWeekItem(el);
-    displayMonthsTasks(index, el);
+    displayWeeksTasks(index, el);
   });
 }

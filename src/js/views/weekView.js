@@ -11,7 +11,6 @@ import { setCheckIcon } from '../models/Tasks';
 // display week's number in the title of the week section
 export const displayWeekNr = (date) => {
   elements.weekNumber.innerHTML = Week.weekNr(date);
-  console.log("displayWeekNr - date", date);
 }
 
 // ===================================
