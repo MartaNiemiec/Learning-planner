@@ -1,7 +1,7 @@
 # :calendar: Learning planner
 :pencil: *in progress...*
 
-Building using:
+Built using:
 * HTML
 * SCSS
 * Webpack
