@@ -28,8 +28,56 @@
   
   <!-- APP HEADER -->
     <div class="header">
-      <h1 class="header-1"><i class="fas fa-laptop-code"></i> <span class="app-title">Learning planner</span></h1>
-      <h1 class="header__date"></h1>
+      <h1 class="header-1 header__left"">
+        <i class="fas fa-laptop-code"></i> 
+        <span class="app-title">Learning planner</span>
+      </h1>
+      <div class="header__right">
+        <h1 class="header__date"></h1>
+        <i class="fas fa-list-alt header-1 header__icon"></i>
+        <div class="header__icon header__user">
+          <i class="fas fa-user header-1"></i>
+
+            <!-- REGISTER FORM -->
+          <form class="header__user--form">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="tname" required>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+            <label for="name">Password</label>
+            <input type="password" id="password" name="password" required>
+            <input class="button button__user button__register" type="submit" value="Register">
+          </form>
+
+            <!-- SIGN IN FORM -->
+          <!-- <form class="header__user--form">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+            <label for="name">Password</label>
+            <input type="password" id="password" name="password" required>
+            <input class="button button__user button__sign-in" type="submit" value="Sign in">
+          </form> -->
+
+            <!-- SIGN OUT FORM -->
+          <!-- <div class="header__user--form">
+            <div class="user-account">
+              <i class="fas fa-user-circle header-1"></i>
+              <p class="user-data">
+                <span class="user-name">
+                  Marta
+                </span>
+                <span class="user-email">
+                  marta@gmail.com
+                </span>
+              </p>
+            </div>
+            <p class="header__user--sign-out button button__user button__login">
+              <span>Sign out</span>
+              <i class="fas fa-sign-out-alt"></i></p>
+          </div> -->
+
+        </div>
+      </div>
     </div>
 <!-- CONTAINER -->
   <div class="container">
