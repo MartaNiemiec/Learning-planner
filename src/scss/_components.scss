@@ -32,6 +32,18 @@
     cursor: pointer;
     transition: all .2s;
     font-size: 1.5rem;
+
+    &__register {
+      margin-top: 3rem;
+      color: $color-white;
+      background-color: $color-red;
+      padding: 1rem 3rem;
+      border-radius: 2.5rem;
+
+      &:hover {
+        background-color: rgba($color-red, .9);
+      }
+    }
     
     &__add,
     &__close {

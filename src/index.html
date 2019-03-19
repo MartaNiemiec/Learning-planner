@@ -28,8 +28,26 @@
   
   <!-- APP HEADER -->
     <div class="header">
-      <h1 class="header-1"><i class="fas fa-laptop-code"></i> <span class="app-title">Learning planner</span></h1>
-      <h1 class="header__date"></h1>
+      <h1 class="header-1 header__left"">
+        <i class="fas fa-laptop-code"></i> 
+        <span class="app-title">Learning planner</span>
+      </h1>
+      <div class="header__right">
+        <h1 class="header__date"></h1>
+        <i class="fas fa-list-alt header-1 header__icon"></i>
+        <div class="header__icon header__user">
+          <i class="fas fa-user header-1"></i>
+          <form class="header__user--form">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="tname">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email">
+            <label for="name">Password</label>
+            <input type="password" id="password" name="password">
+            <input class="button button__register" type="submit" value="Register">
+          </form>
+        </div>
+      </div>
     </div>
 <!-- CONTAINER -->
   <div class="container">
