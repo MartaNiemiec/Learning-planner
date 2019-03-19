@@ -1,0 +1,123 @@
+.app-title {
+  @media only screen and (max-width: 550px) {
+    display: none;
+  }
+}
+
+
+.header {
+  font-family: 'Lemon', cursive;
+  color:$color-7;
+  
+  background-color: rgba($color-6, 0.5);
+  z-index: 5000;
+
+  position: fixed;
+  overflow: hidden;
+  top:0;
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__left {
+    padding-left: 1.5rem;
+  }
+  
+  &__right {
+    padding-left: 1.5rem;
+    display: flex;
+    align-items: center;
+  }
+
+  &__date {
+    padding: 1.5rem;
+  }
+
+  &__icon {
+    padding: 1.5rem;
+    cursor: pointer;
+    
+    &:hover {
+      color: $color-7;
+      background-color: $color-5;
+    }
+  }
+
+  &__user {
+    position: relative;
+    display: inline-block;
+
+    &--form {
+      display: none;
+      font-family: 'Roboto', sans-serif;
+      color: $color-white;
+      font-size: 1.8rem;
+      position: fixed;
+      background-color: $color-1;
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+      transform: translateY(1.5rem);
+      right: 0;
+
+      & input:not(:last-child) {
+        outline: none;
+        transition: all .3s;
+        border-bottom: 3px solid transparent;
+        margin: .5rem 3rem;
+        padding: .8rem;
+
+        &:active,
+        &:focus {
+          border-bottom: 3px solid $color-red;
+        }
+      }
+
+      & label:not(:first-child) {
+        margin-top: 1.5rem;
+      }
+
+      & > *:not(:last-child) {
+        padding-left: 3rem;
+        padding-right: 3rem;
+
+      }
+    }
+
+    &:hover &--form,
+    &:active &--form,
+    &:focus &--form{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+}
+
+.user-account {
+  display: flex;
+  align-items: center; 
+  padding: 1.5rem 0;
+
+  & i {
+    padding-right: 2rem;
+  }
+
+  &:hover {
+    background-color: rgba($color-2, 0.5);
+  }
+}
+
+.user-data {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  & :first-child {
+    padding-bottom: .5rem;
+  }
+}
+
+
+

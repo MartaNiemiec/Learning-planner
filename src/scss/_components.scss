@@ -13,7 +13,7 @@
   }
 
   &__input {
-    padding: 1rem;
+    padding: 2rem;
     text-align: center;
     border-radius: 2.5rem;
     border: none;
@@ -31,17 +31,36 @@
     outline: none;
     cursor: pointer;
     transition: all .2s;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
 
-    &__register {
-      margin-top: 3rem;
-      color: $color-white;
-      background-color: $color-red;
+    &__user {
+      margin-top: 2.5rem;
       padding: 1rem 3rem;
       border-radius: 2.5rem;
+      transition: all .3s;
+    }
+    
+    &__register {
+      color: $color-white;
+      background-color: $color-red;
 
       &:hover {
         background-color: rgba($color-red, .9);
+      }
+    }
+    
+    &__sign-in {
+      color: $color-white;
+      background-color: $color-3;
+      display: flex;
+      align-items: center;
+
+      & :last-child {
+        padding-left: 1rem;
+        font-size: 2rem;
+      }
+      &:hover {
+        background-color: rgba($color-5, 1);
       }
     }
     
