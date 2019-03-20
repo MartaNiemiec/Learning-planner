@@ -10,7 +10,7 @@ import { allIcons, searchIcons, changeSelected } from '../models/Skills';
  */
 const renderIcons = () => {
   allIcons.forEach(icon => {
-    const markup = `<i class="skills__icon devicon-${icon.name}-${icon.font} ${icon.selectedClass}"></i>`;
+    const markup = `<i class="skills__icon ${icon.name} ${icon.selectedClass}"></i>`;
     elements.popupIcons.insertAdjacentHTML('beforeend', markup);
   })
 }
@@ -72,7 +72,7 @@ export const updateSkills = () => {
   // show all selected icons in the skills section 
   allIcons.forEach(icon => {
     if (icon.selectedClass === 'selected-icon') {
-      const markup = `<i class="skills__icon devicon-${icon.name}-${icon.font}"></i>`;
+      const markup = `<i class="skills__icon ${icon.name}"></i>`;
       elements.skills.insertAdjacentHTML('beforeend', markup);
     }
   });
@@ -98,7 +98,7 @@ export const displaySearchedIcons = () => {
   // create a new array witch searched icons 
   const html = icons.map(icon => {
     return `
-    <i class="skills__icon devicon-${icon.name}-${icon.font} ${icon.selectedClass}"></i>
+    <i class="skills__icon ${icon.name} ${icon.selectedClass}"></i>
     `
   }).join('');
   // display searched icons
@@ -111,7 +111,7 @@ export const displaySearchedIcons = () => {
  change class of selected icon
 ==================================================
  */
-const changeClass = target => {
+const toggleSelectedClass = target => {
   if (target.tagName === 'I') {
     target.classList.toggle("selected-icon");
   }
@@ -125,27 +125,25 @@ const changeClass = target => {
  */
 export const selectIcon = (e) => {
   const target = e.target;
-  // selectedIconClass, icon name and font took from the html
-  let selectedIconClass, iconName, iconFont;
-
-  // get the icon name and font from the html after click on the <i> element
-  if (target.tagName === 'I') {
-    iconName = target.classList.item(1).split("-")[1];
-    iconFont = target.classList.item(1).replace(`devicon-${iconName}-`, '');
-  }
-
-  // toggle "selected-icon" classname 
-  changeClass(target);
-
-  // select a third class of an icon which match for the selecting class  
-  // update selected class from html(after toggling it) 
-  if (target.classList.item(2) === "selected-icon") {
-    selectedIconClass = target.classList.item(2);
-  } 
-  else {
-    selectedIconClass = "";
-  }
+  let selectedClass, iconClass, iconClassName;
   
-  // update icon.selectedClass (in the array allIcons) clicked icon as the same as in the html
-  changeSelected(iconName, iconFont, selectedIconClass);
+  // check if the target has a tagname of "i"
+  if (target.tagName === 'I') {
+    // take iconClass from the DOM
+    iconClass = target.classList.value.replace("skills__icon ", '')
+    // toggle "selected-icon" class
+    toggleSelectedClass(target);
+
+    // set selectedClass and iconClassName
+    if (target.classList.value.includes("selected-icon")) {
+      selectedClass = "selected-icon";
+      iconClassName = iconClass;
+    } else {
+      selectedClass = "";
+      iconClassName = iconClass.replace("selected-icon", "")
+    }
+
+    // change icon.selectedClass in the allIcons array
+    changeSelected(iconClassName, selectedClass);
+  }
  }

@@ -9,7 +9,18 @@
   }
 
   &__icon {
-    font-size: 5rem;
+    // font-size: 5rem;
+    // margin: .5rem;
+    // padding: .5rem;
+    // background-color: $color-white;
+    // border-radius: .5rem;
+    // align-self: flex-start;
+    // cursor: pointer;
+    // transition: all .2s;
+
+    font-size: 4rem;
+    width: 6rem;
+    height: 6rem;
     margin: .5rem;
     padding: .5rem;
     background-color: $color-white;
@@ -18,8 +29,13 @@
     cursor: pointer;
     transition: all .2s;
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     &:hover {
-      box-shadow: 2px 2px 5px 0px rgba( 0, 0, 0, 0.2 );
+      transform: scale(1.1,1.1);
+      box-shadow: 2px 2px 12px -3px rgba(0,0,0,0.5);
     }
   }
 

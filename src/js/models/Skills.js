@@ -1,4 +1,4 @@
-import { devicons } from '../devicon.js'
+import { devicons, fontAwesomeBrand } from '../devicon.js'
 
 /*
 ==================================================
@@ -11,8 +11,7 @@ export const allIcons = [];
 allIcons = [
   {
     name: name,
-    font: fontVersion,
-    selectedClass: 'selected-icon' of ''
+    selectedClass: 'selected-icon' or ''
   }
 ];
 */
@@ -24,15 +23,21 @@ allIcons = [
 ==================================================
  */
 export const getIcons = () => {
+  //----- DEVICONS ----- 
   devicons.forEach(el => {
     // if an icon has more than one version display all of them
     if (el.versions.font.length > 1) {
       for (let i = 0; i < el.versions.font.length; i++) {
-        allIcons.push({name: el.name, font: el.versions.font[i], selectedClass: ''});
+        allIcons.push({name:`devicon-${el.name}-${el.versions.font[i]}`, selectedClass: ''});
       }
     } else {
-        allIcons.push({name: el.name, font: String(el.versions.font), selectedClass: ''});
+        allIcons.push({name:`devicon-${el.name}-${el.versions.font}`, selectedClass: ''});
     }
+  })
+  
+  //----- FONTAWESOME ----- 
+  fontAwesomeBrand.forEach(el => {
+    allIcons.push({name: el, selectedClass: ''})
   })
 }
 
@@ -43,14 +48,15 @@ export const getIcons = () => {
 ==================================================
  */
 
-export const changeSelected = (name, font, selectedIconClass) => {
+export const changeSelected = (iconClassName, selectedClass) => {
   allIcons.forEach(icon => {
-    // looking for clicked icon in the allIcons array by matching name and font from the html and allIcons array
-    const nameIcon = icon.name.match(`${name}$`, 'gi');  
-    const fontIcon = String(icon.font).match(`${font}$`, 'gi');
-
-    // when the icon name and font are matched (between html and array) then update icon.selected class in the array for the same as is in the html
-    if (nameIcon && fontIcon) icon.selectedClass = selectedIconClass;
+    // comparing icon name from the allIcons array with the iconClassName in the HTML DOM 
+    if (icon.name.split(' ').join('') === iconClassName.split(' ').join('')) {
+      //update icon.selectedClass in the allIcons array
+      icon.selectedClass = selectedClass;
+    } else {
+      return;
+    }
   })
 };
 
@@ -63,7 +69,13 @@ export const changeSelected = (name, font, selectedIconClass) => {
 
  export const searchIcons = (wordToMatch, iconsArr) => {
     return iconsArr.filter(icon => {
-      const regex = new RegExp(`^${wordToMatch}`, 'gi');
-      return icon.name.match(regex);
+      // looking for the icons corresponding to the imputted value
+      let iconName;
+      if (icon.name.includes("devicon")) {
+        iconName = icon.name.split('-')[1]
+      } else if (icon.name.includes("fab")) {
+        iconName = icon.name.split(' ')[1].replace("fa-", "")
+      }
+      return iconName.includes(wordToMatch);
     });
  }
