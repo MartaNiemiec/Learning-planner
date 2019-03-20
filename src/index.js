@@ -18,7 +18,8 @@ import * as Tasks from './js/models/Tasks'
  */
 // INIT function generating skills icons and dates, displaying all dates
 (function init() {
-  elements.headerDate.innerHTML = `${Week.dayNr} ${Year.months[Week.month]} ${Week.year}`;
+  let weekNr =  Week.month < 10 ? "0" + Week.month : Week.month;
+  elements.headerDate.innerHTML = `${Week.dayNr}.${weekNr}.${Week.year}`;
   // getting all icons from the devicon.js file and put them into allIcons array
   Skills.getIcons();
   // display all week days
