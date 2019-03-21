@@ -1,5 +1,5 @@
 .app-title {
-  @media only screen and (max-width: 550px) {
+  @media only screen and (max-width: $bp-small) {
     display: none;
   }
 }
@@ -33,6 +33,10 @@
 
   &__date {
     padding: 1.5rem;
+    
+    @media only screen and (max-width: $bp-large) {
+      display: none;
+    }
   }
 
   &__icon {
