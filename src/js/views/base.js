@@ -1,5 +1,5 @@
 export const elements = {
-  headerDate: document.querySelector('.header__date'),
+  navDate: document.querySelector('.nav__date'),
   skills: document.querySelector('.skills__icons'),
   popup: document.querySelector('.popup'),
   popupIcons: document.querySelector('.popup__icons'),

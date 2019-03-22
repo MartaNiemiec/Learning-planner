@@ -20,7 +20,7 @@ import * as Tasks from './js/models/Tasks'
 (function init() {
   let week =  Week.month + 1;
   let weekNr =  week < 10 ? "0" + week : week;
-  elements.headerDate.innerHTML = `${Week.dayNr}.${weekNr}.${Week.year}`;
+  elements.navDate.innerHTML = `${Week.dayNr}.${weekNr}.${Week.year}`;
   // getting all icons from the devicon.js file and put them into allIcons array
   Skills.getIcons();
   // display all week days

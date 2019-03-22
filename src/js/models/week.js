@@ -1,7 +1,7 @@
 import { changeWeek } from '../views/weekView';
 
 
-// DATE ON HEADER
+// DATE ON NAV
 export let todayDate = new Date();
 export let dayNr = todayDate.getDate();
 export let month = todayDate.getMonth();
