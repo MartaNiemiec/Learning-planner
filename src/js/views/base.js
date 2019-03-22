@@ -27,12 +27,8 @@ export const elements = {
   yearMonths: document.querySelector('.year__months'),
   nextYear: document.querySelector('.button__next--year'),
   previousYear: document.querySelector('.button__previous--year'),
-  // nav: document.querySelector('.nav__right'),
   userIcon: document.querySelector('.nav__user'),
-  userForm: document.querySelector('.nav__user--form'),
-  // registerBtn: document.querySelector('.button__register'),
-  // signInBtn: document.querySelector('.button__sign-in'),
-  // signOutBtn: document.querySelector('.button__sign-out')
+  userForm: document.querySelector('.nav__user--form')
 }
 
 

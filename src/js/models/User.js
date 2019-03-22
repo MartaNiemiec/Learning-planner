@@ -1,5 +1,6 @@
-import { elements } from '../views/base';
+// import { elements } from '../views/base';
 import * as userView from '../views/userView'; 
+import { ifTargetMatches } from '../models/Tasks'; 
 
 /*
 ============================
@@ -7,8 +8,8 @@ import * as userView from '../views/userView';
 ============================
  */
 export const state = {
-  route: "home",
-  isSignIn: false
+  route: "signin",
+  isSignedIn: false
 };
 /*
   state = {
@@ -17,16 +18,6 @@ export const state = {
   }
 */
 
-/*
-  state = {
-  route: "home",
-  isSignIn: false
-  };
-*/
-const ifTargetMatches = (target, selector) => {
-  const ifTargetOrParentMatches = (target.matches(selector) || target.parentNode.matches(selector));
-  return ifTargetOrParentMatches;
-}
 
 export const setRouteState = (e) => {
   let target = e.target;
@@ -36,14 +27,15 @@ export const setRouteState = (e) => {
   const signInBtn = ifTargetMatches(target, '.button__sign-in');
   const signOutBtn = ifTargetMatches(target, '.button__sign-out');
 
-  if (registerBtn) {
+  if (registerBtn || signInBtn) {
     state.route = "home";
-  } else if (signInBtn) {
-    state.route = "home";
+    state.isSignedIn = true;
   } else if (signOutBtn) {
     state.route = "signin";
+    state.isSignedIn = false;
   } else if (registerLink) {
     state.route = "register";
+    state.isSignedIn = false;
   } else {
     console.log(target);
   }
