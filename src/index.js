@@ -8,7 +8,11 @@ import * as Year from './js/models/Year';
 import * as yearView from './js/views/yearView';
 import * as Skills from './js/models/Skills';
 import * as SkillsView from './js/views/skillsView';
-import * as Tasks from './js/models/Tasks'
+import * as Tasks from './js/models/Tasks';
+// import * as userView from './js/views/userView';
+import * as userView from './js/views/userView';
+import * as User from './js/models/User';
+
 
 
 /*
@@ -31,6 +35,17 @@ import * as Tasks from './js/models/Tasks'
   yearView.displayMonths();
 })()
 
+
+
+
+/*
+============================
+  NAV
+============================
+ */
+// elements.userIcon.addEventListener('mouseenter')
+elements.userIcon.addEventListener('mouseenter', userView.signin)
+elements.userIcon.addEventListener('click', User.setRouteState)
 
 /*
 ============================

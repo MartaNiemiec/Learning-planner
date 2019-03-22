@@ -39,6 +39,14 @@
       border-radius: 2.5rem;
       transition: all .3s;
     }
+
+    &__sign-out {
+      background-color: rgba($color-2, 0.3);
+
+      &:hover {
+        background-color: rgba($color-2, 0.5);
+      }
+    }
     
     &__register {
       color: $color-white;
