@@ -28,7 +28,8 @@ export const elements = {
   nextYear: document.querySelector('.button__next--year'),
   previousYear: document.querySelector('.button__previous--year'),
   userIcon: document.querySelector('.nav__user'),
-  userForm: document.querySelector('.nav__user--form')
+  userForm: document.querySelector('.nav__user--form'),
+  userButton: document.querySelector('.button__user')
 }
 
 

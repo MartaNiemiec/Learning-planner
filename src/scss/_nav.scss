@@ -54,7 +54,10 @@
     display: inline-block;
 
     &--form {
-      display: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    
       font-family: 'Roboto', sans-serif;
       color: $color-white;
       font-size: 1.8rem;
@@ -98,13 +101,13 @@
       }
     }
 
-    &:hover &--form,
-    &:active &--form,
-    &:focus &--form{
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+    // &:hover &--form,
+    // &:active &--form,
+    // &:focus &--form{
+    //   display: flex;
+    //   flex-direction: column;
+    //   align-items: center;
+    // }
   }
 }
 

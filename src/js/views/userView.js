@@ -41,21 +41,58 @@ export const getProfile = (name, email) => {
           return html;
 }
 
-export const signin = () => {
-  elements.userForm.innerHTML = '';
+
+/*
+===============================
+  DISPLAY FORM
+===============================
+*/
+
+export const displayForm = (e) => {
+  const target = e.target;
+  elements.userForm.classList.toggle('hide');
+  setForm();
+}
+
+
+/*
+===============================
+  SET FORM
+===============================
+*/
+export const setForm = () => {
   const route = User.state.route;
+  elements.userForm.innerHTML = '';
   let markup;
 
   if (route === 'signin') {
     markup = getSignin();
-    document.querySelector('.fa-user').classList.remove('logged-in');
   } else if (route === 'register') {
     markup = getRegister();
-    document.querySelector('.fa-user').classList.remove('logged-in');
   } else if (route === 'home') {
     markup = getProfile('user name', 'email@email.com');
-    document.querySelector('.fa-user').classList.add('logged-in');
   }
-  elements.userForm.insertAdjacentHTML('beforeend', markup);
 
+  elements.userForm.insertAdjacentHTML('beforeend', markup);
+}
+
+
+/*
+===============================
+  SET SING IN MARK (GREEN DOT)
+===============================
+*/
+export const setSignInMark = (isSignIn) => {
+  const greenDot = document.querySelector('.fa-user');
+  isSignIn ? greenDot.classList.add('logged-in') : greenDot.classList.remove('logged-in');
+}
+
+
+/*
+===============================
+  DISPLAY FORM
+===============================
+*/
+export const hideForm = () => {
+  elements.userForm.classList.add('hide');
 }

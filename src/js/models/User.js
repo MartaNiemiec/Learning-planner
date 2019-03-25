@@ -1,6 +1,7 @@
 // import { elements } from '../views/base';
 import * as userView from '../views/userView'; 
 import { ifTargetMatches } from '../models/Tasks'; 
+import { elements } from '../views/base';
 
 /*
 ============================
@@ -19,9 +20,31 @@ export const state = {
 */
 
 
-export const setRouteState = (e) => {
+/*
+===============================
+  GET FORM
+===============================
+*/
+export const getForm = (e) => {
   let target = e.target;
+  
+  if (ifTargetMatches(target, '.button__user')) {
+    setRouteState(target);
+    userView.setForm();
+    userView.hideForm();
+  } else if (ifTargetMatches(target, '.register-link')) {
+    setRouteState(target);
+    userView.setForm();
+  }
+}
 
+
+/*
+===============================
+  SET ROUTE STATE
+===============================
+*/
+ const setRouteState = (target) => {
   const registerLink = ifTargetMatches(target, '.register-link');
   const registerBtn = ifTargetMatches(target, '.button__register');
   const signInBtn = ifTargetMatches(target, '.button__sign-in');
@@ -40,6 +63,6 @@ export const setRouteState = (e) => {
     console.log(target);
   }
 
-  userView.signin();
+  userView.setSignInMark(state.isSignedIn)
 }
 
