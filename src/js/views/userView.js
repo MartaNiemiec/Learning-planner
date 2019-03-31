@@ -8,7 +8,8 @@ export const getSignin = () => {
             <input type="email" id="email" name="email" required>
             <label for="name">Password</label>
             <input type="password" id="password" name="password" required>
-            <input class="button button__user button__sign-in" type="submit" value="Sign in">
+            <button class="button button__user button__sign-in">Sign in</button>
+            
             <a href="#" class="register-link">Register</a>`
   return html;
 }
@@ -21,7 +22,7 @@ export const getRegister = () => {
             <input type="email" id="email" name="email" required>
             <label for="name">Password</label>
             <input type="password" id="password" name="password" required>
-            <input class="button button__user button__register" type="submit" value="Register">`
+            <button class="button button__user button__register">Register</button>`
           return html;
 }
 
@@ -41,30 +42,13 @@ export const getProfile = (name, email) => {
           return html;
 }
 
-
-/*
-===============================
-  DISPLAY FORM
-===============================
-*/
-
-export const displayForm = (e) => {
-  const target = e.target;
-  elements.userForm.classList.toggle('hide');
-  setForm();
+export const toggleFormHideClass = () => {
+   elements.userForm.classList.toggle('hide');
 }
 
-
-/*
-===============================
-  SET FORM
-===============================
-*/
-export const setForm = () => {
-  const route = User.state.route;
-  elements.userForm.innerHTML = '';
+const setForm = () => {
   let markup;
-
+  const route = User.state.route;
   if (route === 'signin') {
     markup = getSignin();
   } else if (route === 'register') {
@@ -72,27 +56,104 @@ export const setForm = () => {
   } else if (route === 'home') {
     markup = getProfile('user name', 'email@email.com');
   }
-
-  elements.userForm.insertAdjacentHTML('beforeend', markup);
+  return markup;
 }
 
 
-/*
-===============================
-  SET SING IN MARK (GREEN DOT)
-===============================
-*/
 export const setSignInMark = (isSignIn) => {
   const greenDot = document.querySelector('.fa-user');
   isSignIn ? greenDot.classList.add('logged-in') : greenDot.classList.remove('logged-in');
 }
 
 
+export const displayForm = () => {
+  // clean box for form 
+  elements.userForm.innerHTML = '';
+  // set up form based on the current state
+  const markup = setForm();
+  // display/hide form
+  toggleFormHideClass();
+  
+  elements.userForm.insertAdjacentHTML('beforeend', markup);
+}
+
+
+
+
+
+
+
+
+
+
+
 /*
 ===============================
   DISPLAY FORM
 ===============================
+
+
+export const displayForm = (e) => {
+  const target = e.target;
+ 
+  setForm(target);
+  // console.log("target.classList -> ",target.classList
+  // );
+}
 */
+
+/*
+===============================
+  SET FORM
+===============================
+
+export const setForm = (target) => {
+  const route = User.state.route;
+  elements.userForm.innerHTML = '';
+  let markup;
+  
+  if (route === 'signin') {
+    markup = getSignin();
+    // target.parentNode.children[1].id = 'signin';
+  } else if (route === 'register') {
+    markup = getRegister();
+    // target.parentNode.children[1].id = 'register';
+  } else if (route === 'home') {
+    markup = getProfile('user name', 'email@email.com');
+    // target.parentNode.children[1].id = 'profile';
+  }
+
+
+
+  if (target === undefined) {
+    return
+  } else if (target.classList.contains('nav__user')) {
+    // console.log("target -> ",target.parentNode.children[1]);
+    target.parentNode.children[1].id = route;
+  }
+  elements.userForm.insertAdjacentHTML('beforeend', markup);
+
+  // setSignInMark(target)
+}
+*/
+
+/*
+===============================
+  SET SING IN MARK (GREEN DOT)
+===============================
+
+export const setSignInMark = (isSignIn) => {
+  const greenDot = document.querySelector('.fa-user');
+  isSignIn ? greenDot.classList.add('logged-in') : greenDot.classList.remove('logged-in');
+}
+*/
+
+/*
+===============================
+  DISPLAY FORM
+===============================
+
 export const hideForm = () => {
   elements.userForm.classList.add('hide');
 }
+*/

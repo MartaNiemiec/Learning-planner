@@ -43,8 +43,11 @@ import * as User from './js/models/User';
   NAV
 ============================
  */
-elements.userForm.addEventListener('click', User.getForm)
-elements.userIcon.addEventListener('click', userView.displayForm)
+// elements.userForm.addEventListener('click', User.setRouteState);
+// elements.userForm.addEventListener('click', User.getForm);
+elements.userIcon.addEventListener('click', userView.displayForm);
+
+elements.userForm.addEventListener('click', User.setRoute);
 
 
 

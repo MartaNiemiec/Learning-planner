@@ -2,6 +2,7 @@
 import * as userView from '../views/userView'; 
 import { ifTargetMatches } from '../models/Tasks'; 
 import { elements } from '../views/base';
+import { isNullOrUndefined } from 'util';
 
 /*
 ============================
@@ -10,7 +11,14 @@ import { elements } from '../views/base';
  */
 export const state = {
   route: "signin",
-  isSignedIn: false
+  isSignedIn: false,
+  // user: {
+  //   id: '',
+  //   name: '',
+  //   email: '',
+  //   // tasks: [{}],
+  //   registered: ''
+  // }
 };
 /*
   state = {
@@ -19,50 +27,247 @@ export const state = {
   }
 */
 
-
-/*
-===============================
-  GET FORM
-===============================
-*/
-export const getForm = (e) => {
-  let target = e.target;
-  
-  if (ifTargetMatches(target, '.button__user')) {
-    setRouteState(target);
-    userView.setForm();
-    userView.hideForm();
-  } else if (ifTargetMatches(target, '.register-link')) {
-    setRouteState(target);
-    userView.setForm();
-  }
+const onRouteChange = (route) => {
+  state.route = route;
 }
+
+
+export const setRoute = (e) => {
+  const target = e.target;
+  const registerLink = ifTargetMatches(target, '.register-link');
+  const registerBtn = ifTargetMatches(target, '.button__register');
+  const signInBtn = ifTargetMatches(target, '.button__sign-in');
+  const signOutBtn = ifTargetMatches(target, '.button__sign-out');
+  console.log(target);
+  if (signInBtn || registerBtn) {
+    onRouteChange('home');
+    userView.setSignInMark(true)
+  } else if (registerLink) {
+    onRouteChange('register');
+    userView.setSignInMark(false);
+    userView.displayForm();
+  } else if (signOutBtn) {
+    onRouteChange('signin');
+    userView.setSignInMark(false);
+  }
+  userView.displayForm();
+} 
+
+
+
+
+
+
+/* 
+IF STATE == SIGNIN -> SIGNIN FORM
+
+
+onRouteChange(route) = after click on button signIn go to routr "home"
+
+{if route home -> signOut btn -> signIn}
+else 
+  {if route signInForm -> register or home
+
+  if route registerForm -> register or home}
+
+
+  ??? if SignedIn ->  signOut else
+  ??? signed in or register
+
+  if route == signOut -> isSigneIn = false 
+  else if route == home -> isSignIn = true
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /*
 ===============================
   SET ROUTE STATE
 ===============================
-*/
- const setRouteState = (target) => {
+
+export const setRouteState = (e) => {
+  const target = e.target;
   const registerLink = ifTargetMatches(target, '.register-link');
   const registerBtn = ifTargetMatches(target, '.button__register');
   const signInBtn = ifTargetMatches(target, '.button__sign-in');
   const signOutBtn = ifTargetMatches(target, '.button__sign-out');
 
-  if (registerBtn || signInBtn) {
-    state.route = "home";
-    state.isSignedIn = true;
-  } else if (signOutBtn) {
-    state.route = "signin";
-    state.isSignedIn = false;
-  } else if (registerLink) {
+  // if (registerBtn || signInBtn) {
+  //   state.route = "home";
+  //   state.isSignedIn = true;
+  //   // target.parentNode.id = 'profile';
+  // } else if (signOutBtn) {
+  //   state.route = "signin";
+  //   state.isSignedIn = false;
+  //   // target.parentNode.id = 'signin';
+  // } else 
+  if (registerLink) {
+    // target.parentNode.id = 'register';
     state.route = "register";
     state.isSignedIn = false;
+    userView.displayForm('');
   } else {
     console.log(target);
   }
-
-  userView.setSignInMark(state.isSignedIn)
+  // userView.setSignInMark(state.isSignedIn)
 }
+*/
+
+
+/*
+============================
+ signInUser
+============================
+
+
+const signInUser = {
+  signInEmail: '',
+  signInPassword: ''
+}
+ */
+
+
+/*
+============================
+ FETCH
+============================
+
+fetch('http://localhost:3000/')
+  .then(response => response.json())
+  .then(console.log)
+
+  const getState = () => {
+    console.log(state.route);
+    return state.route
+  }
+ */
+
+/*
+===============================
+  GET FORM
+===============================
+
+export const getForm = (e) => {
+  setRouteState(e);
+  const route = getState();
+  console.log(route);
+  let target = e.target;
+  // const email = target.email.value;
+  // const password = target.password.value;
+  // const name = target.name.value;
+
+
+  
+  console.log(target);
+  // console.log("target.parentNode --> ", target);
+  if (state.route === 'register') {
+    // register(email, password, name);
+    
+    console.log(state.route);
+
+  }else if (state.route === 'signin') {
+    signIn(email, password);
+    console.log(state.route);
+
+  }
+  // if (ifTargetMatches(target, '.button__user')) {
+  //   setRouteState(target);
+  //   userView.setForm();
+  //   userView.hideForm();
+  // } else if (ifTargetMatches(target, '.register-link')) {
+  //   setRouteState(target);
+  //   userView.setForm();
+  // } 
+  // console.log("target", document.forms[0]);
+}
+
+const signIn = (email, password) => {
+  fetch('http://localhost:3000/signin', {
+    method: 'post',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      email: email,
+      password: password
+    })
+  })
+    .then(response => response.json())
+    .then(data => {
+      if (data === 'success') {
+        state.route = "home";
+        state.isSignedIn = true;
+        // console.log(state);
+        userView.displayForm('');
+        userView.setSignInMark(state.isSignedIn)
+      }
+    })
+}
+
+
+const registeredUser = {
+  email: '',
+  password: '',
+  name:''
+}
+
+
+const register = (email, password, name) => {
+  fetch('http://localhost:3000/register', {
+    method: 'post',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      email: email,
+      password: password,
+      name: name
+    })
+  })
+    .then(response => response.json())
+    .then(user => {
+      if (user) {
+        loadUser(user)
+        state.route = "home";
+        state.isSignedIn = true;
+        // console.log(state);
+        userView.displayForm('');
+        userView.setSignInMark(state.isSignedIn)
+      }
+    })
+}
+
+const loadUser = (data) => {
+  state.user = {
+    id: data.id,
+    name: data.name,
+    email: data.email,
+    tasks: data.tasks,
+    registered: data.joined
+  }
+}
+
+
+*/
 
