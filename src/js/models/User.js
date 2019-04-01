@@ -12,13 +12,13 @@ import { isNullOrUndefined } from 'util';
 export const state = {
   route: "signin",
   isSignedIn: false,
-  // user: {
-  //   id: '',
-  //   name: '',
-  //   email: '',
-  //   // tasks: [{}],
-  //   registered: ''
-  // }
+  user: {
+    id: '',
+    name: '',
+    email: '',
+    // tasks: [{}],
+    registered: ''
+  }
 };
 /*
   state = {
@@ -39,14 +39,18 @@ export const setRoute = (e) => {
   const signInBtn = ifTargetMatches(target, '.button__sign-in');
   const signOutBtn = ifTargetMatches(target, '.button__sign-out');
   
-  if (signInBtn || registerBtn) {
+  if (signInBtn) {
     onSubmitSignIn()
     // onRouteChange('home');
     // userView.setSignInMark(true)
     userView.displayForm();
+  } else if (registerBtn) {
+    onSubmitRegister();
+    userView.displayForm();
   } else if (registerLink) {
     onRouteChange('register');
     userView.setSignInMark(false);
+    userView.displayForm();
     userView.displayForm();
   } else if (signOutBtn) {
     onRouteChange('signin');
@@ -101,7 +105,7 @@ fetch('http://localhost:3000/')
  signInUser
 ============================
  */
-const signInUser = {
+export const signInUser = {
   signInEmail: '',
   signInPassword: ''
 }
@@ -137,28 +141,87 @@ const signIn = () => {
     })
   })
     .then(response => response.json())
-    .then(data => {
-      console.log(data);
-      if (data === 'success') {
+    // .then(data => {
+    //   console.log(data);
+    //   if (data === 'success') {
+    //     onRouteChange('home');
+    //     state.isSignedIn = true;
+    //     userView.setSignInMark(state.isSignedIn);
+    //   } else if (data !== 'success'){
+    //     console.log("error");
+    //     userView.displayForm('');
+    //   }
+    // })
+    .then(user => {
+      console.log(user);
+      if (user.id) {
+        loadUser(user);
         onRouteChange('home');
         state.isSignedIn = true;
         userView.setSignInMark(state.isSignedIn);
-      } else if (data !== 'success'){
+      } else if (!user.id){
         console.log("error");
         userView.displayForm('');
       }
     })
-    console.log(state);
+    console.log(signInUser);
 }
 
 
+const registeredUser = {
+  email: '',
+  password: '',
+  name:''
+}
 
+const onSubmitRegister = () => {
+  const registerName = document.querySelector(".registerName").value;
+  const registerEmail = document.querySelector(".registerEmail").value;
+  const registerPassword = document.querySelector(".registerPassword").value;
+  registeredUser.email = registerEmail;
+  registeredUser.password = registerPassword;
+  registeredUser.name = registerName;
 
+  register();
+  console.log(registeredUser);
+}
 
+const loadUser = (data) => {
+  state.user = {
+    id: data.id,
+    name: data.name,
+    email: data.email,
+    // tasks: data.tasks,
+    registered: data.joined
+  }
+}
 
-
-
-
+const register = () => {
+  fetch('http://localhost:3000/register', {
+    method: 'post',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      email: registeredUser.email,
+      password: registeredUser.password,
+      name: registeredUser.name
+    })
+  })
+    .then(response => response.json())
+    .then(user => {
+      console.log("user -->  ", user);
+      if (user) {
+        loadUser(user.id);
+        onRouteChange('home');
+        state.isSignedIn = true;
+        userView.setSignInMark(state.isSignedIn);
+      } else if (!user.id){
+        console.log("error");
+        userView.displayForm('');
+      }
+    })
+    console.log("state -->  ", state);
+    console.log("registeredUser -->  ", registeredUser);
+}
 
 
 
@@ -247,11 +310,6 @@ export const getForm = (e) => {
 
 
 
-const registeredUser = {
-  email: '',
-  password: '',
-  name:''
-}
 
 
 const register = (email, password, name) => {

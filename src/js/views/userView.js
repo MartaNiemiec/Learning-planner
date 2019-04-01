@@ -65,6 +65,9 @@ export const setSignInMark = (isSignIn) => {
   isSignIn ? greenDot.classList.add('logged-in') : greenDot.classList.remove('logged-in');
 }
 
+const toggleActiveUserIcon = () => {
+  elements.navIcon.classList.toggle('nav__icon--active');
+}
 
 export const displayForm = () => {
   // clean box for form 
@@ -73,6 +76,7 @@ export const displayForm = () => {
   const markup = setForm();
   // display/hide form
   toggleFormHideClass();
+  toggleActiveUserIcon()
   
   elements.userForm.insertAdjacentHTML('beforeend', markup);
 }

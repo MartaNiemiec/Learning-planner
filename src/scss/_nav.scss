@@ -49,6 +49,11 @@
     }
   }
 
+  &__icon--active {
+    color: $color-7;
+    background-color: $color-5;
+  }
+
   &__user {
     position: relative;
     display: inline-block;
