@@ -5,9 +5,9 @@ import * as User from '../models/User';
 export const getSignin = () => {
   const html = `
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
+            <input class="signInEmail" type="email" id="email" name="email" required>
             <label for="name">Password</label>
-            <input type="password" id="password" name="password" required>
+            <input class="signInPassword" type="password" id="password" name="password" required>
             <button class="button button__user button__sign-in">Sign in</button>
             
             <a href="#" class="register-link">Register</a>`
@@ -17,11 +17,11 @@ export const getSignin = () => {
 export const getRegister = () => {
   const html = `
             <label for="name">Name</label>
-            <input type="text" id="name" name="name" required>
+            <input class="registerName" type="text" id="name" name="name" required>
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
+            <input class="registerEmail" type="email" id="email" name="email" required>
             <label for="name">Password</label>
-            <input type="password" id="password" name="password" required>
+            <input class="registerPassword" type="password" id="password" name="password" required>
             <button class="button button__user button__register">Register</button>`
           return html;
 }

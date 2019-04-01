@@ -38,10 +38,12 @@ export const setRoute = (e) => {
   const registerBtn = ifTargetMatches(target, '.button__register');
   const signInBtn = ifTargetMatches(target, '.button__sign-in');
   const signOutBtn = ifTargetMatches(target, '.button__sign-out');
-  console.log(target);
+  
   if (signInBtn || registerBtn) {
-    onRouteChange('home');
-    userView.setSignInMark(true)
+    onSubmitSignIn()
+    // onRouteChange('home');
+    // userView.setSignInMark(true)
+    userView.displayForm();
   } else if (registerLink) {
     onRouteChange('register');
     userView.setSignInMark(false);
@@ -49,8 +51,8 @@ export const setRoute = (e) => {
   } else if (signOutBtn) {
     onRouteChange('signin');
     userView.setSignInMark(false);
-  }
-  userView.displayForm();
+    userView.displayForm();
+  } 
 } 
 
 
@@ -79,16 +81,75 @@ else
 */
 
 
+/*
+============================
+ FETCH
+============================
+ */
+fetch('http://localhost:3000/')
+  .then(response => response.json())
+  .then(console.log)
+
+  // const getState = () => {
+  //   console.log(state.route);
+  //   return state.route
+  // }
 
 
+/*
+============================
+ signInUser
+============================
+ */
+const signInUser = {
+  signInEmail: '',
+  signInPassword: ''
+}
+
+// const onEmailChange = (event) => {
+//  signInUser.signInEmail = event.target.value
+// }
 
 
+// const onPasswordChange = (event) => {
+//   signInUser.signInPassword = event.target.value
+// }
 
 
+const onSubmitSignIn = () => {
+  const signInEmail = document.querySelector(".signInEmail").value;
+  const signInPassword = document.querySelector(".signInPassword").value;
+  signInUser.signInEmail = signInEmail;
+  signInUser.signInPassword = signInPassword;
+
+  signIn();
+  console.log(signInUser);
+}
 
 
-
-
+const signIn = () => {
+  fetch('http://localhost:3000/signin', {
+    method: 'post',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      email: signInUser.signInEmail,
+      password: signInUser.signInPassword
+    })
+  })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+      if (data === 'success') {
+        onRouteChange('home');
+        state.isSignedIn = true;
+        userView.setSignInMark(state.isSignedIn);
+      } else if (data !== 'success'){
+        console.log("error");
+        userView.displayForm('');
+      }
+    })
+    console.log(state);
+}
 
 
 
@@ -139,33 +200,10 @@ export const setRouteState = (e) => {
 */
 
 
-/*
-============================
- signInUser
-============================
 
 
-const signInUser = {
-  signInEmail: '',
-  signInPassword: ''
-}
- */
 
 
-/*
-============================
- FETCH
-============================
-
-fetch('http://localhost:3000/')
-  .then(response => response.json())
-  .then(console.log)
-
-  const getState = () => {
-    console.log(state.route);
-    return state.route
-  }
- */
 
 /*
 ===============================
@@ -206,26 +244,7 @@ export const getForm = (e) => {
   // console.log("target", document.forms[0]);
 }
 
-const signIn = (email, password) => {
-  fetch('http://localhost:3000/signin', {
-    method: 'post',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({
-      email: email,
-      password: password
-    })
-  })
-    .then(response => response.json())
-    .then(data => {
-      if (data === 'success') {
-        state.route = "home";
-        state.isSignedIn = true;
-        // console.log(state);
-        userView.displayForm('');
-        userView.setSignInMark(state.isSignedIn)
-      }
-    })
-}
+
 
 
 const registeredUser = {
