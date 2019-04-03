@@ -42,29 +42,29 @@ html {
 
 body {
   font-family: 'Roboto', sans-serif;
-  background-image: linear-gradient(to right top, rgba($color-6, 0.9), rgba($color-2, 0.9)),url(../images/background2.jpg);
+  background-image: linear-gradient(to right top, rgba($color-6, 0.9), rgba($color-2, 0.9)),url(../images/background2-small.jpg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
 
-  // @media only screen and (min-width: $bp-small),
-  //        only screen and (min-resolution: 192dpi) and (min-width: 18.75em),
-  //        only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 18.75em) {
-  //         background-image: linear-gradient(to left top, rgba($color-1 ,0.4), rgba($color-2,0.4)),url(../images/background-medium.jpg);
-  // }
+  @media only screen and (min-width: $bp-small),
+         only screen and (min-resolution: 192dpi) and (min-width: 18.75em),
+         only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 18.75em) {
+          background-image: linear-gradient(to right top, rgba($color-6, 0.9), rgba($color-2, 0.9)),url(../images/background2-medium.jpg);
+  }
   
-  // @media only screen and (min-resolution: 192dpi) and (min-width: $bp-small),
-  //        only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: $bp-small),
-  //        only screen and (min-width: $bp-largest) {
-  //         background-image: linear-gradient(to left top, rgba($color-1 ,0.4), rgba($color-2,0.4)),url(../images/background-large.jpg);
-  // }
+  @media only screen and (min-resolution: 192dpi) and (min-width: $bp-small),
+         only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: $bp-small),
+         only screen and (min-width: $bp-largest) {
+          background-image: linear-gradient(to right top, rgba($color-6, 0.9), rgba($color-2, 0.9)),url(../images/background2-large.jpg);
+  }
 
-  // @media only screen and (min-resolution: 192dpi) and (min-width: $bp-largest),
-  //        only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: $bp-largest),
-  //        only screen and (min-width: 150em) {
-  //         background-image: linear-gradient(to left top, rgba($color-1 ,0.4), rgba($color-2,0.4)),url(../images/background.jpg);
-  // }
+  @media only screen and (min-resolution: 192dpi) and (min-width: $bp-largest),
+         only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: $bp-largest),
+         only screen and (min-width: 150em) {
+          background-image: linear-gradient(to right top, rgba($color-6, 0.9), rgba($color-2, 0.9)),url(../images/background2.jpg);
+  }
 }
 
 ::selection {
