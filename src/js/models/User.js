@@ -75,13 +75,12 @@ export const setRoute = (e) => {
     userView.displayForm();
     userView.displayForm();
   } else if (signOutBtn) {
-    // TODO: after clicking on signout btn clear all tasks arrays!!! 
     setEmptyState();
     clearTasks();
     onRouteChange('signin');
     userView.setSignInMark(false);
     userView.displayForm();
-    setTasks();
+    // setTasks();
     weekView.changeWeek(new Date);
 
   } 
@@ -143,9 +142,9 @@ const setAsClass = (tasksArray, stateTasksArray) => {
 }
 
 const clearTasks = () => {
-  Year.monthlyTasks.slice(0, state.user.allTasks.monthlyTasks.length);
-  Week.daysArray.slice(0, state.user.allTasks.dailyTasks.length);
-  Month.weeklyTasks.slice(0, state.user.allTasks.weeklyTasks.length);
+  Year.monthlyTasks.splice(0, Year.monthlyTasks.length);
+  Week.daysArray.splice(0, Week.daysArray.length);
+  Month.weeklyTasks.splice(0, Month.weeklyTasks.length);
 }
 
 
@@ -171,6 +170,7 @@ const signIn = () => {
       if (user.id) {
         setEmptyState();
         clearTasks();
+        console.log(state);
         loadUser(user);
         onRouteChange('home');
         state.isSignedIn = true;
