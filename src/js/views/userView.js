@@ -2,6 +2,8 @@ import { elements } from './base';
 
 import * as User from '../models/User';
 
+
+// ==============================
 export const getSignin = () => {
   const html = `
             <label for="email">Email</label>
@@ -14,6 +16,8 @@ export const getSignin = () => {
   return html;
 }
 
+
+// ==============================
 export const getRegister = () => {
   const html = `
             <label for="name">Name</label>
@@ -26,6 +30,8 @@ export const getRegister = () => {
           return html;
 }
 
+
+// ==============================
 export const getProfile = (name, email) => {
   const html = `
             <div class="user-account">
@@ -42,10 +48,14 @@ export const getProfile = (name, email) => {
           return html;
 }
 
+
+// ==============================
 export const toggleFormHideClass = () => {
    elements.userForm.classList.toggle('hide');
 }
 
+
+// ==============================
 const setForm = () => {
   let markup;
   const route = User.state.route;
@@ -60,15 +70,20 @@ const setForm = () => {
 }
 
 
+// ==============================
 export const setSignInMark = (isSignIn) => {
   const greenDot = document.querySelector('.fa-user');
   isSignIn ? greenDot.classList.add('logged-in') : greenDot.classList.remove('logged-in');
 }
 
+
+// ==============================
 const toggleActiveUserIcon = () => {
   elements.navIcon.classList.toggle('nav__icon--active');
 }
 
+
+// ==============================
 export const displayForm = () => {
   // clean box for form 
   elements.userForm.innerHTML = '';
@@ -81,83 +96,3 @@ export const displayForm = () => {
   elements.userForm.insertAdjacentHTML('beforeend', markup);
 }
 
-
-
-
-
-
-
-
-
-
-
-/*
-===============================
-  DISPLAY FORM
-===============================
-
-
-export const displayForm = (e) => {
-  const target = e.target;
- 
-  setForm(target);
-  // console.log("target.classList -> ",target.classList
-  // );
-}
-*/
-
-/*
-===============================
-  SET FORM
-===============================
-
-export const setForm = (target) => {
-  const route = User.state.route;
-  elements.userForm.innerHTML = '';
-  let markup;
-  
-  if (route === 'signin') {
-    markup = getSignin();
-    // target.parentNode.children[1].id = 'signin';
-  } else if (route === 'register') {
-    markup = getRegister();
-    // target.parentNode.children[1].id = 'register';
-  } else if (route === 'home') {
-    markup = getProfile('user name', 'email@email.com');
-    // target.parentNode.children[1].id = 'profile';
-  }
-
-
-
-  if (target === undefined) {
-    return
-  } else if (target.classList.contains('nav__user')) {
-    // console.log("target -> ",target.parentNode.children[1]);
-    target.parentNode.children[1].id = route;
-  }
-  elements.userForm.insertAdjacentHTML('beforeend', markup);
-
-  // setSignInMark(target)
-}
-*/
-
-/*
-===============================
-  SET SING IN MARK (GREEN DOT)
-===============================
-
-export const setSignInMark = (isSignIn) => {
-  const greenDot = document.querySelector('.fa-user');
-  isSignIn ? greenDot.classList.add('logged-in') : greenDot.classList.remove('logged-in');
-}
-*/
-
-/*
-===============================
-  DISPLAY FORM
-===============================
-
-export const hideForm = () => {
-  elements.userForm.classList.add('hide');
-}
-*/

@@ -1,8 +1,17 @@
 // import { elements } from '../views/base';
 import * as userView from '../views/userView'; 
+import * as Tasks from '../models/Tasks'; 
+import * as Week from '../models/Week'; 
+import * as weekView from '../views/weekView'; 
+import * as Month from '../models/Month'; 
+import * as Year from '../models/Year'; 
+import * as yearView from '../views/yearView'; 
+import * as monthView from '../views/monthView'; 
 import { ifTargetMatches } from '../models/Tasks'; 
 import { elements } from '../views/base';
 import { isNullOrUndefined } from 'util';
+// import { stat } from 'fs';
+import { strictEqual } from 'assert';
 
 /*
 ============================
@@ -16,16 +25,30 @@ export const state = {
     id: '',
     name: '',
     email: '',
-    // tasks: [{}],
+    allTasks: {
+      dailyTasks: [], 
+      weeklyTasks: [], 
+      monthlyTasks: []
+    },
     registered: ''
   }
 };
-/*
-  state = {
-    route: 'signin/register/home',
-    isSignIn: true/false
-  }
-*/
+
+
+const setEmptyState = () => {
+  state.route = "signin";
+  state.isSignedIn = false;
+  state.user.id = '';
+  state.user.name = '';
+  state.user.email = '';
+  state.user.allTasks = {
+      dailyTasks: [], 
+      weeklyTasks: [], 
+      monthlyTasks: []
+  };
+  state.user.registered = '';
+}
+
 
 const onRouteChange = (route) => {
   state.route = route;
@@ -40,50 +63,29 @@ export const setRoute = (e) => {
   const signOutBtn = ifTargetMatches(target, '.button__sign-out');
   
   if (signInBtn) {
-    onSubmitSignIn()
-    // onRouteChange('home');
-    // userView.setSignInMark(true)
+    onSubmitSignIn();    
     userView.displayForm();
   } else if (registerBtn) {
     onSubmitRegister();
     userView.displayForm();
   } else if (registerLink) {
     onRouteChange('register');
+    setEmptyState();
     userView.setSignInMark(false);
     userView.displayForm();
     userView.displayForm();
   } else if (signOutBtn) {
+    // TODO: after clicking on signout btn clear all tasks arrays!!! 
+    setEmptyState();
+    clearTasks();
     onRouteChange('signin');
     userView.setSignInMark(false);
     userView.displayForm();
+    setTasks();
+    weekView.changeWeek(new Date);
+
   } 
 } 
-
-
-
-
-
-
-/* 
-IF STATE == SIGNIN -> SIGNIN FORM
-
-
-onRouteChange(route) = after click on button signIn go to routr "home"
-
-{if route home -> signOut btn -> signIn}
-else 
-  {if route signInForm -> register or home
-
-  if route registerForm -> register or home}
-
-
-  ??? if SignedIn ->  signOut else
-  ??? signed in or register
-
-  if route == signOut -> isSigneIn = false 
-  else if route == home -> isSignIn = true
-*/
-
 
 /*
 ============================
@@ -93,12 +95,6 @@ else
 fetch('http://localhost:3000/')
   .then(response => response.json())
   .then(console.log)
-
-  // const getState = () => {
-  //   console.log(state.route);
-  //   return state.route
-  // }
-
 
 /*
 ============================
@@ -113,8 +109,6 @@ export const signInUser = {
 // const onEmailChange = (event) => {
 //  signInUser.signInEmail = event.target.value
 // }
-
-
 // const onPasswordChange = (event) => {
 //   signInUser.signInPassword = event.target.value
 // }
@@ -125,9 +119,41 @@ const onSubmitSignIn = () => {
   const signInPassword = document.querySelector(".signInPassword").value;
   signInUser.signInEmail = signInEmail;
   signInUser.signInPassword = signInPassword;
-
   signIn();
-  console.log(signInUser);
+}
+
+const setAsClass = (tasksArray, stateTasksArray) => {
+    stateTasksArray.forEach(el => {
+      let date;
+      if (el.tasks.length !== 0) {
+        date = new Tasks.taskObject(el.date, el.tasks[0].task, el.tasks[0].done);
+        el.tasks.forEach(task => {
+          if (el.tasks[0] !== task) {
+          date.addTask(task.task, task.done);
+          } else {
+            return;
+          }
+        })
+      } else {
+        return;
+      }
+      tasksArray.push(date);
+    })
+  
+}
+
+const clearTasks = () => {
+  Year.monthlyTasks.slice(0, state.user.allTasks.monthlyTasks.length);
+  Week.daysArray.slice(0, state.user.allTasks.dailyTasks.length);
+  Month.weeklyTasks.slice(0, state.user.allTasks.weeklyTasks.length);
+}
+
+
+const setTasks = () => {
+  clearTasks();
+  setAsClass(Year.monthlyTasks,state.user.allTasks.monthlyTasks);
+  setAsClass(Week.daysArray, state.user.allTasks.dailyTasks);
+  setAsClass(Month.weeklyTasks, state.user.allTasks.weeklyTasks);
 }
 
 
@@ -141,30 +167,21 @@ const signIn = () => {
     })
   })
     .then(response => response.json())
-    // .then(data => {
-    //   console.log(data);
-    //   if (data === 'success') {
-    //     onRouteChange('home');
-    //     state.isSignedIn = true;
-    //     userView.setSignInMark(state.isSignedIn);
-    //   } else if (data !== 'success'){
-    //     console.log("error");
-    //     userView.displayForm('');
-    //   }
-    // })
     .then(user => {
-      console.log(user);
       if (user.id) {
+        setEmptyState();
+        clearTasks();
         loadUser(user);
         onRouteChange('home');
         state.isSignedIn = true;
         userView.setSignInMark(state.isSignedIn);
+        setTasks()
+        weekView.changeWeek(new Date);
       } else if (!user.id){
         console.log("error");
         userView.displayForm('');
       }
     })
-    console.log(signInUser);
 }
 
 
@@ -183,7 +200,6 @@ const onSubmitRegister = () => {
   registeredUser.name = registerName;
 
   register();
-  console.log(registeredUser);
 }
 
 const loadUser = (data) => {
@@ -191,8 +207,8 @@ const loadUser = (data) => {
     id: data.id,
     name: data.name,
     email: data.email,
-    // tasks: data.tasks,
-    registered: data.joined
+    allTasks: data.allTasks,
+    registered: data.registered
   }
 }
 
@@ -208,143 +224,43 @@ const register = () => {
   })
     .then(response => response.json())
     .then(user => {
-      console.log("user -->  ", user);
       if (user) {
         loadUser(user.id);
         onRouteChange('home');
         state.isSignedIn = true;
         userView.setSignInMark(state.isSignedIn);
       } else if (!user.id){
-        console.log("error");
         userView.displayForm('');
       }
     })
-    console.log("state -->  ", state);
-    console.log("registeredUser -->  ", registeredUser);
 }
 
 
-
-
-
-
-
-/*
-===============================
-  SET ROUTE STATE
-===============================
-
-export const setRouteState = (e) => {
-  const target = e.target;
-  const registerLink = ifTargetMatches(target, '.register-link');
-  const registerBtn = ifTargetMatches(target, '.button__register');
-  const signInBtn = ifTargetMatches(target, '.button__sign-in');
-  const signOutBtn = ifTargetMatches(target, '.button__sign-out');
-
-  // if (registerBtn || signInBtn) {
-  //   state.route = "home";
-  //   state.isSignedIn = true;
-  //   // target.parentNode.id = 'profile';
-  // } else if (signOutBtn) {
-  //   state.route = "signin";
-  //   state.isSignedIn = false;
-  //   // target.parentNode.id = 'signin';
-  // } else 
-  if (registerLink) {
-    // target.parentNode.id = 'register';
-    state.route = "register";
-    state.isSignedIn = false;
-    userView.displayForm('');
-  } else {
-    console.log(target);
-  }
-  // userView.setSignInMark(state.isSignedIn)
-}
-*/
-
-
-
-
-
-
-
-/*
-===============================
-  GET FORM
-===============================
-
-export const getForm = (e) => {
-  setRouteState(e);
-  const route = getState();
-  console.log(route);
-  let target = e.target;
-  // const email = target.email.value;
-  // const password = target.password.value;
-  // const name = target.name.value;
-
-
-  
-  console.log(target);
-  // console.log("target.parentNode --> ", target);
-  if (state.route === 'register') {
-    // register(email, password, name);
-    
-    console.log(state.route);
-
-  }else if (state.route === 'signin') {
-    signIn(email, password);
-    console.log(state.route);
-
-  }
-  // if (ifTargetMatches(target, '.button__user')) {
-  //   setRouteState(target);
-  //   userView.setForm();
-  //   userView.hideForm();
-  // } else if (ifTargetMatches(target, '.register-link')) {
-  //   setRouteState(target);
-  //   userView.setForm();
-  // } 
-  // console.log("target", document.forms[0]);
-}
-
-
-
-
-
-
-const register = (email, password, name) => {
-  fetch('http://localhost:3000/register', {
-    method: 'post',
+// Tasks.addTask
+export const updateTasks = () => {
+  // console.log("----------- UPDATE TASK --------");
+  fetch('http://localhost:3000/alltasks', {
+    method: 'put',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({
-      email: email,
-      password: password,
-      name: name
+      id: state.user.id,
+      dailyTasks: Week.daysArray, 
+      weeklyTasks: Month.weeklyTasks, 
+      monthlyTasks: Year.monthlyTasks
     })
   })
     .then(response => response.json())
     .then(user => {
-      if (user) {
-        loadUser(user)
-        state.route = "home";
-        state.isSignedIn = true;
-        // console.log(state);
-        userView.displayForm('');
-        userView.setSignInMark(state.isSignedIn)
-      }
+      console.log(user);
+      // state.user.allTasks.dailyTasks.splice(0,state.user.allTasks.dailyTasks.length);
+      // state.user.allTasks.dailyTasks.push(...user.allTasks.dailyTasks);
+
+      // state.user.allTasks.weeklyTasks.splice(0,state.user.allTasks.weeklyTasks.length);
+      // state.user.allTasks.weeklyTasks.push(Month.weeklyTasks);
+
+      // state.user.allTasks.monthlyTasks.splice(0,state.user.allTasks.monthlyTasks.length);
+      // state.user.allTasks.monthlyTasks.push(...user.allTasks.monthlyTasks);
+
     })
 }
-
-const loadUser = (data) => {
-  state.user = {
-    id: data.id,
-    name: data.name,
-    email: data.email,
-    tasks: data.tasks,
-    registered: data.joined
-  }
-}
-
-
-*/
 

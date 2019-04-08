@@ -17,7 +17,7 @@ const monthsArray = [];
 
 // ===================================
 // an array with monthly tasks in the year section
-export const monthlyTasks = [];
+export let monthlyTasks = [];
 
 
 // ===================================

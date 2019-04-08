@@ -50,20 +50,6 @@ elements.userIcon.addEventListener('click', userView.displayForm);
 elements.userForm.addEventListener('click', User.setRoute);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*
 ============================
  TASKS

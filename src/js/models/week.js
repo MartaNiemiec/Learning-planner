@@ -11,7 +11,7 @@ export let lastChoosedDay = todayDate;
 
 // ===================================
 // create an array with tasks
-export const daysArray = [];
+export let daysArray = [];
 
 
 // ===================================

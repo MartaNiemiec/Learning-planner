@@ -6,11 +6,12 @@ import * as Month from './Month';
 import * as monthView from '../views/monthView';
 import * as Year from './Year';
 import * as yearView from '../views/yearView';
+import * as User from '../models/User';
 
 
 // ===================================
 // create class Day 
-class taskObject {
+export class taskObject {
   constructor(date, task, done = false) {
     this.date = date;
     this.tasks = [{task: task, done: done}];
@@ -112,13 +113,8 @@ const setCurrentDate = (date) => {
   elements.popupTask.dataset.date = date;
 }
 
-
-// ===================================
-// set the array with tasks depends of the selected section(year, month or week section)
-const setArray = (target) => {
-  const section = getClosestParent(target, ".section__item--content").dataset.section;
+const chooseArray = (section) => {
   let arr;
-
   if(section == "week") {
     arr = Week.daysArray;
   } else if (section == "month") {
@@ -126,6 +122,20 @@ const setArray = (target) => {
   } else if (section == "year") {
     arr = Year.monthlyTasks;
   }
+  return arr;
+}
+// ===================================
+// set the array with tasks depends of the selected section(year, month or week section)
+const setArray = (target) => {
+  const section = getClosestParent(target, ".section__item--content").dataset.section;
+  let arr = chooseArray(section);
+  // if(section == "week") {
+  //   arr = Week.daysArray;
+  // } else if (section == "month") {
+  //   arr = Month.weeklyTasks;
+  // } else if (section == "year") {
+  //   arr = Year.monthlyTasks;
+  // }
   return arr;
 }
 
@@ -261,6 +271,7 @@ export function addTask(e, arr) {
   this.reset(); 
   displaySections(currentDay);
   hidePopupTask();
+  User.updateTasks()
 }
 
 
@@ -281,6 +292,7 @@ export function addTask(e, arr) {
   else {
     return;
   }
+  // User.updateTasks()
 }
 
 
@@ -300,6 +312,7 @@ export const deleteTask = (e) => {
       displaySections(date);
     })
   }
+  User.updateTasks()
 }
 
 
@@ -319,4 +332,5 @@ export const toggleTask = (e) => {
   dayArray.toggleChecked(taskText);
   // display all tasks for current day
   displaySections(date);
+  User.updateTasks()
 }

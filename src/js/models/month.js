@@ -1,12 +1,13 @@
 import { ifTargetMatches } from '../models/Tasks';
 import { changeWeek } from '../views/weekView';
 
+
 import * as Week from './Week';
 
 // generated weeks of the year
 export const weeks = [];
 // array with weekly tasks
-export const weeklyTasks = [];
+export let weeklyTasks = [];
 
 
 export const getWeeks = () => {
