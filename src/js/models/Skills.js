@@ -5,7 +5,7 @@ import { devicons, fontAwesomeBrand } from '../devicon.js'
  create an empty array with all Icons from devicon.js file
 ==================================================
  */
-export const allIcons = [];
+export let allIcons = [];
 
 /*
 allIcons = [

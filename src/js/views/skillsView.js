@@ -1,6 +1,7 @@
 
 import { elements } from '../views/base';
 import { allIcons, searchIcons, changeSelected } from '../models/Skills';
+import * as User from "../models/User"
 
 
 /*
@@ -64,6 +65,9 @@ export const hidePopup = () => {
 ==================================================
  */
 export const updateSkills = () => {
+
+  // allIcons.splice(0,  allIcons.length);
+  // allIcons.push(state.user.skills)
   // clear all skills from the skill section
   while (elements.skills.hasChildNodes()) {   
     elements.skills.removeChild(elements.skills.firstChild);
@@ -82,6 +86,7 @@ export const updateSkills = () => {
 
   // hide popup
   hidePopup();
+  User.updateTasks();
 }
 
 
