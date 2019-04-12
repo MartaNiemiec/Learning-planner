@@ -27,12 +27,10 @@ export const state = {
     id: '',
     name: '',
     email: '',
-    allTasks: {
-      dailyTasks: [], 
-      weeklyTasks: [], 
-      monthlyTasks: []
-    },
-    skills: [],
+    dailytasks: [], 
+    weeklytasks: [], 
+    monthlytasks: [],
+    skills: Skills.allIcons,
     registered: ''
   }
 };
@@ -49,12 +47,10 @@ const setEmptyState = () => {
   state.user.id = '';
   state.user.name = '';
   state.user.email = '';
-  state.user.allTasks = {
-      dailyTasks: [], 
-      weeklyTasks: [], 
-      monthlyTasks: []
-  };
-  state.user.skills = [];
+  state.user.dailytasks = [], 
+  state.user.weeklytasks = [], 
+  state.user.monthlytasks = [], 
+  state.user.skills = Skills.allIcons;
   state.user.registered = '';
 }
 
@@ -112,7 +108,7 @@ export const setRoute = (e) => {
  FETCH
 ============================
  */
-fetch('http://localhost:3000/')
+fetch('http://localhost:3000/') // get database users
   .then(response => response.json())
   .then(console.log)
 
@@ -126,14 +122,6 @@ export const signInUser = {
   signInEmail: '',
   signInPassword: ''
 }
-
-// const onEmailChange = (event) => {
-//  signInUser.signInEmail = event.target.value
-// }
-// const onPasswordChange = (event) => {
-//   signInUser.signInPassword = event.target.value
-// }
-
 
 /*
 ============================
@@ -163,7 +151,7 @@ const signIn = () => {
         weekView.changeWeek(new Date);
         skillsView.updateSkills()
       } else if (!user.id){
-        console.log("error");
+        console.log("sign in error");
         userView.displayForm('');
       }
     })
@@ -212,18 +200,15 @@ const register = () => {
   })
     .then(response => response.json())
     .then(user => {
-      if (user) {
-        loadUser(user.id);
+      if (user.id) {
+        loadUser(user);
         onRouteChange('home');
         state.isSignedIn = true;
         userView.setSignInMark(state.isSignedIn);
-        user.allTasks = {
-          dailyTasks: [], 
-          weeklyTasks: [], 
-          monthlyTasks: []
-      };
-      user.skills = [];
-      console.log(user);
+        user.dailytasks = [],
+        user.weeklytasks = [],
+        user.monthlytasks = [],
+        user.skills = [];
       } else if (!user.id){
         userView.displayForm('');
       }
@@ -255,10 +240,12 @@ const onSubmitRegister = () => {
  */
 const loadUser = (data) => {
   state.user = {
-    id: data.id,
+    id:  data.id,
     name: data.name,
     email: data.email,
-    allTasks: data.allTasks,
+    dailytasks: data.dailytasks,
+    weeklytasks: data.weeklytasks,
+    monthlytasks: data.monthlytasks,
     skills: data.skills,
     registered: data.registered
   }
@@ -272,16 +259,15 @@ const loadUser = (data) => {
  */
 // Tasks.addTask
 export const updateTasks = () => {
-  // console.log("----------- UPDATE TASK --------");
   fetch('http://localhost:3000/alltasks', {
     method: 'put',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({
       id: state.user.id,
-      dailyTasks: Week.daysArray, 
-      weeklyTasks: Month.weeklyTasks, 
-      monthlyTasks: Year.monthlyTasks,
-      skills: Skills.allIcons
+      dailytasks: JSON.stringify(Week.daysArray), 
+      weeklytasks: JSON.stringify(Month.weeklyTasks), 
+      monthlytasks: JSON.stringify(Year.monthlyTasks),
+      skills: JSON.stringify(Skills.allIcons)
     })
   })
   .then(response => response.json())
@@ -334,9 +320,9 @@ Month.weeklyTasks.splice(0, Month.weeklyTasks.length);
  */
 const setTasks = () => {
 clearTasks();  
-setAsClass(Year.monthlyTasks,state.user.allTasks.monthlyTasks);
-setAsClass(Week.daysArray, state.user.allTasks.dailyTasks);
-setAsClass(Month.weeklyTasks, state.user.allTasks.weeklyTasks);
+setAsClass(Year.monthlyTasks,state.user.monthlytasks);
+setAsClass(Week.daysArray, state.user.dailytasks);
+setAsClass(Month.weeklyTasks, state.user.weeklytasks);
 }
 
 

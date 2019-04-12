@@ -64,7 +64,7 @@ const setForm = () => {
   } else if (route === 'register') {
     markup = getRegister();
   } else if (route === 'home') {
-    markup = getProfile('user name', 'email@email.com');
+    markup = getProfile(User.state.user.name, User.state.user.email);
   }
   return markup;
 }
