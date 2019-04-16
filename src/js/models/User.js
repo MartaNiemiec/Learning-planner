@@ -108,7 +108,7 @@ export const setRoute = (e) => {
  FETCH
 ============================
  */
-fetch('http://localhost:3000/') // get database users
+fetch('https://arcane-oasis-97430.herokuapp.com/') // get database users
   .then(response => response.json())
   .then(console.log)
 
@@ -129,7 +129,7 @@ export const signInUser = {
 ============================
  */
 const signIn = () => {
-  fetch('http://localhost:3000/signin', {
+  fetch('https://arcane-oasis-97430.herokuapp.com/signin', {
     method: 'post',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({
@@ -189,7 +189,7 @@ const registeredUser = {
 ============================
  */
 const register = () => {
-  fetch('http://localhost:3000/register', {
+  fetch('https://arcane-oasis-97430.herokuapp.com/register', {
     method: 'post',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({
@@ -208,7 +208,7 @@ const register = () => {
         user.dailytasks = [],
         user.weeklytasks = [],
         user.monthlytasks = [],
-        user.skills = [];
+        user.skills = Skills.allIcons;
       } else if (!user.id){
         userView.displayForm('');
       }
@@ -259,7 +259,7 @@ const loadUser = (data) => {
  */
 // Tasks.addTask
 export const updateTasks = () => {
-  fetch('http://localhost:3000/alltasks', {
+  fetch('https://arcane-oasis-97430.herokuapp.com/alltasks', {
     method: 'put',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({
