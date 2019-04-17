@@ -10,7 +10,7 @@
     "start": "webpack-dev-server --mode=development --open",
     "build": "webpack --mode=production",
     "prefix": "postcss --use autoprefixer -b \"last 10 versions\" ./css/style.css -o ./css/style.css",
-    "postinstall": "webpack -p --config ./webpack.prod.config.js --progress"
+    "postinstall": "webpack -p --config --progress"
   },
   "repository": {
     "type": "git",
@@ -21,7 +21,7 @@
   "bugs": {
     "url": "https://github.com/MartaNiemiec/My_planner_app/issues"
   },
-  "homepage": "https://github.com/MartaNiemiec/My_planner_app#readme",
+  "homepage": "https://github.com/MartaNiemiec/My_planner_app",
   "devDependencies": {
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.2.0",
