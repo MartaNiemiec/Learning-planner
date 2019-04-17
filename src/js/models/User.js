@@ -1,11 +1,11 @@
 // import { elements } from '../views/base';
 import * as userView from '../views/userView'; 
-import * as Tasks from '../models/Tasks'; 
-import * as Week from '../models/Week'; 
+import * as Tasks from './Tasks'; 
+import * as Week from './Week'; 
 import * as weekView from '../views/weekView'; 
-import * as Month from '../models/Month'; 
-import * as Year from '../models/Year'; 
-import * as Skills from '../models/Skills'; 
+import * as Month from './Month'; 
+import * as Year from './Year'; 
+import * as Skills from './Skills'; 
 import * as skillsView from '../views/skillsView'; 
 // import * as yearView from '../views/yearView'; 
 // import * as monthView from '../views/monthView'; 
