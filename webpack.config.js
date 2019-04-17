@@ -55,6 +55,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/index.html'
     }),
-    new CaseSensitivePathsPlugin({debug: true})
+    new CaseSensitivePathsPlugin()
   ]
 };
