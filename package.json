@@ -2,7 +2,8 @@
   "name": "planner-app",
   "version": "1.0.0",
   "engines": {
-    "node": "8.11.1"
+    "node": "8.11.1",
+    "npm": "6.8.0"
   },
   "description": "",
   "main": "index.js",
