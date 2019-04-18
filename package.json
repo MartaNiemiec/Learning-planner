@@ -10,7 +10,8 @@
   "scripts": {
     "start": "webpack-dev-server --mode=development --open",
     "build": "webpack --mode=production",
-    "prefix": "postcss --use autoprefixer -b \"last 10 versions\" ./css/style.css -o ./css/style.css"
+    "prefix": "postcss --use autoprefixer -b \"last 10 versions\" ./css/style.css -o ./css/style.css",
+    "heroku-postbuild": "webpack -p"
   },
   "repository": {
     "type": "git",
