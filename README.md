@@ -4,20 +4,20 @@
 
 My own app made from scratch with Vanilla JavaScript, Node.js, PostgreSQL. Deployed on Heroku.
 
-## :clipboard:Table of contents
+## Table of contents :clipboard:
 * [General info](#general-info)
 * [Screenshots](#screenshots)
 * [Technologies](#technologies)
 * [Features](#features)
 * [Status](#status)
 
-## :information_source: General info
+## General info  :information_source: 
 Learning planner app is intended mostly for those learning programming. It makes it easier to plan next learning steps.
 The app consists of four sections.
 In the first one it is possible to pick  icons representing  the gained skills. These can be selected from the popup. 
 The remaining three sections are for planning monthly, weekly and daily tasks.
 
-## :camera: Screenshots
+## Screenshots  :camera: 
 ![Planner app](Learningplanner.png)
 ![signin](signin.png)
 ![register](register.png)
@@ -25,7 +25,7 @@ The remaining three sections are for planning monthly, weekly and daily tasks.
 ![taskpopup](taskpopup.png)
 ![iconspopup](iconspopup.png)
 
-## :computer: Technologies
+## Technologies  :computer: 
 * HTML5 
 * SCSS 
 * JavaScript ES6 
@@ -37,12 +37,11 @@ The remaining three sections are for planning monthly, weekly and daily tasks.
 * Express.js
 * PostgreSQL
 
-## :bulb: Features
+## Features  :bulb:
 * Registering and signing in
 * Adding gained skills 
 * Setting monthly, weekly and daily tasks
 * Editing and deleting single tasks
 
-## :question: Status
-
+## Status  :question:
 Project no longer continued. :zzz: 
