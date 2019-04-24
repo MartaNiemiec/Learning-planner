@@ -5,11 +5,11 @@
 My own app made from scratch with Vanilla JavaScript, Node.js, PostgreSQL. Deployed on Heroku.
 
 ## Table of contents :clipboard:
-* [General info](#general-info)
-* [Screenshots](#screenshots)
-* [Technologies](#technologies)
-* [Features](#features)
-* [Status](#status)
+* [General info](#general-info--information_source)
+* [Screenshots](#screenshots--camera)
+* [Technologies](#technologies--computer)
+* [Features](#features--bulb)
+* [Status](#status--question)
 
 ## General info  :information_source: 
 Learning planner app is intended mostly for those learning programming. It makes it easier to plan next learning steps.
