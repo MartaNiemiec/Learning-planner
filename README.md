@@ -10,6 +10,7 @@ My own app made from scratch with Vanilla JavaScript, Node.js, PostgreSQL. Deplo
 * [Technologies](#technologies--computer)
 * [Features](#features--bulb)
 * [Status](#status--question)
+* [Acknowledgements](#arrow_down-acknowledgements)
 
 ## General info  :information_source: 
 Learning planner app is intended mostly for those learning programming. It makes it easier to plan next learning steps.
@@ -45,3 +46,7 @@ The remaining three sections are for planning monthly, weekly and daily tasks.
 
 ## Status  :question:
 Project no longer continued. :zzz: 
+
+## :arrow_down: Acknowledgements
+* [Devicons](https://konpa.github.io/devicon/)
+* [Font Awesome](https://fontawesome.com/)
